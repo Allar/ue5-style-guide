@@ -6,6 +6,8 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 ## Principles<sup>[1](#ref-1)</sup>
 
+These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+
 ### If your UE4 project already has a style guide, you should follow it.
 
 If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between and existing style guide and this guide should defer to the existing.
@@ -307,9 +309,6 @@ See [LICENSE](/LICENSE)
 
 **[⬆ Back to Top](#table-of-contents)**
 
-## References
-
-<a name="ref-1">1</a>: Adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 ## Amendments
 
