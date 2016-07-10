@@ -231,7 +231,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Camera Anim             | CA_        |            |                                  |
 | Color Curve             | Curve_     | _Color     |                                  |
 | Curve Table             | Curve_     | _Table     |                                  |
-| Data Asset              |            |            | Prefix should be based on class. |
+| Data Asset              | *_         |            | Prefix should be based on class. |
 | Data Table              | DT_        |            |                                  |
 | Float Curve             | Curve_     | _Float     |                                  |
 | Foliage Type            | FT_        |            |                                  |
