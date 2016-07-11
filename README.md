@@ -4,11 +4,12 @@
 
 Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
+[![Beerpay](https://beerpay.io/Allar/ue4-style-guide/badge.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide) [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/make-wish.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide)
+
 ## Linking To This Document
 
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of https://github.com/Allar/ue4-style-guide.
-
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in https://github.com/Allar/ue4-style-guide#0.1.
+Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
+For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
 
 <a name="0"></a>
 ## 0. Principles
