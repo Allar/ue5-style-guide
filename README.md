@@ -14,26 +14,26 @@ For example, if you want to send someone to the first principle of this style gu
 ## Important Terminology
 
 <a name="terms-level-map"></a>
-### Levels/Maps
+##### Levels/Maps
 
 The word 'map' generally refers to what the average person calls a 'level' and may be used interchangeably. See this term's history [here](https://en.wikipedia.org/wiki/Level_(video_gaming)).
 
 <a name="terms-cases"></a>
-### Cases
+##### Cases
 
 There are a few different ways you can name things. Here are some common casing types:
 
-#### PascalCase
-
-Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
-
-#### camelCase
-
-The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle, `styleGuide`, `aSeriesOfWords`.
-
-#### Snake_case
-
-Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+> ###### PascalCase
+>
+> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+> 
+> ###### camelCase
+>
+> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle, `styleGuide`, `aSeriesOfWords`.
+>
+> ###### Snake_case
+>
+> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
 
 <a name="0"></a>
