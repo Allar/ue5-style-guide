@@ -29,7 +29,7 @@ There are a few different ways you can name things. Here are some common casing 
 > 
 > ###### camelCase
 >
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle, `styleGuide`, `aSeriesOfWords`.
+> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
 > ###### Snake_case
 >
