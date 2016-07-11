@@ -4,7 +4,7 @@
 
 Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
-<a>![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)</a> [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/badge.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide) [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/make-wish.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide)
+[![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/badge.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide) [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/make-wish.svg?style=plastic)](https://beerpay.io/Allar/ue4-style-guide)
 
 
 
