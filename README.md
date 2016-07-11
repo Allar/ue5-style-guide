@@ -326,3 +326,7 @@ See [LICENSE](/LICENSE)
 We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
 
 # };
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/Allar/ue4-style-guide/badge.svg?style=beer-square)](https://beerpay.io/Allar/ue4-style-guide)  [![Beerpay](https://beerpay.io/Allar/ue4-style-guide/make-wish.svg?style=flat-square)](https://beerpay.io/Allar/ue4-style-guide?focus=wish)
