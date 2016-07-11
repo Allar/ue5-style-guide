@@ -135,11 +135,13 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Level / Map             |            |            | Should be in a folder called Maps. |
 | Blueprint               | BP_        |            |                                  |
 | Material                | M_         |            |                                  |
 | Static Mesh             | S_ or SM_  |            | Pick only one. Prefer S_.        |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
+| Particle System         | PS_        |            |                                  |
 | Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
 
 <a name="anc-animations"></a>
@@ -197,6 +199,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Material                | M_         |            |                                  |
+| Material (Post Process) | PP_        |            |                                  |
 | Material Function       | MF_        |            |                                  |
 | Material Instance       | MI_        |            |                                  |
 | Material Parameter Collection | MPC_ |            |                                  |
@@ -308,6 +311,15 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Slate Brush             | Brush_     |            |                                  |
 | Slate Widget Style      | Style_     |            |                                  |
 | Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
+
+<a name="anc-effects"></a>
+<a name="1.2.12"></a>
+### 1.2.12 Effects
+
+| Asset Type              | Prefix     | Suffix     | Notes                            |
+| ----------------------- | ---------- | ---------- | -------------------------------- |
+| Particle System         | PS_        |            |                                  |
+| Material (Post Process) | PP_        |            |                                  |
 
 ## Contributors
 
