@@ -76,6 +76,7 @@ When joining an Unreal Engine 4 team one of your first questions should be "Do y
 ## Table of Contents
 
 1. [Asset Naming Conventions](#anc)
+1. [Directory Structure](#structure)
 
 <a name="anc"></a>
 <a name="1"></a>
@@ -352,6 +353,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Material (Post Process) | PP_        |            |                                  |
 
 <a name="2"></a>
+<a name="structure"></a>
 ## 2. Content Directory Structure
 
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
