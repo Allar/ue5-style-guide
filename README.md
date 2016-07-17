@@ -221,7 +221,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 | Blueprint               | BP_        |            |                                  |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library |            |            | Do not use macro libraries.      |
+| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
 | Enumeration             | E          |            | No underscore.                   |
 | Structure               | F or S     |            | No underscore.                   |
 | Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
