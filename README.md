@@ -890,6 +890,7 @@ Do not use the `Config Variable` flag. This makes it harder for designers to con
 ## Contributors
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
+* [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
 
 ## License
 
