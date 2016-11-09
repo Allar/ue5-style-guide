@@ -157,6 +157,8 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 > 1.2.11 [User Interface](#anc-ui)
 
+> 1.2.12 [Effects](#anc-effects)
+
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
 #### 1.2.1 Most Common ![#](https://img.shields.io/badge/lint-supported-green.svg)
