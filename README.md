@@ -2,7 +2,7 @@
 
 *Наиболее разумный подход к Unreal Engine 4*
 
-Руководство было вдохновлено, по большей части, [стайл-гайдом Javascript от Airbnb (En)](https://github.com/airbnb/javascript).
+Создание этого руководства было вдохновлено, по большей части, [стайл-гайдом Javascript от Airbnb (En)](https://github.com/airbnb/javascript).
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
@@ -597,88 +597,88 @@ _(Прим. пер.)_ Это также касается использован�
 
 Это псевдо-исключение к правилу [2.6](#2.6).
 
-There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
+Есть определённые виды ассетов, которые образуют большой объём связанных по смыслу файлов, но каждый такой файл обладает своей уникальной целью. Чаще всего это папки с анимациями и аудио. Мы можем добавить новый уровень иерархии в папке тогда, когда эти подуровни образуют группы в 15+ семантически связанных файлов. Не забывайте делать этим подуровням чёткие и наполненные смыслом названия.
 
-For example, animations that are shared across multiple characters should lay in `Characters/Common/Animations` and may have sub-folders such as `Locomotion` or `Cinematic`.
+Например, есть анимации, которые используются несколькими персонажами — они должны находиться в папке `Characters/Common/Animations` , где могут быть поддиректории `Locomotion` или `Cinematic`.
 
-> This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> Это правило неприменимо к ассетам вроде текстур или материалов. Это норма, когда у папки `Rocks` огромное количество текстур, соответствующее аналогичному количеству камней; при этом каждая из этих текстур относится к небольшому количеству мешей и должна быть названа соответствующим образом. Не являются исключением и текстуры в [библиотеке материалов](#2.8).
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
-### 2.8 `MaterialLibrary` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.8 `MaterialLibrary` (библиотека материалов) ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+Если ваш проект использует главные материалы (материалы-шаблоны), слоистые материалы, или любую другую форму многократно используемых материалов и текстур, которые не принадлежат какому-нибудь подмножеству ассетов, они должны быть расположены в папке `Content/Project/MaterialLibrary`.
 
-This way all 'global' materials have a place to live and are easily located.
+Так все "глобальные" материалы будут находиться в одном легкодоступном месте.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> Это также способствует политике "только экземпляры материалов" ('material instances only') в вашем проекте. Если все художники и рабочие материалы используют экземпляры материалы, то обычные материалы будут существовать только в пределах папки. Проверить соблюдение этой политики можно просто поиском основных материалов в папках, отличных от `MaterialLibrary`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+Папка `MaterialLibrary` необязательно должна состоять только из материалов. Общие текстуры-помощники, функции материалов и другие аналогичные ассеты могут храниться в этой же папке. Мы также можем объединять их в семантические группы папками. Например, общие текстуры с шумом можно объединить в папке `MaterialLibrary/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Все материалы, предназначенные для тестирования и/или отладки должны располагаться в папке `MaterialLibrary/Debug`. Это позволяет убрать такие материалы при сборке релизной версии, а если они используются в версии для сборки, сообщение об ошибке укажет на эти связи.
 
 <a name="3"></a>
 <a name="bp"></a>
 ## 3. Блупринты ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-This section will focus on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+Этот раздел направлен на блупринты и их внутреннее обустройство. Где возможно, эти правила подчиняются [стандарту кодинга Epic](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
 
-### Sections
+### Подразделы
 
-> 3.1 [Compiling](#bp-compiling)
+> 3.1 [Компиляция](#bp-compiling)
 
-> 3.2 [Variables](#bp-vars)
+> 3.2 [Переменные](#bp-vars)
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
-### 3.1 Compiling ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 3.1 Компиляция ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+Все блупринты должны компилиться без предупреждений и ошибок. Вы должны исправить все предупреждения и ошибки при первой возможности, т.к. они сразу могут превратиться в снежный ком проблем и вызвать непредвиденное поведение.
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+*Никогда не отправляйте* (submit) сломанные блупринты в систему контроля версиями. Если вам нужно хранить их в системе контроля версий, отложите их (shelve).
 
-Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
+Сломанные блупринты могут вызвать массу проблем — таких, как поломанные связи, некорректное поведение, падения при сборке, частые ненужные перекомпиляции. Один сломанный блупринт способен порушить всю вашу игру.
 
 <a name="3.2"></a>
 <a name="bp-vars"></a>
-### 3.2 Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 3.2 Переменные ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-#### Sections
+#### Подразделы
 
-> 3.2.1 [Naming](#bp-vars)
+> 3.2.1 [Именование](#bp-vars)
 
-> 3.2.2 [Editable](#bp-vars-editable)
+> 3.2.2 [`Editable`](#bp-vars-editable)
 
-> 3.2.3 [Categories](#bp-vars-categories)
+> 3.2.3 [Категории](#bp-vars-categories)
 
-> 3.2.4 [Access](#bp-vars-access)
+> 3.2.4 [Уровни доступа](#bp-vars-access)
 
-> 3.2.5 [Advanced](#bp-vars-advanced)
+> 3.2.5 [`Advanced`](#bp-vars-advanced)
 
-> 3.2.6 [Transient](#bp-vars-transient)
+> 3.2.6 [`Transient`](#bp-vars-transient)
 
-> 3.2.7 [SaveGame](#bp-vars-savegame)
+> 3.2.7 [`SaveGame`](#bp-vars-savegame)
 
-> 3.2.8 [Config](#bp-vars-config)
+> 3.2.8 [Переменные `Config`](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
-#### 3.2.1 Naming ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.1 Именование ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.1"></a>
 <a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.1 Существительные ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
+Все не-булевые переменные должны быть чёткими, недвусмысленными, описательными существительными.
 
 <a name="3.2.1.2"></a>
 <a name="bp-var-naming-case"></a>
-##### 3.2.1.2 PascalCase ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.2 ДельфиСтиль ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+Все не-булевые переменные должны быть написаны в [ДельфиСтиле](#terms-cases).
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples:
+###### 3.2.1.2e Примеры:
 
 * `Score`
 * `Kills`
@@ -689,48 +689,48 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.3 Префикс `b` для булевых переменных ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+Все булевы значения должны следовать ДельфиСтилю, но иметь префикс в виде малой `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+Например: `bDead` и `bEvil`, **но не** `Dead` и `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Редактор блупринтов в UE4 распознаёт эту `b` и не выводит её при выводе удобочитаемого текста.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.4 Имена булевых значений ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information ![#](https://img.shields.io/badge/lint-supported-green.svg)
+###### 3.2.1.4.1 Общая информация и независимые состояния ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Все булевые переменные должны быть качественными прилагательными. Не включайте вопросительные слова, например, `Is`. Такие слова зарезервированы для функций.
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Например: используйте `bDead` и `bHostile`, но **не** `bIsDead` и `bIsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Старайтесь также не использовать в названиях глаголы (напр. `bRunning`). Глаголы, как правило, ведут к сложным состояниям.
 
 <a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+###### 3.2.1.4.2 Сложные состояния ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+Не используйте булевы переменные для описания сложных и/или зависимых состояний. Это приводит к затруднённому управлению этих состояний и нечитабельности. Вместо этого используйте перечисление (Enum).
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Например: описывая пушку, **не используйте** `bReloading` и `bEquipping`, если пушка не может одновременно заряжаться и быть в процессе экипировки. Обозначьте перечисление `EWeaponState` и используйте вместо булевых переменных одну переменную `WeaponState` соответствующего типа. Так добавлять новые состояния пушке будет проще.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Пример: **не используйте** `bRunning` ("Бежит"), если вам также нужны `bWalking` ("Ходит") и `bSprinting` ("Спринтует", кратковременное ускорение). Вам нужно перечисление с чёткими названиями вариантов.
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.5 Предметная область переменной определяется самим блупринтом, но не названием ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+Все названия переменных не должны быть избыточны и упоминать свой контекст, так как все переменные из блупринта уже обладают своим контекстом.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples:
+###### 3.2.1.5e Пример:
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Пусть у нас есть блупринт `BP_PlayerCharacter`.
 
-**Bad**
+**Нельзя**
 
 * `PlayerScore`
 * `PlayerKills`
@@ -739,9 +739,9 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+Названия этих переменных избыточны. Если переменные описаны в `BP_PlayerCharacter`, то это значит, что они характеризуют именно `BP_PlayerCharacter`.
 
-**Good**
+**Надо**
 
 * `Score`
 * `Kills`
@@ -752,93 +752,93 @@ All of these variables are named redundantly. It is implied that the variable is
 
 <a name="3.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.6 _Не включайте_ названия атомарных типов ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
+Атомарные, или примитивные, переменные — это такие переменные, что описывают своё значение в простейшей форме — напимер, в виде булевого значения, целочисленного, вещественного, перечисления (Enum).
 
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
+Строки (именно String, не Text!), Rotator и векторы тоже считаются атомарными в блупринтах и тоже не должны включать названия типа в своих именах. Тем не менее, с технической точки зрения они не являются атомарными.
 
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+> Хоть вектора и состоят каждый из трёх вещественных значений, с векторами часто работают как с единым целым. То же и с Rotator.
 
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+> _Нельзя_ считать Text атомарным типом, т.к. они включают в себе скрытый функционал по локализации. Атомным типом является `String`, но не `Text`.
 
-Atomic variables should not have their type name in their name.
+Атомные переменные не должны включать название типа переменной в своём названии.
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+Например: используйте `Score`, `Kills` и `Description`, **но не** `ScoreFloat`, `FloatKills`, `DescriptionString`.
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
+Единственное исключение этого правила — когда имеется ввиду "количество того-то" **и** когда использование имени без типа переменной приводит к затруднению чтения.
 
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+Например: генератор забора создаёт X досок. Это X нужно сохранить в переменной `NumBoards` или `BoardsCount`, но не `Boards`, т.к. `Boards` может уже относиться к массиву переменных типа `Board`.
 
 <a name="3.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.7 **Нужно** включать имена неатомарных типов в названиях переменных ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Неатомартные, или сложные, переменные — это такие, что отражают свою информацию как набор атомарных переменных. Структуры, классы, интерфейсы, примитивы со скрытым поведением (вроде `Text` и `Name`) попадают под это правило.
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+> В то время, как массив атомарных значений — это список атомарных переменных, массивы не меняют "атомарность" типа переменных.
 
-These variables should include their type name while still considering their context.
+Эти переменные должны включать названия их типов, но также и подразумевать контекст использования.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+Если класс _владеет_ экземпляром сложной переменной, напр. если у `BP_PlayerCharacter` есть `BP_Hat`, то она должна называться как тип переменной, без каких-либо изменений.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Например: используйте `Hat`, `Flag`, и `Ability`, **но не** `MyHat`, `MyFlag`, или `PlayerAbility`.
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+Если класс _не владеет_ значением сложной переменной, то нужно использовать существительное вместе с названием типа переменной.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Например: если у `BP_Turret` есть способность нацеливаться на `BP_PlayerCharacter`, она (туррель) должна хранить переменную `TargetPlayer` — так в контексте `BP_Turret` будет понятно, что это ссылка на другую переменную сложного типа, которой туррель не владеет.
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.8 Массивы ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+Массивы подчиняются правилам выше, но описываются во множественном числе.
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Например: используйте `Targets`, `Hats` и `EnemyPlayers`, **но не** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.2 Редактируемые (`Editable`) переменные ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Все переменные, которые спокойно можно менять с целью настройки поведения блупринта, должны быть отмечены как  `Editable`.
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Аналогично, все те переменные, которые небезопасно редактировать и которые не должны быть раскрыты дизайнерам, не должны быть отмечены как `Editable`, за исключением тех случаев, когда переменная требует флага `Expose On Spawn`.
 
-Do not arbitrarily mark variables as `Editable`.
+Не помечайте переменные флагом `Editable` произвольным образом.
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
-##### 3.2.2.1 Tooltips ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.1 Подсказки ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Все переменные типа `Editable`, включая те, что были помечены так только из-за флага `Expose On Spawn`, должны иметь своё описание в поле `Tooltip`, которое должно показывать, как изменение этого значения меняет поведение блупринта.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.2 Слайдеры и пределы допустимых значений ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+Все переменные с флагом `Editable` должны использовать слайдеры (Slider) и пределы допустимых значений (Value Range), если есть хоть какое-нибудь значение, которое _не должно_ использоваться.
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Пример: блупринт, генерирующий забор, может иметь редактируемую переменную `BoardsCount`, и значение -1 не будет являться для него рабочим. Используйте пределы допустимых значений, чтобы обозначить 0 как минимальное значение.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+Если редактируемая переменная используется в Construction Script, у неё должен быть настроенный слайдер (Slider Range), который препятствует назначению таких значений, что могут обрушить редактор.
 
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+Пределы допустимых значений нужно устанавливать только тогда, когда известны границы этих значений. Если слайдер предотвращает случайный ввод слишком больших значений, то неустановленное значение пределов всё же позволяет указать значения вне диапазона слайдера — "опасные", но всё ещё валидные.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.3 Категории ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If a class has only a small number of variables, categories are not required.
+Если у класса совсем немного переменных, то использование категорий не требуется.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+Если у класса есть некоторое количество переменных (5-10), все переменные с флагом `Editable` должны обладать своей нестандартной категорией. Для общих переменных создаётся категория `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage. 
+Если у класса большое количество переменных, то все переменные с флагом `Editable` должны быть помещены в подкатегории внутри `Config`. Нередактируемые переменные (без флага `Editable`) должны быть помещены в отдельные категории с понятными названиями.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> Вы можете создавать подкатегории, используя символ вертикальной черты `|`, напр. `Config | Animations`.
 
-Example: A weapon class set of variables might be organized as:
+Пример: набор переменных оружия может быть расположен в следующей иерархии:
 
     |-- Config
     |   |-- Animations
@@ -852,68 +852,68 @@ Example: A weapon class set of variables might be organized as:
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.4 Уровень доступа переменных ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+В C++ есть реализация уровня доступа переменных. Уровень доступа `Public` означает, что все экземпляры любых классов могут получить доступ к этой переменной. Переменные `Protected` могут использованы только самим классом и дочерними классами. `Private` значит, что только сам класс может видеть эти переменные (дочерние не видят).
 
-Blueprints do not have a defined concept of protected access currently.
+В блупринтах, по крайней мере — на данный момент —, нет реализации уровня доступа переменных.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Считайте переменные с флагом `Editable` как публичные. Переменные без этого флага считайте как `Protected`.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.4.1 Закрытые (`Private`) переменные ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+В том случае, если не известно, должна ли быть переменная доступна только в самом классе, но не в дочерних, не отмечайте переменную как `Private`. Используйте `Protected` и закрывайте переменную только тогда, когда вы абсолютно уверены, что хотите ограничить использование переменных в дочерних классах.
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.5 `Advanced Display` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+Если переменная должна быть редактируема, но, в большинстве случаев, нетронута, отметьте её флагом `Advanced Display`. Переменная будет скрыта, но может быть отображена по клику стрелки в конце категории.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+Сам флаг `Advanced Display` тоже является скрытым за этой стрелкой на панеле `Details`.
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.6 `Transient` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variables that are not editable and have a initial value of zero or null should be marked as `Transient`.
+Все переменные без флага `Editable` и которые должны обладать нулевым начальным значением, должны быть помечены как `Transient`.
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time.
+Такие переменные не требуют сохранения и загрузки их значения и изначально равны нулю (zero или null). Они полезны для тех случаев, когда требуется ссылка на других объектов и актёров, не известная до запуска игры.
 
-This forces the variable to always initialize as zero or null, prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Этот флаг предотвращает сохранение ссылки на эту переменную внутри редактора и ускоряет процесс сохранения и загрузки класса.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-savegame"></a>
-#### 3.2.7 SaveGame Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.7 Переменные с флагом `SaveGame` ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Only use the SaveGame property of variables when inside a class derived from `SaveGame`. Use this property only if the `SaveGame` class should save this value.
+Используйте флаг `SaveGame` только для переменных класса, унаследованного от класса `SaveGame`. Отмечайте этот флаг, только если `SaveGame` должен сохранить значение. Временные переменные, не хранимые в слоте сохранения, не должны отмечаться этим флагом.
 
-Do **not** mix `SaveGame` and `Transient`, this does not make any sense.
+Не смешивайте `SaveGame` и `Transient` — это бесполезно.
 
 <a name="3.2.8"></a>
 <a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.8 Флаг `Config Variable` ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+Не используйте флаг `Config Variable`. Дизайнерам будет труднее из-за этого контроллировать поведение блупринта. Этот флаг используется только в C++ для редко меняющихся значений, как если бы они были под двойным флагом `Advanced Display`.
 
 ## Вклад сообщества
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
 * [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
 
-## License
+## Лицензия
 
 Copyright (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+См. файл [LICENSE](/LICENSE)
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Наверх](#table-of-contents)**
 
 
-## Amendments
+## Правки
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+Мы поощряем клонирование этого репозитория с целью адаптации под правила вашей команды. Ниже, вы можете указать свои правки, чтобы периодически обновлять стайл-гайд без ошибок слияния.
 
 # };
