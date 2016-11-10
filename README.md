@@ -1,373 +1,390 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# Руководство по стилю проекта UE4 от [Gamemakin](https://gamemak.in), перевод КоМиГо {
 
-*A mostly reasonable approach to Unreal Engine 4*
+*Наиболее разумный подход к Unreal Engine 4*
 
-Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
+Создание этого руководства было вдохновлено, по большей части, [стайл-гайдом Javascript от Airbnb (En)](https://github.com/airbnb/javascript).
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
+<a name="translations"></a>
+##### Английские термины и их русификация (Levels/Maps)
+_(От переводчика)_ Многие вещи будут называться в английском языке, но спокойно мешаться с русскими вариантами. Так, стайл-гайд — это руководство по стилю, ассет — материал для разработки.
 
-## Linking To This Document
+## Как ссылаться на этот документ
 
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
+Все разделы этого руководства пронумерованы для быстрой адресации. К английской (и самой актуальной) версии руководства можно сослаться, просто добавив хеш-тег ко ссылке http://ue4.style
+Например, если вы хотите отправить своему другу ссылку на первый принцип руководства, добавьте `#0.1` в конец ссылки — получится http://ue4.style#0.1.
 
-## Important Terminology
+## Форки и переводы
+
+Если вы создали примечательный форк, который не получится организовать в pull-request, отправьте pull request на его добавление сюда. Так же делаем и с переводами.
+
+* [Оригинальная, английская версия](https://github.com/Allar/ue4-style-guide/README.md) by Allar
+* [Корейская версия](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
+
+## Основные термины
 
 <a name="terms-level-map"></a>
-##### Levels/Maps
+##### Карты/Уровни (Levels/Maps)
 
-The word 'map' generally refers to what the average person calls a 'level' and may be used interchangeably. See this term's history [here](https://en.wikipedia.org/wiki/Level_(video_gaming)).
+Слово 'карта' в основном используется в обозначении слова 'уровень' — эти слова считаем взаимозаменяемыми. То же и с английскими Level и Map. О терминологии уровня смотрите [здесь (En)](https://en.wikipedia.org/wiki/Level_(video_gaming)) и [здесь (RU)](https://ru.wikipedia.org/wiki/%D0%A3%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C_(%D0%B8%D0%B3%D1%80%D1%8B)).
 
 <a name="terms-cases"></a>
-##### Cases
+##### Использование верхнего и нижнего регистра
 
-There are a few different ways you can name things. Here are some common casing types:
+Есть несколько разных способов, как называть вещи. Вот самые популярные методики:
 
-> ###### PascalCase
+> ###### ДельфиСтиль
 >
-> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+> Каждое слово начинается с большой буквы, а всё слово пишется без пробелов, нижних пробелов, дефисов и т.п. Например: `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
 > 
-> ###### camelCase
+> ###### верблюжийСтиль
 >
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+> Похож на ДельфиСтиль, но первая буква пишется в нижнем регистре. Например: `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
-> ###### Snake_case
+> ###### Змеиный_стиль (а.к.а. snake_case)
 >
-> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+> Использование регистра в начале слов не определено, но слова разделяются нижним пробелом. Например: `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
 
 <a name="0"></a>
-## 0. Principles
+## 0. Принципы
 
-These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+Эти принципы были адаптированы под UE из [руководства по стилю idomatic.js (En)](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it.
+### 0.1 Если в вашем проекте UE4 уже используется руководство стиля, вы должны следовать ему
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between and existing style guide and this guide should defer to the existing.
+Если вы работаете над существующим проектом, или в команде, которая уже использует руководство стиля, вы должны ему (руководству) следовать. Во всех различиях между имеющимся и новым руководством стиля приоритет отдаётся имеющемуся.
 
-Style guides should be living documents however and you should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
+Руководство по стилю, при этом, постоянно меняющийся документ, и рекомендуется предлагать вносить правки в ваше имеющееся руководство по стилю (и в этот документ), если это принесёт реальную пользу сообществу UE.
 
-> #### "Arguments over style are pointless. There should be a style guide, and you should follow it."
+> #### "Споры по поводу стиля не имеют смысла. Должно быть руководство по стилю, а вы должны следовать ему".
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed.
+### 0.2 Вся структура проекта, материалы для разработки, код в любом Unreal Engine 4 проекте должны выглядеть так, будто всё это создано одним человеком — не важно, как много людей на самом деле участвует
 
-Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
+Смена проекта не должна требовать от вас переучиваться под новый стиль и структуру. Использование руководства по стилю избавит вас от гадания на кофейной гуще и неопределённости.
 
-It also allows for more productive creation and maintenance as one does not need to think about style, simply follow instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
+Также, руководство по стилю улучшает продуктивность создателей контента и управляемость проектом, т.к. каждому не требуется думать о стиле — достаточно просто воспользоваться руководством. Это руководство по стилю разрабатывается с учётом лучших практик, и его использование снизит частоту появления трудно отслеживаемых проблем.
 
 <a name="0.3"></a>
-### 0.3 Friends do not let friends have bad style.
+### 0.3 Мы помогаем друзьям следовать хорошему стилю
 
-If you see someone working either against a style guide or no style guide, try to correct them.
+Если вы видите, что кто-то работает не по вашему руководству стиля, или вовсе без какого-либо — объясните это тому человеку.
 
-When working within a team or discussing within a community such as [Unreal Slackers](http://join.unrealslackers.org/), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets with names they can't understand.
+При работе в комаде и во время обсуждений в духе [Unreal Slackers (EN)](http://join.unrealslackers.org/) постоянство стиля также помогает быстро найти отклик на свою проблему. Никому не хочется рыться в макаронах блюпринтов и изучать непонятные названия материалов для разработки.
 
-If you are helping someone who's work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+Если вы помогаете тому, кто следует другому, но постоянному и понятному руководству стиля, вы сможете к нему адаптироваться. Если вы увидили, что этот кто-то не следует какому-либо руководству стиля, отправьте ему ссылку на этот документ.
 
 <a name="0.4"></a>
-### 0.4 A team without a style guide is no team of mine.
+### 0.4 Команда без руководства стиля — не моя команда 
 
-When joining an Unreal Engine 4 team one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
+Одним из первых ваших вопросах при вступлении в команду разработчиков на UE4 должен быть "У вас есть руководство стиля?" Если его нет, то следует с подозрением относиться ко способности этих людей работать в команде.
 
 <a name="toc"></a>
-## Table of Contents
+## Содержание
 
-> 1. [Asset Naming Conventions](#anc)
-> 1. [Directory Structure](#structure)
-> 1. [Blueprints](#bp)
+> 1. [Соглашение о наименованиях](#anc)
+> 1. [Структура папок проекта](#structure)
+> 1. [Блупринты](#bp)
 
 <a name="anc"></a>
 <a name="1"></a>
-## 1. Asset Naming Conventions ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 1. Соглашение о наименованиях ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+Соглашение о наименованиях должно восприниматься как закон. Проект, следующем соглашении о наименованиях, позволяет с лёгкостью управлять материалами разработки, искать их, обрабатывать.
 
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
+В большинстве случаев, ассетам присваивается префикс-аббревиатура на основе названия типа этого ассета, + нижним пробелом `_`.
+
+<a name="prohibited-languages"></a>
+<a name="1.0"></a>
+### 1.0 Русский и иные языки (от переводчика)
+Использование русских и иных языков в названиях ассетов строго запрещается. Нет ничего хуже, чем пытаться понять проект с французскими названиями, когда вы не владеете таким языком. Точно так же будет плохо зарубежным друзьям при разборе вашего проекта.
+
+Такие проекты нельзя будет передавать лицам из других стран, когда вам потребуется помощь. Также, не-латинские символы могут вызвать ошибки при компиляции, преобразовании и в ходе других внутренних процессов UE4 и сторонних плагинов — такие ошибки будет трудно отловить и исправить, так что лучше не делайте их вообще.
+
+*Не бойтесь пользоваться переводчиком*. Лучше чудаковатое название на английском, нежели написанное транслитом слово `Pchela`, или, того хуже, так и оставленное на русском `Пчела`.
 
 <a name="base-asset-name"></a>
 <a name="1.1"></a>
-### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix` ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 1.1 Базовое название - `Префик_БазовоеНазвание_Вариант_Суффикс` ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group should follow the the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
+У каждого ассета должно быть своё _базовое название_. Оно используется как средство логической группировки материалов разработки. Любой ассет, являющийся частью определённой логической группы, должен следовать стандарту  `Префик_БазовоеНазвание_Вариация_Суффикс`.
 
-Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset names. Here are some detailed rules regarding each element.
+Использование схемы `Префик_БазовоеНазвание_Вариация_Суффикс` с её осознанием уже гарантирует создание "хороших" имён. Вот подробные правила по использованию этой схемы:
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
-
-`BaseAssetName` should be determined by short and easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
-
-For unique and specific variations of assets, `Variant` is either a short and easily recognizable name that represents logical grouping of assets that are a subset of an asset's base name. For example, if Bob had multiple skins these skins should still use `Bob` as the `BaseAssetName` but include a recognizable `Variant`. An 'Evil' skin would be referred to as `Bob_Evil` and a 'Retro' skin would be referred to as `Bob_Retro`.
-
-For unique but generic variations of assets, `Variant` is a two digit number starting at `01`. For example, if you have an environment artist generating nondescript rocks, they would be named `Rock_01`, `Rock_02`, `Rock_03`, etc. Except for rare exceptions, you should never require a three digit variant number. If you have more than 100 assets, you should consider organizing them with different base names or using multiple variant names.
-
-Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+* `Префикс` и `Суффикс` определяется типом ассета, исходя из таблиц [Модификаторов имён ассетов](#asset-name-modifiers).
+* `Базовое название` определяется коротким и легко отличимым названием касательно предметной области вашей группы ассетов. Например, если у вас есть персонаж Вася, то все ассеты Васи должны содержать `БазовоеНазвание` = `Vasya`.
+* Для особенных или уникальных вариантов ассета используйте `Вариант` — короткое и легко различимое имя, отражающее логическую группировку ассетов, образующих подмножество на основе базового имя ассета. Например, если у Васи есть несколько скинов, то у этих скинов должно быть всё то же базовое имя `Vasya`, но также и `Вариант`. "Злой" скин можно назвать `Vasya_Evil`, а скин "Ретро"— `Bob_Retro`.
+* Для уникальных но схожих ассетов, относящихся к одной группе, добавляется `Вариант` — двузначное число, нумерация которого начинается с `01`. Например, если ваш художник окружения генерирует валуны, которые нельзя просто так назвать, то их можно назвать как `Rock_01`, `Rock_02`, `Rock_03`, и т.д. За исключением редких случаев, не используйте трёхзначное число. Если у вас более 100 ассетов в одной группе, вам следует разбить её на несколько других, используя другие базовые названия или варианты.
+* В зависимости от того, как у вас создаются ассеты, вы можете использовать несколько имён-вариантов, друг за другом. Например, если вы создаёте ассеты для пола, вам будет нужно использовать базовое имя `Flooring` с вариантами вроде `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
 
 <a name="1.1-examples"></a>
-#### 1.1 Examples
+#### 1.1 Примеры
 
-##### 1.1e1 Bob
+##### 1.1e1 Вася
 
-| Asset Type              | Asset Name                                                 |
-| ----------------------- | ---------------------------------------------------------- |
-| Skeletal Mesh           | SK_Bob                                                     |
-| Material                | M_Bob                                                      |
-| Texture (Diffuse/Albedo)| T_Bob_D                                                    |
-| Texture (Normal)        | T_Bob_N                                                    |
-| Texture (Evil Diffuse)  | T_Bob_Evil_D                                               |
+| Тип ассета (RU)          |Тип ассета (EN)           | Название ассета                |
+| ------------------------ | ------------------------ | ------------------------------ |
+| Скелетный меш            | Skeletal Mesh            | SK_Bob                         |
+| Материал                 | Material                 | M_Bob                          |
+| Текстура (Diffuse/Albedo)| Texture (Diffuse/Albedo) | T_Bob_D                        |
+| Текстура (Normal)        | Texture (Normal)         | T_Bob_N                        |
+| Текстура (Злой Diffuse)  | Texture (Злой Diffuse)   | T_Bob_Evil_D                   |
 
-##### 1.1e2 Rocks
+##### 1.1e2 Валуны
 
-| Asset Type              | Asset Name                                                 |
-| ----------------------- | ---------------------------------------------------------- |
-| Static Mesh (01)        | S_Rock_01                                                  |
-| Static Mesh (02)        | S_Rock_02                                                  |
-| Static Mesh (03)        | S_Rock_03                                                  |
-| Material                | M_Rock                                                     |
-| Material Instance (Snow)| MI_Rock_Snow                                               |
+| Тип ассета (RU)           | Тип ассета (EN)         | Название ассета                |
+| ------------------------- | ----------------------- | ------------------------------ |
+| Статичный меш (01)        | Static Mesh (01)        | S_Rock_01                      |
+| Статичный меш (02)        | Static Mesh (02)        | S_Rock_02                      |
+| Статичный меш (03)        | Static Mesh (03)        | S_Rock_03                      |
+| Материал                  | Material                | M_Rock                         |
+| Экземпляр материала (Снег)| Material Instance (Snow)| MI_Rock_Snow                   |
 
-### 1.2 Asset Name Modifiers ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2 Модификаторы имён ассетов ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-When naming an asset use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
+Используйте эти таблицы наряду с [базовым названием](#base-asset-name), когда именуете ассеты.
 
-#### Sections
+#### Подразделы
 
-> 1.2.1 [Most Common](#anc-common)
+> 1.2.1 [Часто используемые](#anc-common)
 
-> 1.2.2 [Animations](#anc-animations)
+> 1.2.2 [Анимация](#anc-animations)
 
-> 1.2.3 [Artificial Intelligence](#anc-ai)
+> 1.2.3 [Искусственный интеллект](#anc-ai)
 
-> 1.2.4 [Blueprints](#anc-bp)
+> 1.2.4 [Блупринты](#anc-bp)
 
-> 1.2.5 [Materials](#anc-materials)
+> 1.2.5 [Материалы](#anc-materials)
 
-> 1.2.6 [Textures](#anc-textures)
+> 1.2.6 [Текстуры](#anc-textures)
 
-> 1.2.7 [Miscellaneous](#anc-misc)
+> 1.2.7 [Разное](#anc-misc)
 
 > 1.2.8 [Paper 2D](#anc-paper2d)
 
-> 1.2.9 [Physics](#anc-physics)
+> 1.2.9 [Физика](#anc-physics)
 
-> 1.2.10 [Sound](#anc-sound)
+> 1.2.10 [Звуки](#anc-sound)
 
-> 1.2.11 [User Interface](#anc-ui)
+> 1.2.11 [Графический интерфейс пользователя](#anc-ui)
+
+> 1.2.12 [Эффекты](#anc-effects)
 
 > 1.2.12 [Effects](#anc-effects)
 
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
-#### 1.2.1 Most Common ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.1 Часто используемые ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.3) |
-| Level (Persistent)      |            | _P         |                                  |
-| Level (Audio)           |            | _Audio     |                                  |
-| Level (Lighting)        |            | _Lighting  |                                  |
-| Level (Geometry)        |            | _Geo       |                                  |
-| Level (Gameplay)        |            | _Gameplay  |                                  |
-| Blueprint               | BP_        |            |                                  |
-| Material                | M_         |            |                                  |
-| Static Mesh             | S_ or SM_  |            | Pick only one. Prefer S_.        |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
-| Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
+| Тип ассета (RU)      | Тип ассета (EN)    | Префикс      | Суффикс    | Примечания                        |
+| -------------------- | ------------------ | ------------ | ---------- | --------------------------------- |
+| Карта / уровень      | Level / Map        |              |            | [Должны быть в папке Maps.](#2.3) |
+| Уровень (постоянный) | Level (Persistent) |              | _P         |                                   |
+| Уровень (аудио)      | Level (Audio)      |              | _Audio     |                                   |
+| Уровень (освещение)  | Level (Lighting)   |              | _Lighting  |                                   |
+| Уровень (геометрия)  | Level (Geometry)   |              | _Geo       |                                   |
+| Уровень (геймплей)   | Level (Gameplay)   |              | _Gameplay  |                                   |
+| Блупринт             | Blueprint          | BP_          |            |                                   |
+| Материал             | Material           | M_           |            |                                   |
+| Статичный меш        | Static Mesh        | S_ или SM_   |            | Выберите одно. Лучше S_.          |
+| Скелетный меш        | Skeletal Mesh      | SK_          |            |                                   |
+| Текстура             | Texture            | T_           | _?         | См. [Текстуры](#anc-textures)     |
+| Система частиц       | Particle System    | PS_          |            |                                   |
+| Виджет-блупринт      | Widget Blueprint   | WBP_ или WB_ |            | Выберите одно. Лучше WBP_.        |
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
-#### 1.2.2 Animations ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.2 Анимация ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Aim Offset              | AO_        |            |                                  |
-| Aim Offset 1D           | AO_        |            |                                  |
-| Animation Blueprint     | ABP_       |            |                                  |
-| Animation Composite     | AC_        |            |                                  |
-| Animation Montage       | AM_        |            |                                  |
-| Animation Sequence      | A_ or AS_  |            | Pick only one. Prefer A_.        |
-| Blend Space             | BS_        |            |                                  |
-| Blend Space 1D          | BS_        |            |                                  |
-| Level Sequence          | LS_        |            |                                  |
-| Morph Target            | MT_        |            |                                  |
-| Paper Flipbook          | PFB_       |            |                                  |
-| Rig                     | Rig_       |            |                                  |
-| Skeletal Mesh           | SK_        |            |                                  |
-| Skeleton                | SKEL_      |            |                                  |
+| Тип ассета (RU)             | Тип ассета (EN)       | Префикс    | Суффикс    | Примечания               |
+| --------------------------- | --------------------- | ---------- | ---------- | ------------------------ |
+| Сдвиг прицела               | Aim Offset            | AO_        |            |                          |
+| Сдвиг прицела 1D            | Aim Offset 1D         | AO_        |            |                          |
+| Блюпринт анимации           | Animation Blueprint   | ABP_       |            |                          |
+| Композиция анимации         | Animation Composite   | AC_        |            |                          |
+| Монтаж анимации             | Animation Montage     | AM_        |            |                          |
+| Последовательность анимаций | Animation Sequence    | A_ or AS_  |            | Выберите одно. Лучше A_. |
+| Пространство смешивания     | Blend Space           | BS_        |            |                          |
+| Пространство смешивания 1D  | Blend Space 1D        | BS_        |            |                          |
+| Последовательность уровня   | Level Sequence        | LS_        |            |                          |
+| Точка смешивания            | Morph Target          | MT_        |            |                          |
+| Paper Flipbook              | Paper Flipbook        | PFB_       |            |                          |
+| Риг                         | Rig                   | Rig_       |            |                          |
+| Скелетный меш               | Skeletal Mesh         | SK_        |            |                          |
+| Скелет                      | Skeleton              | SKEL_      |            |                          |
 
 <a name="anc-ai"></a>
 <a name="1.2.3"></a>
-### 1.2.3 Artificial Intelligence ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.3 Искусственный интеллект ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| AI Controller           | AIC_       |            |                                  |
-| Behavior Tree           | BT_        |            |                                  |
-| Blackboard              | BB_        |            |                                  |
-| Decorator               | BTDecorator_ |          |                                  |
-| Service                 | BTService_ |            |                                  |
-| Task                    | BTTask_    |            |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)   | Префикс      | Суффикс    | Примечания |
+| ----------------------- | ----------------- | ------------ | ---------- | ---------- |
+| ИИ контроллер           | AI Controller     | AIC_         |            |            |
+| Дерево поведений        | Behavior Tree     | BT_          |            |            |
+| Доска состояний         | Blackboard        | BB_          |            |            |
+| Декторатор              | Decorator         | BTDecorator_ |            |            |
+| Сервис                  | Service           | BTService_   |            |            |
+| Задание                 | Task              | BTTask_      |            |            |
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
-### 1.2.4 Blueprints ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.4 Блупринты ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Blueprint               | BP_        |            |                                  |
-| Blueprint Function Library | BPFL_   |            |                                  |
-| Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
-| Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
+| Тип ассета (RU)             | Тип ассета (EN)            | Префикс       | Суффикс | Примечания                       |
+| --------------------------- | -------------------------- | ------------- | ------- | -------------------------------- |
+| Блупринт                    | Blueprint                  | BP_           |         |                                  |
+| Библиотека блупринт-функций | Blueprint Function Library | BPFL_         |         |                                  |
+| Блупринт-интерфейс          | Blueprint Interface        | BPI_          |         |                                  |
+| Библиотека бупринт-макросов | Blueprint Macro Library    | BPML_         |         | По возможности не используйте библиотеки макросов вообще |
+| Перечисление                | Enumeration                | E             |         | Без нижнего пробела              |
+| Структура                   | Structure                  | F или S       |         | Без нижнего пробела              |
+| Блупринт-виджет             | Widget Blueprint           | WBP_ или WBP_ |         | Выберите одно. Лучше WBP_        |
 
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
-### 1.2.5 Materials ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.5 Материалы ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Material                | M_         |            |                                  |
-| Material (Post Process) | PP_        |            |                                  |
-| Material Function       | MF_        |            |                                  |
-| Material Instance       | MI_        |            |                                  |
-| Material Parameter Collection | MPC_ |            |                                  |
-| Subsurface Profile      | SP_ or SSP_|            | Pick only one. Prefer SP_.       |
-| Physical Materials      | PM_        |            |                                  |
+| Тип ассета (RU)               | Тип ассета (En)               | Префикс      | Суффикс | Примечания                |
+| ----------------------------- | ----------------------------- | ------------ | ------- | ------------------------- |
+| Материал                      | Material                      | M_           |         |                           |
+| Материал пост-обработки       | Material (Post Process)       | PP_          |         |                           |
+| Функция материалов            | Material Function             | MF_          |         |                           |
+| Экземпляр материала           | Material Instance             | MI_          |         |                           |
+| Материал Parameter Collection | Material Parameter Collection | MPC_         |         |                           |
+| Профиль подповерхности        | Subsurface Profile            | SP_ или SSP_ |         | Выберите одно. Лучше SP_ |
+| Физический материал           | Physical Materials            | PM_          |         |                           |
 
 <a name="anc-textures"></a>
 <a name="1.2.6"></a>
-### 1.2.6 Textures ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.6 Текстуры ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Texture                 | T_         |            |                                  |
-| Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
-| Texture (Normal)        | T_         | _N         |                                  |
-| Texture (Roughness)     | T_         | _R         |                                  |
-| Texture (Alpha/Opacity) | T_         | _A         |                                  |
-| Texture (Ambient Occlusion) | T_     | _O or _AO  | Pick only one. Prefer _O.        |
-| Texture (Bump)          | T_         | _B         |                                  |
-| Texture (Emissive)      | T_         | _E         |                                  |
-| Texture (Mask)          | T_         | _M         |                                  |
-| Texture (Specular)      | T_         | _S         |                                  |
-| Texture (Packed)        | T_         | _*         | See notes below about [packing](#anc-textures-packing). |
-| Texture Cube            | TC_        |            |                                  |
-| Media Texture           | MT_        |            |                                  |
-| Render Target           | RT_ or RTT_|            | Pick only one. Prefer RT_.       |
-| Cube Render Target      | RTC_       |            |                                  |
-| Texture Light Profile   | TLP        |            |                                  |
+| Тип ассета (RU)                  | Тип ассета (EN)             | Префикс      | Суффикс    | Примечания                       |
+| -------------------------------- | --------------------------- | ------------ | ---------- | -------------------------------- |
+| Текстура                         | Texture                     | T_           |            |                                  |
+| Текстура (Diffuse/Альбедо/Основной цвет)| Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
+| Текстура (Нормаль)               | Texture (Normal)            | T_           | _N         |                                  |
+| Текстура (Грубость)              | Texture (Roughness)         | T_           | _R         |                                  |
+| Текстура (Alpha/Прозрачность)    | Texture (Alpha/Opacity)     | T_           | _A         |                                  |
+| Текстура (Нейтральный свет)      | Texture (Ambient Occlusion) | T_           | _O или _AO | Выберите одно. Лучше _O          |
+| Текстура (Неровность)            | Texture (Bump)              | T_           | _B         |                                  |
+| Текстура (Излучение)             | Texture (Emissive)          | T_           | _E         |                                  |
+| Текстура (Маска)                 | Texture (Mask)              | T_           | _M         |                                  |
+| Текстура (Блеск)                 | Texture (Specular)          | T_           | _S         |                                  |
+| Текстура (упакованная)           | Texture (Packed)            | T_           | _*         | См. примечание о [упаковке текстур](#anc-textures-packing). |
+| Текстура-куб                     | Texture Cube                | TC_          |            |                                  |
+| Текстура-медиа                   | Media Texture               | MT_          |            |                                  |
+| Область прорисовки               | Render Target               | RT_ или RTT_ |            | Выберите одно. Лучше RT_         |
+| Область прорисовки текстуры-куба | Cube Render Target          | RTC_         |            |                                  |
+| Профиль освещения                | Texture Light Profile       | TLP          |            |                                  |
 
 <a name="anc-textures-packing"</a>
 <a name="1.2.6.1"></a>
-#### 1.2.6.1 Texture Packing ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
-It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix letters from above together, e.g. `_ERO`.
+#### 1.2.6.1 Упаковка текстур ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+Упаковка сразу нескольких слоёв информации в одну текстуру — стандартная практика. Примером служит упаковка текстур Emissive, Roughness, Ambient Occlusion как красный, зелёный и синий каналы одной текстуры. Чтобы построить суффикс для таких текстур, просто последовательно запишите суффиксы отдельных масок из таблицы выше, напр. `_ERO`.
 
-> It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel and as this is common practice, adding `A` to the `_D` suffix is optional.
+> Часто альфа-канал включают в карту Diffuse/Альбедо. Так как это стандартная практика, добавлять суффикс `A` в суффикс `_D` необязательно.
 
-Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel as a texture with an alpha channel occurs more overhead than one without.
+Упаковывать сразу 4 канала информации в одну текстуру (в RGBA) не рекомендуется, за исключением использования канала A как Alpha вместе с картой Diffuse/Альбедо.
 
 <a name="anc-misc"></a>
 <a name="1.2.7"></a>
-### 1.2.7 Miscellaneous ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.7 Разное ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Animated Vector Field   | VFA_       |            |                                  |
-| Camera Anim             | CA_        |            |                                  |
-| Color Curve             | Curve_     | _Color     |                                  |
-| Curve Table             | Curve_     | _Table     |                                  |
-| Data Asset              | *_         |            | Prefix should be based on class. |
-| Data Table              | DT_        |            |                                  |
-| Float Curve             | Curve_     | _Float     |                                  |
-| Foliage Type            | FT_        |            |                                  |
-| Force Feedback Effect   | FFE_       |            |                                  |
-| Landscape Grass Type    | LG_        |            |                                  |
-| Landscape Layer         | LL_        |            |                                  |
-| Matinee Data            | Matinee_   |            |                                  |
-| Media Player            | MP_        |            |                                  |
-| Object Library          | OL_        |            |                                  |
-| Redirector              |            |            | These should be fixed up ASAP.   |
-| Sprite Sheet            | SS_        |            |                                  |
-| Static Vector Field     | VF_        |            |                                  |
-| Touch Interface Setup   | TI_        |            |                                  |
-| Vector Curve            | Curve_     | _Vector    |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс    | Суффикс    | Примечания                       |
+| ----------------------- | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Анимированное векторное поле| Animated Vector Field| VFA_      |            |                                  |
+| Анимация камеры         | Camera Anim             | CA_        |            |                                  |
+| Цветовая кривая         | Color Curve             | Curve_     | _Color     |                                  |
+| Табличная кривая        | Curve Table             | Curve_     | _Table     |                                  |
+| Набор данных            | Data Asset              | *_         |            | Префикс основывается на классе   |
+| Таблица данных          | Data Table              | DT_        |            |                                  |
+| Вещественная кривая     | Float Curve             | Curve_     | _Float     |                                  |
+| Тип растительности      | Foliage Type            | FT_        |            |                                  |
+| Эффект физического отклика| Force Feedback Effect | FFE_       |            |                                  |
+| Тип растительности      | Landscape Grass Type    | LG_        |            |                                  |
+| Слой ландшафта          | Landscape Layer         | LL_        |            |                                  |
+| Данные Matinee          | Matinee Data            | Matinee_   |            |                                  |
+| Медиапроигрыватель      | Media Player            | MP_        |            |                                  |
+| Библиотека объектов     | Object Library          | OL_        |            |                                  |
+| Перенаправление         | Redirector              |            |            | Перенаправление должно быть исправлено при первой возможности |
+| Атлас спрайтов          | Sprite Sheet            | SS_        |            |                                  |
+| Статичное векторное поле| Static Vector Field     | VF_        |            |                                  |
+| Настройка тач-интерфейса| Touch Interface Setup   | TI_        |            |                                  |
+| Векторная кривая        | Vector Curve            | Curve_     | _Vector    |                                  |
 
 <a name="anc-paper2d"></a>
 <a name="1.2.8"></a>
 ### 1.2.8 Paper 2D ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Paper Flipbook          | PFB_       |            |                                  |
-| Sprite                  | SPR_       |            |                                  |
-| Sprite Atlas Group      | SPRG_      |            |                                  |
-| Tile Map                | TM_        |            |                                  |
-| Tile Set                | TS_        |            |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс    | Суффикс    | Примечания                        |
+| ----------------------- | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Набор кадров            | Paper Flipbook          | PFB_       |            |                                  |
+| Спрайт                  | Sprite                  | SPR_       |            |                                  |
+| Группа атласов спрайтов | Sprite Atlas Group      | SPRG_      |            |                                  |
+| Карта тайлов            | Tile Map                | TM_        |            |                                  |
+| Тайлсет                 | Tile Set                | TS_        |            |                                  |
 
 <a name="anc-physics"></a>
 <a name="1.2.9"></a>
-### 1.2.9 Physics ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.9 Физика ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Physical Material       | PM_        |            |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс    | Суффикс    | Примечания                       |
+| ----------------------- | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Физический материал     | Physical Material       | PM_        |            |                                  |
 
 <a name="anc-sounds"></a>
 <a name="1.2.10"></a>
-### 1.2.10 Sounds ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.10 Звуки ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Dialogue Voice          | DV_        |            |                                  |
-| Dialogue Wave           | DW_        |            |                                  |
-| Media Sound Wave        | MSW_       |            |                                  |
-| Reverb Effect           | Reverb_    |            |                                  |
-| Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
-| Sound Cue               | A_         | _Cue       |                                  |
-| Sound Mix               | Mix_       |            |                                  |
-| Sound Wave              | A_         |            |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс    | Суффикс    | Примечания                       |
+| ----------------------- | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Голос диалога           | Dialogue Voice          | DV_        |            |                                  |
+| Запись диалога          | Dialogue Wave           | DW_        |            |                                  |
+| Звукозапись медиа       | Media Sound Wave        | MSW_       |            |                                  |
+| Эффект ревербации       | Reverb Effect           | Reverb_    |            |                                  |
+| Затухание звука         | Sound Attenuation       | ATT_       |            |                                  |
+| Класс звука             | Sound Class             |            |            | Без префиксов/суффиксов. Должен быть в отдельной папке `SoundClasses` |
+| Очерёдность звуков      | Sound Concurrency       |            | _SC        | Должен быть назван на основе `SoundClass` |
+| Композиция звуков       | Sound Cue               | A_         | _Cue       |                                  |
+| Микс звуков             | Sound Mix               | Mix_       |            |                                  |
+| Звукозапись             | Sound Wave              | A_         |            |                                  |
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
-### 1.2.11 User Interface ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.11 Графический интерфейс пользователя ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Font                    | Font_      |            |                                  |
-| Slate Brush             | Brush_     |            |                                  |
-| Slate Widget Style      | Style_     |            |                                  |
-| Widget Blueprint        | WB_ or WBP_|            | Pick only one. Prefer WB_.       |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс      | Суффикс    | Примечания                       |
+| ----------------------- | ----------------------- | ------------ | ---------- | -------------------------------- |
+| Шрифт                   | Font                    | Font_        |            |                                  |
+| Кисть Slate             | Slate Brush             | Brush_       |            |                                  |
+| Стиль виджета Slate     | Slate Widget Style      | Style_       |            |                                  |
+| Виджет-блупринт         | Widget Blueprint        | WBP_ или WB_ |            | Выберите одно. Лучше WBP_        |
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
-### 1.2.12 Effects ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.12 Эффекты ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Particle System         | PS_        |            |                                  |
-| Material (Post Process) | PP_        |            |                                  |
+| Тип ассета (RU)         | Тип ассета (EN)         | Префикс    | Суффикс    | Примечания                       |
+| ----------------------- | ----------------------- | ---------- | ---------- | -------------------------------- |
+| Система частиц          | Particle System         | PS_        |            |                                  |
+| Материал постобработки  | Material (Post Process) | PP_        |            |                                  |
 
 <a name="2"></a>
 <a name="structure"></a>
-## 2. Content Directory Structure ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 2. Структура папок проекта ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
+Структура папок также должна восприниматься как закон. Она проекта так же важна, как и соглашение о наименованиях. Они тесно связаны, и нарушение правил любого из них приводит к ненужному хаосу в проекте.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
+Есть несколько способов организации контента UE4 проекта, но в этом гайде мы будем использовать структуру, которая основывается больше на возможности поиска и фильтрации в Content Browser — вместо того, чтобы под каждый тип материалов проекта создавать отдельную папку, будет использоваться фильтр/поиск в UE.
 
-> If you are using the prefix [naming convention](#1.2) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
+> Если вы используете [соглашение о наименованиях](#1.2) выше, то использование папок вроде `Meshes`, `Textures`, и `Materials` будет избыточным действием, т.к. все ассеты уже отсортированы по префиксу и могут быть отфильтрованы в content browser.
 
 <a name="2e1"><a>
-### 2e1 Example Project Content Structure
+### 2e1 Пример организации папок проекта
 <pre>
 |-- Content
     |-- <a href="#2.2">GenericShooter</a>
@@ -420,248 +437,250 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
             |-- Rifles
 </pre>
 
-The reasons for this structure are listed in the following sub-sections.
+Предпосылки формирования именно такой структуры проекта описаны ниже.
 
-### Sections
+### Подразделы
 
-> 2.1 [Folder Names](#structure-folder-names)
+> 2.1 [Названия папок](#structure-folder-names)
 
-> 2.2 [Top-Level Folders](#structure-top-level)
+> 2.2 [Папки верхнего уровня](#structure-top-level)
 
-> 2.3 [Developer Folders](#structure-developers)
+> 2.3 [Папки разработчиков](#structure-developers)
 
-> 2.4 [Maps](#structure-maps)
+> 2.4 [Карты](#structure-maps)
 
-> 2.5 [Core](#structure-core)
+> 2.5 [Ядро игры](#structure-core)
 
-> 2.6 [`Assets` and `AssetTypes`](#structure-assettypes)
+> 2.6 [`Assets` и `AssetTypes`](#structure-assettypes)
 
-> 2.7 [Large Sets](#structure-large-sets)
+> 2.7 [Большие наборы](#structure-large-sets)
 
-> 2.8 [Material Library](#structure-material-library)
+> 2.8 [Библиотека материалов](#structure-material-library)
 
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
-### 2.1 Folder Names ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 2.1 Названия папок ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-These are common rules for naming any folder in the content structure.
+Все названия папок подчиняются единому набору правил.
 
 <a name="2.1.1"></a>
-#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases) ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.1 Всегда используйте ДельфиСтиль[<sup>*</sup>](#terms-cases) ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+ДельфиСтиль означает написание каждого слова строки с большой буквы, без пробелов и нижних пробелов. Например, `DesertEagle`, `RocketPistol`, и `ASeriesOfWords`.
 
-See [Cases](#terms-cases).
+См. [Использование верхнего и нижнего регистра](#terms-cases).
 
 <a name="2.1.2"></a>
-#### 2.1.2 Never Use Spaces ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.2 Никогда не ставьте пробелы ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+В дополнение к [2.1.1](#2.1.1), не используйте пробелы. Пробелы могут вызвать падения различных средств компиляции и пакетной обработки. В идеале, путь к самому проекту тоже не должен содержать пробелы и быть расположен в папке вроде `D:\Project`, а не `C:\Пользователи\Моё имя\Мои документы\Unreal Projects`.
 
 <a name="2.1.3"></a>
-#### 2.1.3 Never Use Unicode Characters And Other Symbols ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.1.3 Никогда не используйте символы юникода ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+_(Прим. пер.)_ Это также касается использования русского языка.
 
-Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
+Если одного из ваших персонажей зовут 'Zoë', его папка должна называться `Zoe`. Символы юникода могут быть хуже [пробелов](#2.1.2) для инженерных инструментов, а некоторые инструменты UE не поддерживают символы юникода и в путях к файлам.
 
-Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools. 
+Если ваш проект страдает по [необъяснимым причинам](https://answers.unrealengine.com/questions/101207/undefined.html) от непонятных ошибок, а имя пользователя вашего компьютера содержит символы юникода (в т.ч. и русские буквы), то любой проект в папке `Мои документы` будет страдать аналогичным образом. Чаще всего достаточно переместить папку проекта в, скажем, `D:\Project`, и эти загадочные ошибки исчезнут.
+
+Использование символов, отличных от `a-z`, `A-Z`, и `0-9`, напр. `@`, `-`, `_`, `,`, `*`, и `#` тоже может привести к неожиданным и трудно отслеживаемым последствиям на других платформах, в системах контроля версиями и неотшлифованных средствах разработки.
 
 <a name="2.2"></a>
 <a name="structure-top-level"><a>
-### 2.2 Use A Top Level Folder For Project Specific Assets ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.2 Используйте папку верхнего уровня для всех ассетов вашего проекта ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
+Все материалы разработки вашего проекта должны располагаться в папке, названной согласно самому проекту. Например, если проект называется 'Generic Shooter', то _всё_ его содержимое должно лежать в папке `Content/GenericShooter`.
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [2.2](#2.2) for details about this.
+> Папка `Developers` не для материалов разработки _вашего_ проекта, и потому не относится к папке проекта. См. [2.2](#2.2) для подробного обоснования.
 
-There are multiple reasons for this approach.
+Есть несколько причин использования такого подхода.
 
 <a name="2.2.1"></a>
-#### 2.2.1 No Global Assets
+#### 2.2.1 Отсутсвие глобальных ассетов
 
-Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
+В стайл-гайдах по кодингу часто пишут о том, что вы не должны засорять глобальное пространство имён. Этот пункт следует этому же принципу. Если ассет существует вне проекта, велик риск роста несоблюдения структуры проекта, т.к. такой ассет становится дурным примером для других.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
+У каждого материала разработки должна быть своя цель, иначе он не принадлежит вашему проекту. Если ассет экспериментальный и не должен использоваться в проекте, его лучше положить в папку [`Developer`](#2.3).
 
 <a name="2.2.2"></a>
-#### 2.2.2 Reduce Migration Conflicts
+#### 2.2.2 Уменьшение риска конфликтов при миграции
 
-When working on multiple projects it is common for a team to copy assets from one project to another if they have made something useful for both. When this occurs, the easiest way to perform the copy is to use the Content Browser's Migrate functionality as it will copy over not just the selected asset but all of its dependencies.
+При работе над несколькими проектами команда нередко копирует ассеты из проекта в проект, если эти ассеты подходят и полезны сразу двум проектам. В таких случаях лучше произвести копию ресурсов через инструмент Migrate в Content Browser, т.к. он не только копирует сам ассет, но и все его зависимые ресурсы.
 
-These dependencies are what can easily get you into trouble. If two project's assets do not have a top level folder and they happen to have similarly named or already previously migrated assets, a new migration can accidentally wipe any changes to the existing assets.
+Эти зависимости легко генерируют проблемы при слиянии. Если у ваших двух проектов нет одноимённых с названием проекта папок в верхнем уровне контента, то ассеты с аналогичным названием (а то и уже адаптированные из другого проекта) могут быть уничтожены инструментом миграции.
 
-This is also the primary reason why Epic's Marketplace staff enforces the same policy for submitted assets.
+К слову, это главная причина, по которой Epic требует такой же схемы в товарах Магазина.
 
-After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+После миграции, безопасное слияние ассетов может быть сделано черещ инструмент 'Replace References' content browser-а. После завершения миграции и слияния, лишняя папка на верхнем уровне проекта должна быть удалена. Это гарантирует _100%_ безопасность ваших миграций.
 
 <a name="2.2.2e1"></a>
-##### 2.2.2e1 Master Material Example
+##### 2.2.2e1 Пример: главный материал
 
-For example, say you created a master material in one project that you would like to use in another project so you migrated that asset over. If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a master material already, this should work without issue.
+Скажем, вы сделали главный материал-шаблон в своём проекте и хотели бы использовать его в другом. Для этого вы мигрировали его. Если этот ассет не в верхней папке проекта, у него может быть название вроде `Content/MaterialLibrary/M_Master`, и, если в целевом проекте ещё нет такого главного материала, то ошибки не возникнет.
 
-As work on one or both projects progress their respective master materials may change to be tailored for their specific projects due to the course of normal development.
+В ходе разработки проекта каждый такой главный материал дорабатывается под нужды конечного проекта.
 
-The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Content/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset.
+Проблема возникает, когда, скажем, художник из одного проекта сделал симпатичный модульный набор статичных мешей, и кто-нибудь захотел включить этот набор в другой проект. Если художник — создатель набора — использовал экземпляры материала на основе главного `Content/MaterialLibrary/M_Master`, то при миграции возможна ошибка слияния с ранее мигрировавшим ассетом `Content/MaterialLibrary/M_Master`.
 
-This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar with the development of both project's master material, and they may not be even aware that the static meshes in question rely on material instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project and it will overwrite the existing asset.
+Эту ошибку трудно предупредить и объяснить. Человек, мигрирующий набор мешей, может быть не наслышан о разработке обоих главных материалов, и потому вовсе не осведомлён о том, что меши зависят от экземпляров материалов, которые, в свою очередь, зависят от главного материала. Но инструмент Migrate должен собрать всю сеть зависимостей с целью последующей работоспособности мигрированных ассетов, и поэтому захватит `Content/MaterialLibrary/M_Master` с исходного проекта, чем перезапишет аналогичный файл в конечном проекте.
 
-It is at this point where if the master materials for both projects are incompatible in _any way_, you risk breaking possibly the entire material library for a project as well as any other dependencies that may have already been migrated, simply because assets were not stored in a top level folder. The simple migration of static meshes now becomes a very ugly task.
+Если эти материалы не совместимы _в принципе_, то велик риск обрушить всю библиотеку материалов вашего проекта. А ведь всё по причине отсутствия папки для проекта на верхнем уровне! Так простое перемещение мешей может наделать массу лишней работы.
 
 <a name="2.2.3"></a>
-#### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+#### 2.2.3 Примеры, шаблоны и товары с Магазина безопасны (почти)
 
-An extension to [2.2.2](#2.2.2), if a team member decides to add sample content, template files, or assets they bought from the marketplace, it is guaranteed that these new assets will not interfere with the project in any way unless your project's top level folder is not uniquely named.
+В дополнение к [2.2.2](#2.2.2): если член команды решит добавить пример, файлы шаблона или товар с Магазина, эти ассеты гарантированно не будут пересекаться с файлами вашего проекта, т.к. у них всех есть своя папка верхнего уровня (в том случае, если имена между всеми ними и вашим проектом уникальны).
 
-You can not trust marketplace content to fully conform to the [top level folder rule](#2.2). There exist many assets that have the majority of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the global `Content` folder.
+Тем не менее, нельзя на 100% доверять товарам с Магазина — не все из них следуют [правилу папки верхнего уровня](#2.2). Существует множество ассетов, где большая часть контента которых расположена в папке верхнего уровня, но при этом также используется контент из примеров движка (напр., шаблоны вроде FirstPersonShooter или Starter Content Pack). Эти ассеты из примеров могут быть изменены под нужды товара. Также, карты из этих примеров засоряют корневую папку `Content` и тоже могут пересекаться.
 
-When adhering to [2.2](#2.2), the worst marketplace conflict you can have is if two marketplace assets both have the same Epic sample content. If all your assets are in a project specific folder, including sample content you may have moved into your folder, your project will never break.
+Если придерживаться правилу [2.2](#2.2), худшим сценарием будет использование нескольких товаров с магазина, которые зависят от одного и того же проекта-шаблона. Они могут повредить друг друга, но если именно ваши ассеты располагаются в отдельной папке ресурсов проекта, такой конфликт не затронет ваши наработки.
 
-#### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+#### 2.2.4 DLC, подпроектами, патчами проще управлять
 
-If your project plans to release DLC or has multiple sub-projects associated with it that may either be migrated out or simply not cooked in a build, assets relating to these projects should have their own separate top level content folder. This make cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort. If you need to change a material of an asset or add some very specific asset override behavior in a patch, you can easily put these changes in a patch folder and work safely without the chance of breaking the core project.
+Если вы планируете выпустить DLC для своего проекта, или же в нём есть несколько связанных подпроектов, все ассеты этих DLC и подпроектов должны находиться в своих папках верхнего уровня. Такие подпроекты затем могут быть мигрированы из проекта или просто не участвовать в сборке. Техника создания индивидуальных папок верхнего уровня помогает с лёгкостью исключить DLC из выпечки основного проекта. Подпроекты также мигрируются с наименьшими усилиями. А если вам нужно в патче, например, заменить один материал или ввести специфичный ассет, меняющий поведение игры, но при этом вы не хотите ломать главный проект, все эти изменения тоже можно вывести в отдельную папку.
 
 <a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.3 Используйте папку `Developers` для локального тестирования ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
+Очень часто во время разработки проекта участники команды создают, в некотором роде, "песочницу", где они проводят свои эксперименты без влияния на главный проект. Так как такая практика осуществляется на постоянной основе, члены команды могут пожелать загрузить их ассеты в систему контроля версий. Не все команды требуют использования папки `Developers`, но те, что её используют, часто испытывают одни и те же проблемы с загруженными в систему контроля версиями ассетами.
 
-It is very easy for a team member to accidentally use assets that are not ready for use which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working by everyone on the team to resolve.
+Участники команды могут по случайности начать использовать те ассеты, которые ещё не готовы к этому, а затем, при их удалении, вызывают ошибки. Например, художник может дорабатывать набор модульных статичных мешей и всё ещё корректирует их размерность и соответствие сетке. Если левел-дизайнер обнаружит такой набор в главной папке проекта, он может использовать набор во всём уровне, не зная, что этот набор позднее будет претерпевать серьёзные изменения (не исключая удаление набора). Следствием этой проблемы будет масса переделок для всей команды.
 
-If these modular assets were placed in a Developer folder, the world builder should never of had a reason to use them and the whole issue would never happen. The Content Browser has specific View Options that will hide Developer folders (they are hidden by default) making it impossible to accidentally use Developer assets under normal use.
+Если эти модульные меши располагаются в папке разработчиков, у левел-дизайнера не было бы причин использовать этот набор, и проблемы бы не возникло. У Content Browser есть специальная настройка в View Options, которая прячет папки разработчиков (и по умолчанию она включена), что делает случайное использование экспериментальных ресурсов невозможным.
 
-Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
+Как только ассеты готовы, художнику достаточно переместить эти материалы разработки в соответствующую папку проекта и подфиксить редиректоры. По сути, это "продвижение" ассетов из экспериментальной зоны в продакшн.
 
 <a name="2.4"></a>
 <a name="structure-maps"></a>
-### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.4 Все уровни[<sup>*</sup>](#terms-level-map) располагаются в отдельной папке под названием Maps ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+Файлы уровней отличаются от других, и нормальной практикой считается использование своей системы наименований, особенно, если команда работает с подуровнями или стримингом карт. Не важно, как организуются эти карты в вашем проекте — все они должны быть расположены в папке `/Content/Project/Maps`.
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+Возможность открыть определённую карту без необходимости объяснять, где она находится, серьёзно экономит время. Часто карты группируются в папки вроде `Maps/Campaign1/` или `Maps/Arenas`, но главное, что все они находятся в папке `/Content/Project/Maps`.
 
-This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well QA processes.
+Такой подход также облегчает работу инженеров по сборке. Когда все карты в одной папке, не нужно перерывать весь проект в поиске предмета сборки/исключения из сборки. Становится труднее случайно не подготовить карту к сборке. Польза проявляется и при запуске скриптов для запекания освещения, а также в ходе процессов контроля качеством.
 
 <a name="2.5"></a>
 <a name="structure-core"></a>
-### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.5 Используйте папку `Core` ("Ядро") для особо важных блупринтов и других ассетов ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+Используйте папку `/Content/Project/Core` для тех ассетов, которые являются основой разработки вашего проекта. Например, основные `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState` и связанные блупринты должны находиться именно здесь.
 
-This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+Это как знак "не трогай" для других участников команды. У не-инженеров обычно нет особых причин заглядывать в эту папку. При соблюдении хорошего стиля кодинга дизайнеры смогут выполнять все изменения, касающиеся геймплея, в дочерних классах. Левел-дизайнеры должны использовать заранее приготовленные блупринты в специально отведенных папках, вместо того, чтобы всё время использовать и модифицировать базовые классы.
 
-For example if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+Например, если в вашем проекте есть пикапы, которые могут быть расположены в уровне, для них должен быть базовый класс в папке `Core/Pickups`. Такой класс будет описывать базовое поведение пикапа. Конкретные пикапы, вроде аптечки или патронов уже будут располагаться в папке `/Content/Project/Placeables/Pickups/`. Гейм-дизайнеры могут спокойно редактировать эти пикапы по своему желанию, но они не должны трогать папку `Core/Pickups`, т.к. это косвенно может повредить работоспособность всех пикапов вообще.
 
 <a name="2.6"></a>
 <a name="structure-assettypes"></a>
-### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes` ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 2.6 Не создавайте папки `Assets` или `AssetTypes` ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 <a name="2.6.1"></a>
-#### 2.6.1 Creating a folder named `Assets` is redundant. ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.6.1 Создание папки `Assets` является избыточным действием ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All assets are assets.
+Все ассеты и так являются ассетами.
 
 <a name="2.6.2"></a>
-#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant. ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 2.6.2 Создание папок `Meshes`, `Textures`, или `Materials` — лишнее ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+Все ассеты именуются с учётом их типа, и их названия уже включают указание типа в префиксе. Такие папки только добавляют избыточности в проект и легко заменяются фильтрами в Content Browser.
 
-Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. this eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+Для того, чтобы вывести только статичные меши в папке `Environment/Rocks/`, достаточно включить фильтр Static Mesh. Если все ассеты названы правильно, то они также будут отсортированы в алфавитном порядке, независимо от префиксов. Чтобы вывести и статичные, и скелетные меши, включите сразу два фильтра. Так вам не понадобится зажимать `Ctrl` и выделять несколько папок в проводнике Content Browser-а.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> Есть и небольшое преимущество в длине строки: префикс `S_` (статичный меш) — всего 2 символа, а папка `Meshes/` — семь.
 
-Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
+Отсутствие таких папок устраняет ошибки с помещением статичных мешей в папку материалов.
 
 <a name="2.7"></a>
 <a name="structure-large-sets"></a>
-### 2.7 Very Large Asset Sets Get Their Own Folder Layout ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.7 Очень большие наборы ассетов получают свою собственную иерархию ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-This can be seen as a pseudo-exception to [2.6](#2.6).
+Это псевдо-исключение к правилу [2.6](#2.6).
 
-There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
+Есть определённые виды ассетов, которые образуют большой объём связанных по смыслу файлов, но каждый такой файл обладает своей уникальной целью. Чаще всего это папки с анимациями и аудио. Мы можем добавить новый уровень иерархии в папке тогда, когда эти подуровни образуют группы в 15+ семантически связанных файлов. Не забывайте делать этим подуровням чёткие и наполненные смыслом названия.
 
-For example, animations that are shared across multiple characters should lay in `Characters/Common/Animations` and may have sub-folders such as `Locomotion` or `Cinematic`.
+Например, есть анимации, которые используются несколькими персонажами — они должны находиться в папке `Characters/Common/Animations` , где могут быть поддиректории `Locomotion` или `Cinematic`.
 
-> This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> Это правило неприменимо к ассетам вроде текстур или материалов. Это норма, когда у папки `Rocks` огромное количество текстур, соответствующее аналогичному количеству камней; при этом каждая из этих текстур относится к небольшому количеству мешей и должна быть названа соответствующим образом. Не являются исключением и текстуры в [библиотеке материалов](#2.8).
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
-### 2.8 `MaterialLibrary` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 2.8 `MaterialLibrary` (библиотека материалов) ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+Если ваш проект использует главные материалы (материалы-шаблоны), слоистые материалы, или любую другую форму многократно используемых материалов и текстур, которые не принадлежат какому-нибудь подмножеству ассетов, они должны быть расположены в папке `Content/Project/MaterialLibrary`.
 
-This way all 'global' materials have a place to live and are easily located.
+Так все "глобальные" материалы будут находиться в одном легкодоступном месте.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> Это также способствует политике "только экземпляры материалов" ('material instances only') в вашем проекте. Если все художники и рабочие материалы используют экземпляры материалы, то обычные материалы будут существовать только в пределах папки. Проверить соблюдение этой политики можно просто поиском основных материалов в папках, отличных от `MaterialLibrary`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+Папка `MaterialLibrary` необязательно должна состоять только из материалов. Общие текстуры-помощники, функции материалов и другие аналогичные ассеты могут храниться в этой же папке. Мы также можем объединять их в семантические группы папками. Например, общие текстуры с шумом можно объединить в папке `MaterialLibrary/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Все материалы, предназначенные для тестирования и/или отладки должны располагаться в папке `MaterialLibrary/Debug`. Это позволяет убрать такие материалы при сборке релизной версии, а если они используются в версии для сборки, сообщение об ошибке укажет на эти связи.
 
 <a name="3"></a>
 <a name="bp"></a>
-## 3. Blueprints ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+## 3. Блупринты ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-This section will focus on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+Этот раздел направлен на блупринты и их внутреннее обустройство. Где возможно, эти правила подчиняются [стандарту кодинга Epic](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
 
-### Sections
+### Подразделы
 
-> 3.1 [Compiling](#bp-compiling)
+> 3.1 [Компиляция](#bp-compiling)
 
-> 3.2 [Variables](#bp-vars)
+> 3.2 [Переменные](#bp-vars)
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
-### 3.1 Compiling ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 3.1 Компиляция ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+Все блупринты должны компилиться без предупреждений и ошибок. Вы должны исправить все предупреждения и ошибки при первой возможности, т.к. они сразу могут превратиться в снежный ком проблем и вызвать непредвиденное поведение.
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+*Никогда не отправляйте* (submit) сломанные блупринты в систему контроля версиями. Если вам нужно хранить их в системе контроля версий, отложите их (shelve).
 
-Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
+Сломанные блупринты могут вызвать массу проблем — таких, как поломанные связи, некорректное поведение, падения при сборке, частые ненужные перекомпиляции. Один сломанный блупринт способен порушить всю вашу игру.
 
 <a name="3.2"></a>
 <a name="bp-vars"></a>
-### 3.2 Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+### 3.2 Переменные ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-#### Sections
+#### Подразделы
 
-> 3.2.1 [Naming](#bp-vars)
+> 3.2.1 [Именование](#bp-vars)
 
-> 3.2.2 [Editable](#bp-vars-editable)
+> 3.2.2 [`Editable`](#bp-vars-editable)
 
-> 3.2.3 [Categories](#bp-vars-categories)
+> 3.2.3 [Категории](#bp-vars-categories)
 
-> 3.2.4 [Access](#bp-vars-access)
+> 3.2.4 [Уровни доступа](#bp-vars-access)
 
-> 3.2.5 [Advanced](#bp-vars-advanced)
+> 3.2.5 [`Advanced`](#bp-vars-advanced)
 
-> 3.2.6 [Transient](#bp-vars-transient)
+> 3.2.6 [`Transient`](#bp-vars-transient)
 
-> 3.2.7 [SaveGame](#bp-vars-savegame)
+> 3.2.7 [`SaveGame`](#bp-vars-savegame)
 
-> 3.2.8 [Config](#bp-vars-config)
+> 3.2.8 [Переменные `Config`](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
-#### 3.2.1 Naming ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.1 Именование ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.1"></a>
 <a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.1 Существительные ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
+Все не-булевые переменные должны быть чёткими, недвусмысленными, описательными существительными.
 
 <a name="3.2.1.2"></a>
 <a name="bp-var-naming-case"></a>
-##### 3.2.1.2 PascalCase ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.2 ДельфиСтиль ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+Все не-булевые переменные должны быть написаны в [ДельфиСтиле](#terms-cases).
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples:
+###### 3.2.1.2e Примеры:
 
 * `Score`
 * `Kills`
@@ -672,48 +691,48 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.3 Префикс `b` для булевых переменных ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+Все булевы значения должны следовать ДельфиСтилю, но иметь префикс в виде малой `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+Например: `bDead` и `bEvil`, **но не** `Dead` и `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Редактор блупринтов в UE4 распознаёт эту `b` и не выводит её при выводе удобочитаемого текста.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.4 Имена булевых значений ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 <a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information ![#](https://img.shields.io/badge/lint-supported-green.svg)
+###### 3.2.1.4.1 Общая информация и независимые состояния ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Все булевые переменные должны быть качественными прилагательными. Не включайте вопросительные слова, например, `Is`. Такие слова зарезервированы для функций.
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Например: используйте `bDead` и `bHostile`, но **не** `bIsDead` и `bIsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Старайтесь также не использовать в названиях глаголы (напр. `bRunning`). Глаголы, как правило, ведут к сложным состояниям.
 
 <a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+###### 3.2.1.4.2 Сложные состояния ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+Не используйте булевы переменные для описания сложных и/или зависимых состояний. Это приводит к затруднённому управлению этих состояний и нечитабельности. Вместо этого используйте перечисление (Enum).
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Например: описывая пушку, **не используйте** `bReloading` и `bEquipping`, если пушка не может одновременно заряжаться и быть в процессе экипировки. Обозначьте перечисление `EWeaponState` и используйте вместо булевых переменных одну переменную `WeaponState` соответствующего типа. Так добавлять новые состояния пушке будет проще.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Пример: **не используйте** `bRunning` ("Бежит"), если вам также нужны `bWalking` ("Ходит") и `bSprinting` ("Спринтует", кратковременное ускорение). Вам нужно перечисление с чёткими названиями вариантов.
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.5 Предметная область переменной определяется самим блупринтом, но не названием ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+Все названия переменных не должны быть избыточны и упоминать свой контекст, так как все переменные из блупринта уже обладают своим контекстом.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples:
+###### 3.2.1.5e Пример:
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Пусть у нас есть блупринт `BP_PlayerCharacter`.
 
-**Bad**
+**Нельзя**
 
 * `PlayerScore`
 * `PlayerKills`
@@ -722,9 +741,9 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+Названия этих переменных избыточны. Если переменные описаны в `BP_PlayerCharacter`, то это значит, что они характеризуют именно `BP_PlayerCharacter`.
 
-**Good**
+**Надо**
 
 * `Score`
 * `Kills`
@@ -735,167 +754,168 @@ All of these variables are named redundantly. It is implied that the variable is
 
 <a name="3.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names ![#](https://img.shields.io/badge/lint-supported-green.svg)
+##### 3.2.1.6 _Не включайте_ названия атомарных типов ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
+Атомарные, или примитивные, переменные — это такие переменные, что описывают своё значение в простейшей форме — напимер, в виде булевого значения, целочисленного, вещественного, перечисления (Enum).
 
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
+Строки (именно String, не Text!), Rotator и векторы тоже считаются атомарными в блупринтах и тоже не должны включать названия типа в своих именах. Тем не менее, с технической точки зрения они не являются атомарными.
 
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+> Хоть вектора и состоят каждый из трёх вещественных значений, с векторами часто работают как с единым целым. То же и с Rotator.
 
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+> _Нельзя_ считать Text атомарным типом, т.к. они включают в себе скрытый функционал по локализации. Атомным типом является `String`, но не `Text`.
 
-Atomic variables should not have their type name in their name.
+Атомные переменные не должны включать название типа переменной в своём названии.
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+Например: используйте `Score`, `Kills` и `Description`, **но не** `ScoreFloat`, `FloatKills`, `DescriptionString`.
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
+Единственное исключение этого правила — когда имеется ввиду "количество того-то" **и** когда использование имени без типа переменной приводит к затруднению чтения.
 
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+Например: генератор забора создаёт X досок. Это X нужно сохранить в переменной `NumBoards` или `BoardsCount`, но не `Boards`, т.к. `Boards` может уже относиться к массиву переменных типа `Board`.
 
 <a name="3.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.1.7 **Нужно** включать имена неатомарных типов в названиях переменных ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Неатомартные, или сложные, переменные — это такие, что отражают свою информацию как набор атомарных переменных. Структуры, классы, интерфейсы, примитивы со скрытым поведением (вроде `Text` и `Name`) попадают под это правило.
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+> В то время, как массив атомарных значений — это список атомарных переменных, массивы не меняют "атомарность" типа переменных.
 
-These variables should include their type name while still considering their context.
+Эти переменные должны включать названия их типов, но также и подразумевать контекст использования.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+Если класс _владеет_ экземпляром сложной переменной, напр. если у `BP_PlayerCharacter` есть `BP_Hat`, то она должна называться как тип переменной, без каких-либо изменений.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Например: используйте `Hat`, `Flag`, и `Ability`, **но не** `MyHat`, `MyFlag`, или `PlayerAbility`.
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+Если класс _не владеет_ значением сложной переменной, то нужно использовать существительное вместе с названием типа переменной.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Например: если у `BP_Turret` есть способность нацеливаться на `BP_PlayerCharacter`, она (туррель) должна хранить переменную `TargetPlayer` — так в контексте `BP_Turret` будет понятно, что это ссылка на другую переменную сложного типа, которой туррель не владеет.
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+##### 3.2.1.8 Массивы ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+Массивы подчиняются правилам выше, но описываются во множественном числе.
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Например: используйте `Targets`, `Hats` и `EnemyPlayers`, **но не** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+#### 3.2.2 Редактируемые (`Editable`) переменные ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Все переменные, которые спокойно можно менять с целью настройки поведения блупринта, должны быть отмечены как  `Editable`.
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Аналогично, все те переменные, которые небезопасно редактировать и которые не должны быть раскрыты дизайнерам, не должны быть отмечены как `Editable`, за исключением тех случаев, когда переменная требует флага `Expose On Spawn`.
 
-Do not arbitrarily mark variables as `Editable`.
+Не помечайте переменные флагом `Editable` произвольным образом.
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
-##### 3.2.2.1 Tooltips ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.1 Подсказки ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Все переменные типа `Editable`, включая те, что были помечены так только из-за флага `Expose On Spawn`, должны иметь своё описание в поле `Tooltip`, которое должно показывать, как изменение этого значения меняет поведение блупринта.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.2 Слайдеры и пределы допустимых значений ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+Все переменные с флагом `Editable` должны использовать слайдеры (Slider) и пределы допустимых значений (Value Range), если есть хоть какое-нибудь значение, которое _не должно_ использоваться.
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Пример: блупринт, генерирующий забор, может иметь редактируемую переменную `BoardsCount`, и значение -1 не будет являться для него рабочим. Используйте пределы допустимых значений, чтобы обозначить 0 как минимальное значение.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+Если редактируемая переменная используется в Construction Script, у неё должен быть настроенный слайдер (Slider Range), который препятствует назначению таких значений, что могут обрушить редактор.
 
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+Пределы допустимых значений нужно устанавливать только тогда, когда известны границы этих значений. Если слайдер предотвращает случайный ввод слишком больших значений, то неустановленное значение пределов всё же позволяет указать значения вне диапазона слайдера — "опасные", но всё ещё валидные.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.3 Категории ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-If a class has only a small number of variables, categories are not required.
+Если у класса совсем немного переменных, то использование категорий не требуется.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+Если у класса есть некоторое количество переменных (5-10), все переменные с флагом `Editable` должны обладать своей нестандартной категорией. Для общих переменных создаётся категория `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage. 
+Если у класса большое количество переменных, то все переменные с флагом `Editable` должны быть помещены в подкатегории внутри `Config`. Нередактируемые переменные (без флага `Editable`) должны быть помещены в отдельные категории с понятными названиями.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> Вы можете создавать подкатегории, используя символ вертикальной черты `|`, напр. `Config | Animations`.
 
-Example: A weapon class set of variables might be organized as:
+Пример: набор переменных оружия может быть расположен в следующей иерархии:
 
-	|-- Config
-	|	|-- Animations
-	|	|-- Effects
-	|	|-- Audio
-	|	|-- Recoil
-	|	|-- Timings
-	|-- Animations
-	|-- State
-	|-- Visuals
+    |-- Config
+    |   |-- Animations
+    |   |-- Effects
+    |   |-- Audio
+    |   |-- Recoil
+    |   |-- Timings
+    |-- Animations
+    |-- State
+    |-- Visuals
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.4 Уровень доступа переменных ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+В C++ есть реализация уровня доступа переменных. Уровень доступа `Public` означает, что все экземпляры любых классов могут получить доступ к этой переменной. Переменные `Protected` могут использованы только самим классом и дочерними классами. `Private` значит, что только сам класс может видеть эти переменные (дочерние не видят).
 
-Blueprints do not have a defined concept of protected access currently.
+В блупринтах, по крайней мере — на данный момент —, нет реализации уровня доступа переменных.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Считайте переменные с флагом `Editable` как публичные. Переменные без этого флага считайте как `Protected`.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.4.1 Закрытые (`Private`) переменные ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+В том случае, если не известно, должна ли быть переменная доступна только в самом классе, но не в дочерних, не отмечайте переменную как `Private`. Используйте `Protected` и закрывайте переменную только тогда, когда вы абсолютно уверены, что хотите ограничить использование переменных в дочерних классах.
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.5 `Advanced Display` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+Если переменная должна быть редактируема, но, в большинстве случаев, нетронута, отметьте её флагом `Advanced Display`. Переменная будет скрыта, но может быть отображена по клику стрелки в конце категории.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+Сам флаг `Advanced Display` тоже является скрытым за этой стрелкой на панеле `Details`.
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+#### 3.2.6 `Transient` ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variables that are not editable and have a initial value of zero or null should be marked as `Transient`.
+Все переменные без флага `Editable` и которые должны обладать нулевым начальным значением, должны быть помечены как `Transient`.
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time.
+Такие переменные не требуют сохранения и загрузки их значения и изначально равны нулю (zero или null). Они полезны для тех случаев, когда требуется ссылка на других объектов и актёров, не известная до запуска игры.
 
-This forces the variable to always initialize as zero or null, prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Этот флаг предотвращает сохранение ссылки на эту переменную внутри редактора и ускоряет процесс сохранения и загрузки класса.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-savegame"></a>
-#### 3.2.7 SaveGame Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.7 Переменные с флагом `SaveGame` ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Only use the SaveGame property of variables when inside a class derived from `SaveGame`. Use this property only if the `SaveGame` class should save this value.
+Используйте флаг `SaveGame` только для переменных класса, унаследованного от класса `SaveGame`. Отмечайте этот флаг, только если `SaveGame` должен сохранить значение. Временные переменные, не хранимые в слоте сохранения, не должны отмечаться этим флагом.
 
-Do **not** mix `SaveGame` and `Transient`, this does not make any sense.
+Не смешивайте `SaveGame` и `Transient` — это бесполезно.
 
 <a name="3.2.8"></a>
 <a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 3.2.8 Флаг `Config Variable` ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+Не используйте флаг `Config Variable`. Дизайнерам будет труднее из-за этого контроллировать поведение блупринта. Этот флаг используется только в C++ для редко меняющихся значений, как если бы они были под двойным флагом `Advanced Display`.
 
-## Contributors
+## Вклад сообщества
 
-* [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.Allar)
+* [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
+* [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
 
-## License
+## Лицензия
 
 Copyright (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+См. файл [LICENSE](/LICENSE)
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Наверх](#table-of-contents)**
 
 
-## Amendments
+## Правки
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+Мы поощряем клонирование этого репозитория с целью адаптации под правила вашей команды. Ниже, вы можете указать свои правки, чтобы периодически обновлять стайл-гайд без ошибок слияния.
 
 # };
