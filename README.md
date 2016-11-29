@@ -52,7 +52,7 @@ These principles have been adapted from [idomatic.js style guide](https://github
 <a name="0.1"></a>
 ### 0.1 If your UE4 project already has a style guide, you should follow it.
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between and existing style guide and this guide should defer to the existing.
+If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
 
 Style guides should be living documents however and you should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
 
