@@ -6,12 +6,6 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
-## Shameless Self Promotion
-
-This is just a temporary message. If this guide has helped you in any way, please take a second to vote for Linter by Gamemakin LLC as your first choice in the UE4 Community Top Featured December poll. Only takes ~10 seconds and every vote will help the ongoing efforts to add and maintain this guide, as well as the linter plugin described below. Thanks!
-
-https://docs.google.com/forms/d/e/1FAIpQLSdILnLYrcOPv3xQ5Jz9Dd94dwOCdN1oCmCtipTaV40PhFqSlQ/viewform
-
 ## Unreal Engine 4 Linter Plugin
 
 An automated method of checking your project against this style guide is available for purchase at [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter). This plugin's source code will eventually be free, but in order to use with UE4 without building the engine from source code, please use the marketplace version.
@@ -903,6 +897,7 @@ Do not use the `Config Variable` flag. This makes it harder for designers to con
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
 * [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
+* [billymcguffin](https://github.com/billymcguffin)
 
 ## License
 
