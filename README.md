@@ -140,6 +140,8 @@ Depending on how your asset variants are made, you can chain together variant na
 | Material                | M_Rock                                                     |
 | Material Instance (Snow)| MI_Rock_Snow                                               |
 
+<a name="asset-name-modifiers"></a>
+<a name="1.2"></a>
 ### 1.2 Asset Name Modifiers ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 When naming an asset use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
