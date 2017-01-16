@@ -140,6 +140,8 @@ Depending on how your asset variants are made, you can chain together variant na
 | Material                | M_Rock                                                     |
 | Material Instance (Snow)| MI_Rock_Snow                                               |
 
+<a name="asset-name-modifiers"></a>
+<a name="1.2"></a>
 ### 1.2 Asset Name Modifiers ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 When naming an asset use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
@@ -176,7 +178,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.3) |
+| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
 | Level (Persistent)      |            | _P         |                                  |
 | Level (Audio)           |            | _Audio     |                                  |
 | Level (Lighting)        |            | _Lighting  |                                  |
@@ -487,7 +489,7 @@ Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,
 
 All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [2.2](#2.2) for details about this.
+> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
 
 There are multiple reasons for this approach.
 
