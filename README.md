@@ -928,7 +928,17 @@ This section describes how you should author functions, events, and event dispat
 
 <a name="3.3.1"></a>
 <a name="bp-funcs-naming"></a>
-#### 3.3.1 Naming
+#### 3.3.1 Function Naming
+
+The naming of functions, events, and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about functions. For example:
+
+* Is it a pure function?
+* Is it fetching state information?
+* Is it a handler?
+* Is it an RPC?
+* What is its purpose?
+
+These questions and more can all be answered when functions are named appropriately.
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
