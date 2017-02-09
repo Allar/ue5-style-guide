@@ -51,6 +51,22 @@ There are a few different ways you can name things. Here are some common casing 
 >
 > Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
+<a name="terms-var-prop"></a>
+##### Variables / Properties
+
+The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+
+<a name="terms-property"></a>
+###### Property 
+Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`. 
+
+When in the context of a class, often used to imply accessing previously defined data.
+
+<a name="terms-variable"></a>
+###### Variable 
+Usually refers to a variable defined as a function argument or a local variable inside a function.
+
+When in the context of a class, often used to convey discussion about its definition and what it will hold.
 
 <a name="0"></a>
 ## 0. Principles
@@ -631,6 +647,8 @@ This section will focus on Blueprint classes and their internals. When possible,
 
 > 3.2 [Variables](#bp-vars)
 
+> 3.3 [Functions](#bp-functions)
+
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
 ### 3.1 Compiling ![#](https://img.shields.io/badge/lint-supported-green.svg)
@@ -644,6 +662,8 @@ Broken blueprints can cause problems that manifest in other ways, such as broken
 <a name="3.2"></a>
 <a name="bp-vars"></a>
 ### 3.2 Variables ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+
+The words `variable` and `property` may be used interchangably.
 
 #### Sections
 
@@ -899,6 +919,84 @@ Do **not** mix `SaveGame` and `Transient`, this does not make any sense.
 #### 3.2.8 Config Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+
+<a name="3.3"></a>
+<a name="bp-functions"></a>
+### 3.3 Functions, Events, and Event Dispatchers ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
+
+<a name="3.3.1"></a>
+<a name="bp-funcs-naming"></a>
+#### 3.3.1 Naming
+
+<a name="3.3.1.1"></a>
+<a name="bp-funcs-naming-verbs"></a>
+#### 3.3.1.1 All Functions Should Be Verbs
+
+All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode. Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
+
+`OnRep` functions, event handlers, and event dispatchers are an exception to this rule.
+
+Good examples:
+
+* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
+* `Jump` - Good example if in a Character class, otherwise, needs context.
+* `Explode`
+* `ReceiveMessage`
+* `SortPlayerArray`
+* `GetArmOffset`
+* `GetCoordinates`
+* `UpdateTransforms`
+* `EnableBigHeadMode`
+* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
+
+Bad examples:
+
+* `Dead` - Is Dead? Will deaden?
+* `Rock`
+* `ProcessData` - Ambiguous, these words mean nothing.
+* `PlayerState` - Nouns are ambiguous.
+* `Color` - Verb with no context, or ambiguous noun.
+
+<a name="3.3.1.2"></a>
+<a name="bp-funcs-naming-onrep"></a>
+#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
+
+All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
+
+<a name="3.3.1.3"></a>
+<a name="bp-funcs-naming-bool"></a>
+#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions
+
+When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
+
+This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that action succeeded.
+
+Good examples:
+
+* `IsDead`
+* `IsOnFire`
+* `IsAlive`
+* `IsSpeaking`
+* `IsHavingAnExistentialCrisis`
+* `IsVisible`
+* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
+* `CanReload` - ["Can" is a verb."](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+
+Bad examples:
+
+* `Fire` - Is on fire? Will fire? Do fire?
+* `OnFire` - Can be confused with event dispatcher for firing.
+* `Dead` - Is dead? Will deaden?
+* `Visibility` - Is visible? Set visibility? A description of flying conditions?
+
+<a name="3.3.1.4"></a>
+<a name="bp-funcs-naming-eventdispatchers"></a>
+#### 3.3.1.4 
+
+
 
 ## Contributors
 
