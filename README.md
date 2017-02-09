@@ -993,8 +993,43 @@ Bad examples:
 * `Visibility` - Is visible? Set visibility? A description of flying conditions?
 
 <a name="3.3.1.4"></a>
-<a name="bp-funcs-naming-eventdispatchers"></a>
-#### 3.3.1.4 
+<a name="bp-funcs-naming-eventhandlers"></a>
+#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
+
+Any function that handles an event or dispatches an event should with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+
+[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+
+`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+
+Good examples:
+
+* `OnDeath` - Common collocation in games
+* `OnPickup`
+* `OnReceiveMessage`
+* `OnMessageRecieved`
+* `OnTargetChanged`
+* `OnClick`
+* `OnLeave`
+
+Bad examples:
+
+* `OnData`
+* `OnTarget`
+* `HandleMessage`
+* `HandleDeath`
+
+<a name="3.3.2"></a>
+<a name="bp-funcs-return"></a>
+#### 3.3.2 All Functions Must Have Return Nodes
+
+All functions must have return nodes, no exceptions.
+
+Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+
+The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+
+In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
 
 
 
