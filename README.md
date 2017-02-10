@@ -651,6 +651,8 @@ Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](htt
 
 > 3.3 [Functions](#bp-functions)
 
+> 3.4 [Graphs](#bp-graphs)
+
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
 ### 3.1 Compiling ![#](https://img.shields.io/badge/lint-supported-green.svg)
@@ -1084,15 +1086,12 @@ Wires should have clear beginnings and ends. You should never have to mentally u
 Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straigten Connections command with BP nodes selected. Hotkey: Q
 
 Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
-
 ![Aligned By Wires](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-good.png "Aligned By Wires")
 
 Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
-
 ![Bad](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-bad.png "Wiggly")
 
 Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
-
 ![Acceptable](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-acceptable.png "Acceptable")
 
 <a name="3.4.3"></a>
