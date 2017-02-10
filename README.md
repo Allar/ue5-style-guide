@@ -1081,15 +1081,11 @@ Wires should have clear beginnings and ends. You should never have to mentally u
 <a name="bp-graphs-align-wires"></a>
 #### 3.4.2 Align Wires Not Nodes
 
-Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires.
-
-Straight wires provide clear linear flow. Wiggly wires wear wits wickedly.
-
-You can straighten wires by using the Straigten Connections command with BP nodes selected. Hotkey: Q
+Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straigten Connections command with BP nodes selected. Hotkey: Q
 
 Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
 
-![Aligned By Wires](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-acceptable.png "Aligned By Wires")
+![Aligned By Wires](https://github.com/allar/ue4-style-guide/raw/master/images/bp-graphs-align-wires-good.png "Aligned By Wires")
 
 Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
 
