@@ -1029,6 +1029,28 @@ Bad examples:
 * `HandleMessage`
 * `HandleDeath`
 
+<a name="3.3.1.5"></a>
+<a name="bp-funcs-naming-rpcs"></a>
+#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
+
+Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+
+After the prefix, follow all other rules regarding function naming.
+
+Good examples:
+
+* `ServerFireWeapon`
+* `ClientNotifyDeath`
+* `MulticastSpawnTracerEffect`
+
+Bad examples:
+
+* `FireWeapon` - Does not indicate its an RPC of some kind.
+* `ServerClientBroadcast` - Confusing.
+* `AllNotifyDeath` - Use `Multicast`, never `All`.
+* `ClientWeapon` - No verb, ambiguous.
+
+
 <a name="3.3.2"></a>
 <a name="bp-funcs-return"></a>
 #### 3.3.2 All Functions Must Have Return Nodes
