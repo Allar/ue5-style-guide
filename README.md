@@ -905,11 +905,9 @@ To find the `Advanced Display` option, it is listed as an advanced displayed var
 <a name="bp-vars-transient"></a>
 #### 3.2.6 Transient Variables ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-All variables that are not editable and have a initial value of zero or null should be marked as `Transient`.
+Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time.
-
-This forces the variable to always initialize as zero or null, prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-savegame"></a>
@@ -1067,6 +1065,22 @@ Return nodes explicitly note that a function has finished its execution. In a wo
 The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
 
 In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+
+<a name="3.3.3"></a>
+<a name="bp-graphs-funcs-node-limit"></a>
+#### 3.3.3 No Function Should Have More Than 50 Nodes 
+
+Simply, no function should not have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+
+The following nodes are not counted as they are deemed to not increase function complexity:
+
+* Comment
+* Route
+* Cast
+* Getting a Variable
+* Breaking a Struct
+* Function Entry
+* Self
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
