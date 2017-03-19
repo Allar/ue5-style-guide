@@ -1070,7 +1070,7 @@ In situations like where a programmer may add a pin to a Sequence node or add lo
 <a name="bp-graphs-funcs-node-limit"></a>
 #### 3.3.3 No Function Should Have More Than 50 Nodes 
 
-Simply, no function should not have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
 
 The following nodes are not counted as they are deemed to not increase function complexity:
 
