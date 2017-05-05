@@ -6,6 +6,10 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
+## Bounty
+
+In an effort to reduce circular dependency across all projects, I'm offering a meager $150 bounty for a UE4 Plugin/Tool to be created that would help illustrate circular dependencies so they can be dealt with easily; either as a public tool or code shared with me to integrate into Linter.
+
 ## Unreal Engine 4 Linter Plugin
 
 An automated method of checking your project against this style guide is available for purchase at [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter). This plugin's source code will eventually be free, but in order to use with UE4 without building the engine from source code, please use the marketplace version.
