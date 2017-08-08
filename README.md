@@ -689,9 +689,7 @@ The words `variable` and `property` may be used interchangably.
 
 > 3.2.6 [Transient](#bp-vars-transient)
 
-> 3.2.7 [SaveGame](#bp-vars-savegame)
-
-> 3.2.8 [Config](#bp-vars-config)
+> 3.2.7 [Config](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
@@ -915,14 +913,6 @@ Transient variables are variables that do not need to have their value saved and
 Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
 
 <a name="3.2.7"></a>
-<a name="bp-vars-savegame"></a>
-#### 3.2.7 SaveGame Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
-
-Only use the SaveGame property of variables when inside a class derived from `SaveGame`. Use this property only if the `SaveGame` class should save this value.
-
-Do **not** mix `SaveGame` and `Transient`, this does not make any sense.
-
-<a name="3.2.8"></a>
 <a name="bp-vars-config"></a>
 #### 3.2.8 Config Variables ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
@@ -1127,6 +1117,68 @@ Acceptable Example: Certain nodes might not cooperate no matter how you use the 
 #### 3.4.3 White Exec Lines Are Top Priority ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 If you ever have to decide between straightening a linear white exec line or straightening  data lines of some kind, always straighten the white exec line.
+
+<a name="4"></a>
+<a name="Static Meshes"></a>
+<a name="s"></a>
+## 4. Static Meshes ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+This section will focus on Static Mesh assets and their internals.
+
+### Sections
+
+> 4.1 [UVs](#s-uvs)
+
+<a name="4.1"></a>
+<a name="s-uvs"></a>
+### 4.1 Static Mesh UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+<a name="4.1.1"></a>
+<a name="s-uvs-no-missing"></a>
+#### 4.1.1 All Meshes Must Have UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+
+<a name="4.1.2"></a>
+<a name="s-uvs-no-overlapping"></a>
+#### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+
+<a name="5"></a>
+<a name="Particle Systems"></a>
+<a name="ps"></a>
+## 5. Particle Systems ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+This section will focus on Particle System assets and their internals.
+
+### Sections
+
+> 5.1 [Emitter Naming](#ps-naming)
+
+<a name="5.1"></a>
+<a name="ps-emitter-naming"></a>
+### 5.1 Emitter Naming ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+All emitters in a Particle System should be named something descriptive and not left to their default name "Particle Emitter".
+
+<a name="6"></a>
+<a name="Levels"></a>
+<a name="levels"></a>
+## 6. Levels ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+This section will focus on Level assets and their internals.
+
+### Sections
+
+> 6.1 [No Errors Or Warnings](#ps-levels)
+
+<a name="6.1"></a>
+<a name="levels-no-errors-or-warnings"></a>
+### 6.1 No Errors Or Warnings ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+
 
 ## Contributors
 
