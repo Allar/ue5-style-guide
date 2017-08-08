@@ -1087,6 +1087,14 @@ The following nodes are not counted as they are deemed to not increase function 
 * Function Entry
 * Self
 
+<a name="3.3.4"></a>
+<a name="bp-graphs-funcs-description"></a>
+#### 3.3.4 All Public Functions Should Have A Description ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
+
+Simply, any function that has an access specificer of Public should have its description filled out. 
+
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
 ### 3.4 Blueprint Graphs ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
