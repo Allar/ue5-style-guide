@@ -1353,7 +1353,7 @@ For example, if a project's texture density is 8 pixel per 1 unit, a texture tha
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
-### 6.3 Textures Should Be No Bigger than 8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+### 7.3 Textures Should Be No Bigger than 8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
 No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
 
