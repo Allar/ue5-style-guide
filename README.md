@@ -109,6 +109,16 @@ If you are helping someone who's work conforms to a different but consistent and
 
 When joining an Unreal Engine 4 team one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
 
+<a name="0.5"></a>
+### 0.5 Don't Break The Law
+
+Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
+
+* Don't distribute content you don't have the rights to distribute
+* Don't infringe on someone else's copyrighted or trademark material
+* Don't steal content
+* Follow licensing restrictions on content, e.g. attribute when attributions are needed
+
 <a name="toc"></a>
 ## Table of Contents
 
@@ -641,6 +651,22 @@ The `MaterialLibrary` doesn't have to consist of purely materials. Shared utilit
 
 Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
 
+<a name="2.9"></a>
+<a name="structure-no-empty-folders"></a>
+### 2.9 No Empty Folders ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+There simply shouldn't be any empty folders. They clutter the content browser.
+
+If you find that the content browser has an empty folder you can't delete, you should perform the following:
+1. Be sure you're using source control.
+1. Immediately run Fix Up Redirectors on your project.
+1. Navigate to the folder on-disk and delete the assets inside.
+1. Close the editor.
+1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
+1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
+1. Ensure the folder is now gone.
+1. Submit changes to source control.
+
 <a name="3"></a>
 <a name="bp"></a>
 ## 3. Blueprints ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
@@ -1085,6 +1111,14 @@ This rule applies more to public facing or marketplace blueprints, so that other
 
 Simply, any function that has an access specificer of Public should have its description filled out. 
 
+<a name="3.3.5"></a>
+<a name="bp-graphs-funcs-plugin-category"></a>
+#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+
+For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
 ### 3.4 Blueprint Graphs ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
@@ -1116,12 +1150,32 @@ Acceptable Example: Certain nodes might not cooperate no matter how you use the 
 <a name="bp-graphs-exec-first-class"></a>
 #### 3.4.3 White Exec Lines Are Top Priority ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
 
-If you ever have to decide between straightening a linear white exec line or straightening  data lines of some kind, always straighten the white exec line.
+If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+
+<a name="3.4.4"></a>
+<a name="bp-graphs-block-comments"></a>
+#### 3.4.4 Graphs Should Be Reasonably Commented ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+
+<a name="3.4.5"></a>
+<a name="bp-graphs-cast-error-handling"></a>
+#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if its known that the reference being casted could ever fail to be casted.
+
+This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+
+<a name="3.4.6"></a>
+<a name="bp-graphs-dangling-nodes"></a>
+#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
 
 <a name="4"></a>
 <a name="Static Meshes"></a>
 <a name="s"></a>
-## 4. Static Meshes ![#](https://img.shields.io/badge/lint-supported-green.svg)
+## 4. Static Meshes ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 This section will focus on Static Mesh assets and their internals.
 
@@ -1129,9 +1183,19 @@ This section will focus on Static Mesh assets and their internals.
 
 > 4.1 [UVs](#s-uvs)
 
+> 4.2 [LODs](#s-lods)
+
+> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
+
+> 4.4 [Must Have Collision](#s-collision)
+
+> 4.5 [Correct Scale](#s-scaled)
+
 <a name="4.1"></a>
 <a name="s-uvs"></a>
 ### 4.1 Static Mesh UVs ![#](https://img.shields.io/badge/lint-supported-green.svg)
+
+If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why its failing. I am hoping to include these messages in the Lint report in the future.
 
 <a name="4.1.1"></a>
 <a name="s-uvs-no-missing"></a>
@@ -1144,6 +1208,32 @@ Pretty simple. All meshes, regardless how they are to be used, should not be mis
 #### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
 Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+
+<a name="4.2"></a>
+<a name="s-lods"></a>
+### 4.2 LODs Should Be Set Up Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+
+<a name="4.3"></a>
+<a name="s-modular-snapping"></a>
+### 4.2 Modular Socketless Assets Should Snap To The Grid Cleanly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+
+It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+
+<a name="4.4"></a>
+<a name="s-collision"></a>
+### 4.4 All Meshes Must Have Collision ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
+
+<a name="4.5"></a>
+<a name="s-scaled"></a>
+### 4.5 All Meshes Should Be Scaled Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
 
 <a name="5"></a>
 <a name="Particle Systems"></a>
@@ -1165,19 +1255,113 @@ All emitters in a Particle System should be named something descriptive and not 
 <a name="6"></a>
 <a name="Levels"></a>
 <a name="levels"></a>
-## 6. Levels ![#](https://img.shields.io/badge/lint-supported-green.svg)
+## 6. Levels / Maps ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
+
+[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
 
 This section will focus on Level assets and their internals.
 
 ### Sections
 
-> 6.1 [No Errors Or Warnings](#ps-levels)
+> 6.1 [No Errors Or Warnings](#levels-no-errors-or-warnings)
+
+> 6.2 [Lighting Should Be Built](#levels-lighting-should-be-built)
+
+> 6.3 [No Player Visible Z Fighting](#evels-no-visible-z-fighting)
+
+> 6.4 [Marketplace Specific Rules](#evels-levels-mp-rules)
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
-### 6.1 No Errors Or Warnings ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 6.1 No Errors Or Warnings ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
 All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+
+You can run a map check on an open level in the editor by using the console command "map check".
+
+Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+
+<a name="6.2"></a>
+<a name="levels-lighting-should-be-built"></a>
+### 6.2 Lighting Should Be Built ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+It is normal during development for levels to occasionaly not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+
+<a name="6.3"></a>
+<a name="levels-no-visible-z-fighting"></a>
+### 6.3 No Player Visible Z Fighting ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+
+<a name="6.4"></a>
+<a name="levels-mp-rules"></a>
+### 6.4 Marketplace Specific Rules ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+
+<a name="6.4.1"></a>
+<a name="levels-mp-rules-overview"></a>
+### 6.4.1 Overview Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+
+This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+
+For example, `InteractionComponent_Overview`.
+
+<a name="6.4.2"></a>
+<a name="levels-mp-rules-demo"></a>
+### 6.4.2 Demo Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+
+If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+
+For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+
+<a name="7"></a>
+<a name="textures"></a>
+## 7. Textures ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+This section will focus on Texture assets and their internals.
+
+### Sections
+
+> 7.1 [Dimensions Are Powers of 2](#textures-dimension)
+
+> 7.2 [Texture Density Should Be Uniform](#textures-dimension)
+
+> 7.3 [Textures Should Be No Bigger than 8192](#textures-max-size)
+
+> 7.4 [Correct Texture Groups](#textures-textures-group)
+
+<a name="7.1"></a>
+<a name="textures-dimensions"></a>
+### 7.1 Dimensions Are Powers of 2 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+
+For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+
+<a name="7.2"></a>
+<a name="textures-density"></a>
+### 7.2 Texture Density Should Be Uniform ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+
+For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density. 
+
+<a name="7.3"></a>
+<a name="textures-max-size"></a>
+### 6.3 Textures Should Be No Bigger than 8192 ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+
+<a name="7.4"></a>
+<a name="textures-group"></a>
+### 7.4 Textures Should Be Grouped Correctly ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
 
 
 ## Contributors
