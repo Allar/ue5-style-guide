@@ -35,7 +35,7 @@ This document shows its compatibility with the style guide on this repo, as well
 | 17    | Pack contains Overview Map                                                 | :white_check_mark: [See #6.4.1](http://ue4.style#6.4.1)                         |
 | 18    | Overview Map is set up appropriately and named correctly                   | :white_check_mark: [See #6.4.1](http://ue4.style#6.4.1)                         |
 | 19    | Lighting has been built on all maps                                        | :white_check_mark: [See #6.2](http://ue4.style#6.2)                             |
-| 20    | All maps are free of errors and/or warnings                                | :white_check_mark::grean_heart: [See #6.1](http://ue4.style#6.1)                |
+| 20    | All maps are free of errors and/or warnings                                | :white_check_mark::green_heart: [See #6.1](http://ue4.style#6.1)                |
 | 21    | No Z fighting or overlapping polygons in maps                              | :white_check_mark: [See #6.3](http://ue4.style#6.3)                             |
 | 22    | Pack contains Demo Map                                                     | :white_check_mark: [See #6.4.2](http://ue4.style#6.4.2)                         |
 | 23    | Demo Map is set up appropriately and named correctly                       | :white_check_mark: [See #6.4.2](http://ue4.style#6.4.2)                         |
