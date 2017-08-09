@@ -54,7 +54,7 @@ This document shows its compatibility with the style guide on this repo, as well
 
 ## Legal
 
-Gamemakin LLC and its product Linter makes no effort to check for legal compliance for your project on your behalf. We are not lawyers and do not have that compatibility and can not offer legal advice. That said, we vehemently recommend [not breaking the law](http://ue4.style#0.5).
+Gamemakin LLC and its product Linter makes no effort to check for legal compliance for your project on your behalf. We are not lawyers and do not have that capability and can not offer legal advice. That said, we vehemently recommend [not breaking the law](http://ue4.style#0.5).
 
 | Line  | Review Check Item                                                          | Compatibility Notes                                                             |
 | :---: | :------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
