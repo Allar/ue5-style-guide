@@ -85,7 +85,7 @@ Gamemakin LLC and its product Linter makes no effort to check for legal complian
 | 49    | All Materials are set up correctly and are optimized for intended purpose  | :o: Currently a subjective check.                                               |
 | 50    | Material instances used where appropriate                                  | :o: Currently a subjective check.                                               |
 | 51    | Mobile material assets use only BaseColor, Roughness, and Normal from textures | :o: Style guide has no mobile-specific distinctions.                        |
-| 52    | Specular is not specified unless used                                      | :o: If "Yes" then "Yes", otherwise "No"? Too vague to understand on.            |
+| 52    | Specular is not specified unless used                                      | :o: If "Yes" then "Yes", otherwise "No"? Too vague to understand.            |
 
 ## Meshes
 
