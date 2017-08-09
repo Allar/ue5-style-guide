@@ -1,4 +1,4 @@
-# UE4 Marketplace TRC Gamemakin Style Guide and Linter Compatibility
+# UE4 Marketplace TRC + Style Guide and Linter Compatibility
 
 Epic's Marketplace TRC can be found here: https://forums.unrealengine.com/showthread.php?151905-Marketplace-Technical-Review-Checklist
 
