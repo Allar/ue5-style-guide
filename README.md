@@ -325,6 +325,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Animated Vector Field   | VFA_       |            |                                  |
+| Blueprintable Component | BC_        |            |                                  |
 | Camera Anim             | CA_        |            |                                  |
 | Color Curve             | Curve_     | _Color     |                                  |
 | Curve Table             | Curve_     | _Table     |                                  |
