@@ -121,6 +121,10 @@ Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and be
 > 1. [Asset Naming Conventions](#anc)
 > 1. [Directory Structure](#structure)
 > 1. [Blueprints](#bp)
+> 1. [Static Meshes](#s)
+> 1. [Particle Systems](#ps)
+> 1. [Levels / Maps](#levels)
+> 1. [Textures](#textures)
 
 <a name="anc"></a>
 <a name="1"></a>
