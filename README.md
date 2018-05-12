@@ -197,7 +197,7 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 
 > 1.2.9 [Physics](#anc-physics)
 
-> 1.2.10 [Sound](#anc-sound)
+> 1.2.10 [Sound](#anc-sounds)
 
 > 1.2.11 [User Interface](#anc-ui)
 
