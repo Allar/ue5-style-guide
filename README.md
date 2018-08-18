@@ -260,6 +260,8 @@ When naming an asset use these tables to determine the prefix and suffix to use 
 | Decorator               | BTDecorator_ |          |                                  |
 | Service                 | BTService_ |            |                                  |
 | Task                    | BTTask_    |            |                                  |
+| Environment Query       | EQS_       |            |                                  |
+| EnvQueryContext         | EQS_       | Context    |                                  |
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
