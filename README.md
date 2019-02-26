@@ -329,27 +329,29 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="1.2.7"></a>
 ### 1.2.7 Miscellaneous ![#](https://img.shields.io/badge/lint-supported-green.svg)
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
-| ----------------------- | ---------- | ---------- | -------------------------------- |
-| Animated Vector Field   | VFA_       |            |                                  |
-| Camera Anim             | CA_        |            |                                  |
-| Color Curve             | Curve_     | _Color     |                                  |
-| Curve Table             | Curve_     | _Table     |                                  |
-| Data Asset              | *_         |            | Prefix should be based on class. |
-| Data Table              | DT_        |            |                                  |
-| Float Curve             | Curve_     | _Float     |                                  |
-| Foliage Type            | FT_        |            |                                  |
-| Force Feedback Effect   | FFE_       |            |                                  |
-| Landscape Grass Type    | LG_        |            |                                  |
-| Landscape Layer         | LL_        |            |                                  |
-| Matinee Data            | Matinee_   |            |                                  |
-| Media Player            | MP_        |            |                                  |
-| Object Library          | OL_        |            |                                  |
-| Redirector              |            |            | These should be fixed up ASAP.   |
-| Sprite Sheet            | SS_        |            |                                  |
-| Static Vector Field     | VF_        |            |                                  |
-| Touch Interface Setup   | TI_        |            |                                  |
-| Vector Curve            | Curve_     | _Vector    |                                  |
+| Asset Type                 | Prefix     | Suffix     | Notes                            |
+| -------------------------- | ---------- | ---------- | -------------------------------- |
+| Animated Vector Field      | VFA_       |            |                                  |
+| Camera Anim                | CA_        |            |                                  |
+| Color Curve                | Curve_     | _Color     |                                  |
+| Curve Table                | Curve_     | _Table     |                                  |
+| Data Asset                 | *_         |            | Prefix should be based on class. |
+| Data Table                 | DT_        |            |                                  |
+| Float Curve                | Curve_     | _Float     |                                  |
+| Foliage Type               | FT_        |            |                                  |
+| Force Feedback Effect      | FFE_       |            |                                  |
+| Landscape Grass Type       | LG_        |            |                                  |
+| Landscape Layer            | LL_        |            |                                  |
+| Matinee Data               | Matinee_   |            |                                  |
+| Media Player               | MP_        |            |                                  |
+| Object Library             | OL_        |            |                                  |
+| Redirector                 |            |            | These should be fixed up ASAP.   |
+| Sprite Sheet               | SS_        |            |                                  |
+| Static Vector Field        | VF_        |            |                                  |
+| Substance Graph Instance   | SGI_       |            |                                  |
+| Substance Instance Factory | SIF_       |            |                                  |
+| Touch Interface Setup      | TI_        |            |                                  |
+| Vector Curve               | Curve_     | _Vector    |                                  |
 
 <a name="anc-paper2d"></a>
 <a name="1.2.8"></a>
