@@ -1,4 +1,4 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# Gamemakin UE4 Style Guide() {
 
 *A mostly reasonable approach to Unreal Engine 4*
 
