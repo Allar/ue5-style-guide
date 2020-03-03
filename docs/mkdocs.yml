@@ -1,0 +1,8 @@
+site_name: Linter and Style Guide Documentation
+nav:
+    - Home: index.md
+    - Getting Started: gettingstarted.md
+    - How Does Linting Work?: howitworks.md
+    - Unreal Engine Marketplace Guidelines: unrealguidelines.md
+    - TODO: todo.md
+theme: readthedocs
