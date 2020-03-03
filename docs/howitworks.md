@@ -78,6 +78,10 @@ You should only implement this if you want to "early out" of the linting process
 
 `NamingConvention` assets are simply a list of naming conventions as a data asset. `LintRules` will have access to the `NamingConvention` data asset that is defined in the lint rule's parent `LintRuleSet`. The `NamingConvention` data asset isn't responsible for any implementation logic. Instead `LintRules` are written to perform these naming convention checks using the given `NamingConvention` data asset as configuration. 
 
+## LintRuleCollections... collect rules
+
+Sometimes it is easier to treat a collection of rules as a single rule. In this case, you can create a `LintRuleCollection` class that simply defines a list of other `LintRules`. This is very useful when dealing with repetitive path and file name lint rules.
+
 ## Video Walkthrough of Creating A LintRuleSet
 
 @TODO: Get this edited, uploaded, submitted, embedded

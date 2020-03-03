@@ -4,5 +4,6 @@ nav:
     - Getting Started: gettingstarted.md
     - How Does Linting Work?: howitworks.md
     - Unreal Engine Marketplace Guidelines: unrealguidelines.md
+    - Gamemakin LLC Style Guide: style.md
     - TODO: todo.md
 theme: readthedocs

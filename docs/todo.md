@@ -4,6 +4,7 @@ This page documents active efforts with Linter and the Gamemakin LLC Style Guide
 
 ## Planned Future Features
 
+1. Finish video tutorial on the creation of a new lint ruleset
 1. Linter scanning via commandlet for automated build pipelines
 1. Allowing rule scanning to support multiple class matches in a class lint rules map
 

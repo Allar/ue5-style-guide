@@ -3,7 +3,9 @@
 ## Requirements
 
 * You will need a launcher version of Unreal Engine 4 version 4.24 or later.
-* You must purchase (for free) the Linter plugin on the Unreal Engine Marketplace. @TODO: Add link here once I have it
+* You must purchase (for free) the Linter plugin on the Unreal Engine Marketplace.
+
+@TODO: Add link here once I have it
 
 ## Installing From The Launcher
 
@@ -16,8 +18,8 @@
 ## Enabling Linter
 
 1. Open your project
-2. Open the Plugins window by clicking Windows on the main toolbar and navigating to Plugins
-3. @TODO: My launcher is installing, finish writing this as soon as it is done
+2. Open the Plugins window by clicking Edit on the main toolbar and navigating to Plugins
+3. Search for Linter
 4. Enable the Linter plugin by ensuring the Enabled checkbox is checked
 5. Restart the editor
 

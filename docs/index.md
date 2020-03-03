@@ -4,6 +4,10 @@ This is the official documentation for Linter and the [Gamemakin LLC Style Guide
 
 ## About Linter
 
+<div style="position: relative; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="640" height="320" src="https://www.youtube.com/embed/An0R9OmULO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 Linter is an Unreal Engine 4 plugin available on the Unreal Engine Marketplace that can be used for automated scanning and reporting of a UE4 project's adherence to style guide standards. It can scan through all of your project's content using programmatic rulesets and tell you when you aren't following a rule. This is a fairly common type of tool usually seen in web development, but now we can do it with Unreal Engine!
 
 By default Linter is bundled with two rule sets:

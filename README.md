@@ -10,6 +10,10 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 An automated method of checking your project against this style guide is available for purchase at [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter). This plugin's source code will eventually be free, but in order to use with UE4 without building the engine from source code, please use the marketplace version.
 
+## Linter and Style Guide Documentation
+
+More technical documentation regarding Linter and the Style Guide can be found at our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
+
 ## Discuss This Style Guide
 
 Gamemakin LLC has a public Discord channel at http://discord.gamemak.in with a #linter channel if you'd like to discuss all things style guide and Linter plugin.
