@@ -85,3 +85,37 @@ Sometimes it is easier to treat a collection of rules as a single rule. In this 
 ## Video Walkthrough of Creating A LintRuleSet
 
 @TODO: Get this edited, uploaded, submitted, embedded
+
+## Automated Linting via Commandlets
+
+The Linter plugin adds a Commandlet that you can run against your project via commandline. It will return an error code of 1 if the linting process fails for any reason. It will return an error code of 2 if Linter reports any errors, or warnings as well if `-TreatWarningsAsErrors` is passed on the commandline.
+
+To invoke the commandlet, run your Editor binary (i.e. `D:\UE424\Engine\Binaries\Win64\UE4Editor-Cmd.exe`), followed by the path to your `.uproject` (i.e. `"C:\Users\Allar\Documents\Unreal Projects\Linterv2Test\Linterv2Test.uproject"`), followed by the arg `-run=Linter`.
+
+Full command for example, `D:\UE424\Engine\Binaries\Win64\UE4Editor-Cmd.exe "C:\Users\Allar\Documents\Unreal Projects\Linterv2Test\Linterv2Test.uproject" -run=Linter`.
+
+This will run Linter against the `/Game` path, a.k.a. your project's path, and return error code 0 if there are no errors.
+
+### Additional Args
+
+#### Content Paths
+
+You can tell Linter to scan a list of folders to scan. They should generally be in the UE4 path form of `/Game/Content/...`. If a path includes spaces, wrap it in quotes.
+
+For example, if you only wanted to scan folders `Apple` and `Orange Stuff` inside your project's `Content` folder...
+
+`D:\UE424\Engine\Binaries\Win64\UE4Editor-Cmd.exe "C:\Users\Allar\Documents\Unreal Projects\Linterv2Test\Linterv2Test.uproject" /Game/Content/Apple "/Game/Content/Orange Stuff" -run=Linter`.
+
+This will scan both the `Apple` and `Orange Stuff` folders inside your project's `Content` folder. You can also pass in `Engine` and plugin folders. If no path is provided, the default will always be `/Game`.
+
+#### JSON Report
+
+To generate a `.json` report, you can add the switch `-json` to generate a `.json` report in your project's `Saved/LintReports/` folder. You can override the name of the report via `-json=ReportName.json`. If you specify a relative path it will be relative to the `Saved/LintReports/` folder. You can also provide an absolute path to write the `.json` report to.
+
+#### HTML Report
+
+To generate a `.html` report, you can add the switch `-html` to generate a `.html` report in your project's `Saved/LintReports/` folder. You can override the name of the report via `-html=ReportName.html`. If you specify a relative path it will be relative to the `Saved/LintReports/` folder. You can also provide an absolute path to write the `.html` report to.
+
+#### TreatWarningsAsErrors
+
+If you use the `-TreatWarningsAsErrors` switch, Linter will return an error code of 2 if the report contains any warnings. By default, Linter only returns an error code if it fails to lint or if the lint report contains errors.
