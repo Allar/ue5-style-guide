@@ -96,6 +96,14 @@ Full command for example, `D:\UE424\Engine\Binaries\Win64\UE4Editor-Cmd.exe "C:\
 
 This will run Linter against the `/Game` path, a.k.a. your project's path, and return error code 0 if there are no errors.
 
+### Specifying which Lint Rule Set to use
+
+All Lint Rule Sets now have a filed named `Commandlet Name` which represents a simple name to identify them via commandline.
+
+The Gamemakin LLC UE4 Style Guide's `Commandlet Name` is `ue4.style`, where the Unreal Engine Marketplace Guidelines uses the name `marketplace`.
+
+To specify this, use the `-RuleSet=` arg. For example, `-RuleSet=ue4.style` will use the Gamemakin lint rule set. `-RuleSet=marketplace` will use the UnrealEngine Marketplace Guidelines. If `-RuleSet=` is not provided, Linter will use the project's default Lint Rule Set.
+
 ### Additional Args
 
 #### Content Paths
