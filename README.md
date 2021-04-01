@@ -357,7 +357,8 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Substance Graph Instance   | SGI_       |            |                                  |
 | Substance Instance Factory | SIF_       |            |                                  |
 | Touch Interface Setup      | TI_        |            |                                  |
-| Vector Curve               | Curve_     | _Vector    |                                  |
+| Vector Curve               | Curve_     | __Vector   |                                  |
+| Placeholder                |            | __PH       | Append this to the end of a placeholder asset.  |
 
 <a name="anc-paper2d"></a>
 <a name="1.2.8"></a>
@@ -1413,6 +1414,4 @@ See [LICENSE](/LICENSE)
 
 ## Amendments
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
-
-# };
+- Added a placeholder affix
