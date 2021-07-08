@@ -12,7 +12,9 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 ## Repo Notice
 
-The default branch of this repository has been renamed `main`.
+This repo is now located at https://github.com/Allar/ue5-style-guide. The default branch of this repository has been renamed `main`.
+
+## This is currently for UE4. For UE5/v2, see the v2 branch.
 
 ## Unreal Engine 4 Linter Plugin
 
