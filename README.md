@@ -6,6 +6,10 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#) ![#](https://img.shields.io/badge/lint-partial_support-yellow.svg)
 
+## Repo Notice
+
+The default branch of this repository has been renamed `main`.
+
 ## Unreal Engine 4 Linter Plugin
 
 An automated method of checking your project against this style guide is available for free at [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter-v2). In order to use with UE4 without building the engine from source code, please use the marketplace version.
