@@ -2,6 +2,7 @@ If you would like to help contribute to the style guide but your contribution ne
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
+```
 mQINBGDmxK8BEADNRYDcyDBYdsOSFqOebgHsgVimLS6ZcJgpm2wlKG+iPxQrXi4J
 cpedST+rXNpC0VqBfSKHxOZUMeH8G14tiz8iy4vH+d/EGVdYhv6OrEkv0LdopTRJ
 3iV/QoZ5A9a+g5jNdj0AiMIt81zBkwoSJ3TEXi8hwHZX4bPLZCLIxlfYh9DiVDkz
@@ -52,3 +53,4 @@ QGoKs9WLQ8SkWSViaOJZsCYI5p/zu4uVDekZsmb7NHoHWDj0T9SVtepG/pjlWghe
 Goljr/+upTi5ZsTCZUZnJkVs2qVEnrlJTQ4wuIdP4Iw8
 =fEQ0
 -----END PGP PUBLIC KEY BLOCK-----
+```
