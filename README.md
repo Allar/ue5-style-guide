@@ -1,4 +1,8 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# [Gamemakin](https://gamemak.in) UE4 Style Guide Version 2() {
+
+# THIS IS A DRAFT
+
+This is a draft of version 2. All work on version 2 of this style guide will be on this branch. Please feel free to commit any form of contribution in the form of a pull request, even if they are just ideas that still need to be solved but at least move the needle forward.
 
 *A mostly reasonable approach to Unreal Engine 4*
 
