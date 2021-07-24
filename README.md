@@ -147,19 +147,7 @@ Any `Identifier` should strive to only have the following characters when possib
 * 1234567890
 * _ (sparingly)
 
-
 The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent downtime due to potentially bad character handling for identifiers in code you don't control.
-
-<a name="toc"></a>
-## Table of Contents
-
-> 1. [Asset Naming Conventions](#anc)
-> 1. [Directory Structure](#structure)
-> 1. [Blueprints](#bp)
-> 1. [Static Meshes](#s)
-> 1. [Particle Systems](#ps)
-> 1. [Levels / Maps](#levels)
-> 1. [Textures](#textures)
 
 <a name="anc"></a>
 <a name="1"></a>
@@ -215,32 +203,6 @@ Depending on how your asset variants are made, you can chain together variant na
 ### 1.2 Asset Name Modifiers
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
-
-#### Sections
-
-> 1.2.1 [Most Common](#anc-common)
-
-> 1.2.2 [Animations](#anc-animations)
-
-> 1.2.3 [Artificial Intelligence](#anc-ai)
-
-> 1.2.4 [Blueprints](#anc-bp)
-
-> 1.2.5 [Materials](#anc-materials)
-
-> 1.2.6 [Textures](#anc-textures)
-
-> 1.2.7 [Miscellaneous](#anc-misc)
-
-> 1.2.8 [Paper 2D](#anc-paper2d)
-
-> 1.2.9 [Physics](#anc-physics)
-
-> 1.2.10 [Sound](#anc-sounds)
-
-> 1.2.11 [User Interface](#anc-ui)
-
-> 1.2.12 [Effects](#anc-effects)
 
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
@@ -451,7 +413,6 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 **[⬆ Back to Top](#table-of-contents)**
 
-
 <a name="2"></a>
 <a name="structure"></a>
 ## 2. Content Directory Structure
@@ -517,25 +478,6 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
 </pre>
 
 The reasons for this structure are listed in the following sub-sections.
-
-### Sections
-
-> 2.1 [Folder Names](#structure-folder-names)
-
-> 2.2 [Top-Level Folders](#structure-top-level)
-
-> 2.3 [Developer Folders](#structure-developers)
-
-> 2.4 [Maps](#structure-maps)
-
-> 2.5 [Core](#structure-core)
-
-> 2.6 [`Assets` and `AssetTypes`](#structure-assettypes)
-
-> 2.7 [Large Sets](#structure-large-sets)
-
-> 2.8 [Material Library](#structure-material-library)
-
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
@@ -723,16 +665,6 @@ This section will focus on Blueprint classes and their internals. When possible,
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
 
-### Sections
-
-> 3.1 [Compiling](#bp-compiling)
-
-> 3.2 [Variables](#bp-vars)
-
-> 3.3 [Functions](#bp-functions)
-
-> 3.4 [Graphs](#bp-graphs)
-
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
 ### 3.1 Compiling
@@ -748,22 +680,6 @@ Broken blueprints can cause problems that manifest in other ways, such as broken
 ### 3.2 Variables
 
 The words `variable` and `property` may be used interchangeably.
-
-#### Sections
-
-> 3.2.1 [Naming](#bp-vars)
-
-> 3.2.2 [Editable](#bp-vars-editable)
-
-> 3.2.3 [Categories](#bp-vars-categories)
-
-> 3.2.4 [Access](#bp-vars-access)
-
-> 3.2.5 [Advanced](#bp-vars-advanced)
-
-> 3.2.6 [Transient](#bp-vars-transient)
-
-> 3.2.7 [Config](#bp-vars-config)
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
@@ -1230,18 +1146,6 @@ All nodes in all blueprint graphs must have a purpose. You should not leave dang
 
 This section will focus on Static Mesh assets and their internals.
 
-### Sections
-
-> 4.1 [UVs](#s-uvs)
-
-> 4.2 [LODs](#s-lods)
-
-> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
-
-> 4.4 [Must Have Collision](#s-collision)
-
-> 4.5 [Correct Scale](#s-scaled)
-
 <a name="4.1"></a>
 <a name="s-uvs"></a>
 ### 4.1 Static Mesh UVs
@@ -1296,10 +1200,6 @@ This is a subjective check on a per-project basis, however all assets should be 
 
 This section will focus on Niagara assets and their internals.
 
-### Sections
-
-> 5.1 [Naming Rules](#ng-rules)
-
 <a name="5.1"></a>
 <a name="ng-rules"></a>
 ### 5.1 No Spaces, Ever
@@ -1320,16 +1220,6 @@ As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space ch
 [See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
 
 This section will focus on Level assets and their internals.
-
-### Sections
-
-> 6.1 [No Errors Or Warnings](#levels-no-errors-or-warnings)
-
-> 6.2 [Lighting Should Be Built](#levels-lighting-should-be-built)
-
-> 6.3 [No Player Visible Z Fighting](#evels-no-visible-z-fighting)
-
-> 6.4 [Marketplace Specific Rules](#evels-levels-mp-rules)
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
@@ -1387,16 +1277,6 @@ For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
 ## 7. Textures
 
 This section will focus on Texture assets and their internals.
-
-### Sections
-
-> 7.1 [Dimensions Are Powers of 2](#textures-dimension)
-
-> 7.2 [Texture Density Should Be Uniform](#textures-dimension)
-
-> 7.3 [Textures Should Be No Bigger than 8192](#textures-max-size)
-
-> 7.4 [Correct Texture Groups](#textures-textures-group)
 
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
