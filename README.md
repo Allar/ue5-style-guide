@@ -10,7 +10,7 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 This repo is now located at https://github.com/Allar/ue5-style-guide. The default branch of this repository has been renamed `main`.
 
-## This is currently for UE4. For UE5/v2, see the v2 branch.
+## This is currently for UE4. For UE5/v2, see the v2 branch
 ## Linter and Style Guide Documentation
 
 More technical documentation regarding Linter and the Style Guide can be found at our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
@@ -51,7 +51,7 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 > ###### PascalCase
 >
 > Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
-> 
+>
 > ###### camelCase
 >
 > The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
@@ -66,13 +66,13 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
 
 <a name="terms-property"></a>
-###### Property 
-Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`. 
+###### Property
+Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`.
 
 When in the context of a class, it is often used to imply accessing previously defined data.
 
 <a name="terms-variable"></a>
-###### Variable 
+###### Variable
 Usually refers to a variable defined as a function argument or a local variable inside a function.
 
 When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
@@ -83,7 +83,7 @@ When in the context of a class, it is often used to convey discussion about its 
 These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it.
+### 0.1 If your UE4 project already has a style guide, you should follow it
 
 If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
 
@@ -93,14 +93,14 @@ Style guides should be living documents. You should propose style guide changes 
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed.
+### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed
 
 Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
 
 It also allows for more productive creation and maintenance as one does not need to think about style. Simply follow the instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
 
 <a name="0.3"></a>
-### 0.3 Friends do not let friends have bad style.
+### 0.3 Friends do not let friends have bad style
 
 If you see someone working either against a style guide or no style guide, try to correct them.
 
@@ -109,7 +109,7 @@ When working within a team or discussing within a community such as [Unreal Slac
 If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
 
 <a name="0.4"></a>
-### 0.4 A team without a style guide is no team of mine.
+### 0.4 A team without a style guide is no team of mine
 
 When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
 
@@ -305,7 +305,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Blueprint               | BP_        |            |                                  |
-| Blueprint Component	  | BP_	       | Component  | I.e. BP_InventoryComponent       |
+| Blueprint Component     | BP_        | Component  | I.e. BP_InventoryComponent       |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
 | Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
@@ -409,7 +409,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Physical Material       | PM_        |            |                                  |
-| Physics Asset	          | PHYS_      |            |                                  |
+| Physics Asset           | PHYS_      |            |                                  |
 | Destructible Mesh       | DM_        |            |                                  |
 
 <a name="anc-sounds"></a>
@@ -562,7 +562,7 @@ If one of your game characters is named 'Zoë', its folder name should be `Zoe`.
 
 Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
 
-Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools. 
+Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools.
 
 <a name="2.2"></a>
 <a name="structure-top-level"><a>
@@ -655,12 +655,12 @@ For example, if your project requires pickups that can be placed in a level, the
 ### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
 
 <a name="2.6.1"></a>
-#### 2.6.1 Creating a folder named `Assets` is redundant.
+#### 2.6.1 Creating a folder named `Assets` is redundant
 
 All assets are assets.
 
 <a name="2.6.2"></a>
-#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant.
+#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
 
 All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
 
@@ -782,7 +782,7 @@ All non-boolean variable names must be clear, unambiguous, and descriptive nouns
 All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples:
+###### 3.2.1.2e Examples
 
 * `Score`
 * `Kills`
@@ -830,7 +830,7 @@ Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples:
+###### 3.2.1.5e Examples
 
 Consider a Blueprint called `BP_PlayerCharacter`.
 
@@ -938,21 +938,21 @@ If a class has only a small number of variables, categories are not required.
 
 If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage. 
+If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
 
 > You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
 
 Example: A weapon class set of variables might be organized as:
 
-	|-- Config
-	|	|-- Animations
-	|	|-- Effects
-	|	|-- Audio
-	|	|-- Recoil
-	|	|-- Timings
-	|-- Animations
-	|-- State
-	|-- Visuals
+    |-- Config
+    |    |-- Animations
+    |    |-- Effects
+    |    |-- Audio
+    |    |-- Recoil
+    |    |-- Timings
+    |-- Animations
+    |-- State
+    |-- Visuals
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
@@ -1157,7 +1157,7 @@ The following nodes are not counted as they are deemed to not increase function 
 
 This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
 
-Simply, any function that has an access specificer of Public should have its description filled out. 
+Simply, any function that has an access specificer of Public should have its description filled out.
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
@@ -1351,7 +1351,7 @@ It is normal during development for levels to occasionally not have lighting bui
 <a name="levels-no-visible-z-fighting"></a>
 ### 6.3 No Player Visible Z Fighting
 
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player. 
+Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
@@ -1412,7 +1412,7 @@ For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
 All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density. 
+For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
