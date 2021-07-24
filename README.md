@@ -253,7 +253,7 @@ Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and be
 <a name="00.1"></a>
 ### 00.1 Forbidden Characters
 
-<a name="identifiers"></a>
+<a name="identifiers-1"></a>
 #### Identifiers
 
 In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
