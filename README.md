@@ -381,6 +381,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Landscape Layer            | LL_        |            |                                  |
 | Matinee Data               | Matinee_   |            |                                  |
 | Media Player               | MP_        |            |                                  |
+| File Media Source          | FMS_       |            |                                  |
 | Object Library             | OL_        |            |                                  |
 | Redirector                 |            |            | These should be fixed up ASAP.   |
 | Sprite Sheet               | SS_        |            |                                  |
