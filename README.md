@@ -284,6 +284,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Morph Target            | MT_        |            |                                  |
 | Paper Flipbook          | PFB_       |            |                                  |
 | Rig                     | Rig_       |            |                                  |
+| Control Rig             | CR_        |            |                                  |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Skeleton                | SKEL_      |            |                                  |
 
