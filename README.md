@@ -1,6 +1,6 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# [Gamemakin](https://gamemak.in) UE5 Style Guide() {
 
-*A mostly reasonable approach to Unreal Engine 4*
+*A mostly reasonable approach to Unreal Engine 5*
 
 Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
