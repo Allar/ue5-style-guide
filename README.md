@@ -439,6 +439,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Render Target           | RT_        |            |                                  |
 | Cube Render Target      | RTC_       |            |                                  |
 | Texture Light Profile   | TLP        |            |                                  |
+| Volume Texture          | T_         | _Volume    |                                  |
 
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
