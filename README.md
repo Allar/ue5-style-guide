@@ -552,55 +552,55 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
 <a name="2e1"><a>
 ### 2e1 Example Project Content Structure
 <pre>
-|-- Content
-    |-- <a href="#2.2">GenericShooter</a>
-        |-- Art
-        |   |-- Industrial
-        |   |   |-- Ambient
-        |   |   |-- Machinery
-        |   |   |-- Pipes
-        |   |-- Nature
-        |   |   |-- Ambient
-        |   |   |-- Foliage
-        |   |   |-- Rocks
-        |   |   |-- Trees
-        |   |-- Office
-        |-- Characters
-        |   |-- Bob
-        |   |-- Common
-        |   |   |-- <a href="#2.7">Animations</a>
-        |   |   |-- Audio
-        |   |-- Jack
-        |   |-- Steve
-        |   |-- <a href="#2.1.3">Zoe</a>
-        |-- <a href="#2.5">Core</a>
-        |   |-- Characters
-        |   |-- Engine
-        |   |-- <a href="#2.1.2">GameModes</a>
-        |   |-- Interactables
-        |   |-- Pickups
-        |   |-- Weapons
-        |-- Effects
-        |   |-- Electrical
-        |   |-- Fire
-        |   |-- Weather
-        |-- <a href="#2.4">Maps</a>
-        |   |-- Campaign1
-        |   |-- Campaign2
-        |-- <a href="#2.8">MaterialLibrary</a>
-        |   |-- Debug
-        |   |-- Metal
-        |   |-- Paint
-        |   |-- Utility
-        |   |-- Weathering
-        |-- Placeables
-        |   |-- Pickups
-        |-- Weapons
-            |-- Common
-            |-- Pistols
-            |   |-- DesertEagle
-            |   |-- RocketPistol
-            |-- Rifles
+└── Content
+    └── <a href="#2.2">GenericShooter</a>
+        ├── Art
+        │   ├── Industrial
+        │   │   ├── Ambient
+        │   │   ├── Machinery
+        │   │   └── Pipes
+        │   ├── Nature
+        │   │   ├── Ambient
+        │   │   ├── Foliage
+        │   │   ├── Rocks
+        │   │   └── Trees
+        │   └── Office
+        ├── Characters
+        │   ├── Bob
+        │   ├── Common
+        │   │   ├── <a href="#2.7">Animations</a>
+        │   │   └── Audio
+        │   ├── Jack
+        │   ├── Steve
+        │   └── <a href="#2.1.3">Zoe</a>
+        ├── <a href="#2.5">Core</a>
+        │   ├── Characters
+        │   ├── Engine
+        │   ├── <a href="#2.1.2">GameModes</a>
+        │   ├── Interactables
+        │   ├── Pickups
+        │   └── Weapons
+        ├── Effects
+        │   ├── Electrical
+        │   ├── Fire
+        │   └── Weather
+        ├── <a href="#2.4">Maps</a>
+        │   ├── Campaign1
+        │   └── Campaign2
+        ├── <a href="#2.8">MaterialLibrary</a>
+        │   ├── Debug
+        │   ├── Metal
+        │   ├── Paint
+        │   ├── Utility
+        │   └── Weathering
+        ├── Placeables
+        │   └── Pickups
+        └── Weapons
+            ├── Common
+            ├── Pistols
+            │   ├── DesertEagle
+            │   └── RocketPistol
+            └── Rifles
 </pre>
 
 The reasons for this structure are listed in the following sub-sections.
