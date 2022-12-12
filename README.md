@@ -45,7 +45,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
     - [Variable - Biến](#terms-variable)
 - [0. Principles - Nguyên tắc cơ bản](#0)
   - [0.1 Nếu project đã có guideline thì bám theo guide line của project](#0.1)
-  - [0.2 Tất cả cấu trúc, assets và mã nguồn trong một dự án UE nên thống nhất một theo một thể không cần biết có bao nhiêu người cùng tham gia dự án](#0.2)
+  - [0.2 Tất cả cấu trúc, assets và mã nguồn trong một dự án UE phải thống nhất một theo một thể không cần biết có bao nhiêu người cùng tham gia dự án](#0.2)
   - [0.3 Mỗi người bạn tốt của nhau thì phải nhắc nhau tuân theo guideline](#0.3)
   - [0.4 Một team mà không có guide line thì không phải là một team](#0.4)
   - [0.5 Đừng phá luật](#0.5)
