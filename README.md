@@ -10,41 +10,18 @@ Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbn
 
 This repo is now located at https://github.com/Allar/ue5-style-guide. The default branch of this repository has been renamed `main`.
 
-## This is currently for UE4. For UE5/v2, see the v2 branch
-## Linter and Style Guide Documentation
 
-More technical documentation regarding Linter and the Style Guide can be found at our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
-
-## Discuss This Style Guide
-
-Gamemakin LLC has a public Discord channel at http://discord.gamemak.in with a #linter channel if you'd like to discuss all things style guide and Linter plugin.
-
-## Linking To This Document
-
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
-
-## Forks And Translations
-
-If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
-
-* [Korean Translation](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
-* [Russian Translation](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
-* [Japanese Translation](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [Chinese Translation](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
-* [Brazilian Portuguese Translation](https://github.com/danlvr/ue5-style-guide/blob/main/README_PTBR.md) by danlvr.
-* [French Translation](https://github.com/Arnaud58/ue5-style-guide/blob/main/README.md) by Arnaud58
 
 ## Table of contents
 - [Các thuật ngữ quan trọng](#important-terminology)
   - [Levels/Maps - Bản đồ](#terms-level-map)
   - [Identifiers - Định danh / Tên gọi](#terms-identifiers)
-  - [Cases - Quy chuẩn đặt tên](#terms-cases)
+  - [Cases - Quy chuẩn chữ cái](#terms-cases)
   - [Variables / Properties - Biến / Thuộc tính](#terms-var-prop)
     - [Property - Thuộc tính](#terms-property)
     - [Variable - Biến](#terms-variable)
 - [0. Principles - Nguyên tắc cơ bản](#0)
-  - [0.1 Nếu project đã có guideline thì bám theo guide line của project](#0.1)
+  - [0.1 Nếu project đã có quy chuẩn thì bám theo quy chuẩn của project](#0.1)
   - [0.2 Tất cả cấu trúc, assets và mã nguồn trong một dự án UE phải thống nhất một theo một thể không cần biết có bao nhiêu người cùng tham gia dự án](#0.2)
   - [0.3 Nhắc nhở phạm quy và cùng khắc phục](#0.3)
   - [0.4 Một team mà không có guide line thì không phải là một team](#0.4)
@@ -55,8 +32,8 @@ If you have made a notable fork or translation that is not suitable for a pull r
 - [1. Quy tắc đặt tên cho Asset](#anc)
   - [1.1 Tên Asset - `Prefix_BaseAssetName_Variant_Suffix` - `TiềnTố_TênCơSở_BiếnThể_HậuTố`](#base-asset-name)
     - [1.1 Ví dụ](#1.1-examples)
-  - [1.2 Asset Name Modifiers](#asset-name-modifiers)
-    - [1.2.1 Most Common](#anc-common)
+  - [1.2 Phần bổ nghĩa cho tên Asset](#asset-name-modifiers)
+    - [1.2.1 Phổ biến nhất](#anc-common)
     - [1.2.2 Animations](#anc-animations)
   - [1.2.3 Artificial Intelligence](#anc-ai)
   - [1.2.4 Blueprints](#anc-bp)
@@ -86,75 +63,75 @@ If you have made a notable fork or translation that is not suitable for a pull r
   - [2.5 Sử dụng thư mục `Core` cho những Blueprint và Assets cốt lõi](#structure-core)
   - [2.6 Không tạo thư mục tên `Assets` hoặc `AssetTypes`](#structure-assettypes)
     - [2.6.1 Tạo thư mục `Assets` là dư thừa](#2.6.1)
-    - [2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant](#2.6.2)
-  - [2.7 Very Large Asset Sets Get Their Own Folder Layout](#structure-large-sets)
+    - [2.6.2 Tạo thư mục tên `Meshes`, `Textures`, hoặc `Materials` là dư thừa](#2.6.2)
+  - [2.7 Asset đồ sộ cần layout thư mục riêng của nó](#structure-large-sets)
   - [2.8 `MaterialLibrary`](#structure-material-library)
-  - [2.9 No Empty Folders](#structure-no-empty-folders)
+  - [2.9 Không thư mục trống](#structure-no-empty-folders)
 - [3. Blueprints](#bp)
-  - [3.1 Compiling / Biên dịch ](#bp-compiling)
-  - [3.2 Variables / Biến](#bp-vars)
-    - [3.2.1 Naming / Đặt tên](#bp-var-naming)
-      - [3.2.1.1 Nouns / Danh từ](#bp-var-naming-nouns)
+  - [3.1 Biên dịch ](#bp-compiling)
+  - [3.2 Biến](#bp-vars)
+    - [3.2.1 Đặt tên](#bp-var-naming)
+      - [3.2.1.1 Danh từ](#bp-var-naming-nouns)
       - [3.2.1.2 PascalCase](#bp-var-naming-case)
         - [3.2.1.2e Ví dụ](#3.2.1.2e)
-      - [3.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
-      - [3.2.1.4 Boolean Names](#bp-var-bool-names)
-        - [3.2.1.4.1 General And Independent State Information / Thông tin chung và độc lập](#3.2.1.4.1)
-        - [3.2.1.4.2 Complex States / Trạng thái phức hợp](#3.2.1.4.2)
-      - [3.2.1.5 Considered Context / Ngữ cảnh](#bp-vars-naming-context)
-        - [3.2.1.5e Examples / Ví dụ](#3.2.1.5e)
-      - [3.2.1.6 Do _Not_ Include Atomic Type Names / Không thêm kiểu biến đơn giản vào tên](#bp-vars-naming-atomic)
-      - [3.2.1.7 Do Include Non-Atomic Type Names / Hãy thêm kiểu biến phức hợp vào tên](#bp-vars-naming-complex)
+      - [3.2.1.3 Tiền tố Boolean `b`](#bp-var-bool-prefix)
+      - [3.2.1.4 Tên Boolean ](#bp-var-bool-names)
+        - [3.2.1.4.1 Thông tin chung và độc lập](#3.2.1.4.1)
+        - [3.2.1.4.2 Trạng thái phức hợp](#3.2.1.4.2)
+      - [3.2.1.5 Xem xét ngữ cảnh](#bp-vars-naming-context)
+        - [3.2.1.5e Ví dụ](#3.2.1.5e)
+      - [3.2.1.6 Không thêm kiểu biến đơn giản vào tên](#bp-vars-naming-atomic)
+      - [3.2.1.7 Hãy thêm kiểu biến phức hợp vào tên](#bp-vars-naming-complex)
       - [3.2.1.8 Arrays / Mảng](#bp-vars-naming-arrays)
-    - [3.2.2 Editable Variables / Biến có khả năng chỉnh sửa](#bp-vars-editable)
+    - [3.2.2 Biến có khả năng chỉnh sửa](#bp-vars-editable)
       - [3.2.2.1 Tooltips](#bp-vars-editable-tooltips)
-      - [3.2.2.2 Slider And Value Ranges / Slider và khoảng giá trị](#bp-vars-editable-ranges)
-    - [3.2.3 Categories / Danh mục](#bp-vars-categories)
-    - [3.2.4 Variable Access Level / Độ sâu truy cập của biến](#bp-vars-access)
-      - [3.2.4.1 Private Variables / Biến riêng tư](#bp-vars-access-private)
-    - [3.2.5 Advanced Display / Hiển thị nâng cao ](#bp-vars-advanced)
-    - [3.2.6 Transient Variables / Biến tạm thời](#bp-vars-transient)
-    - [3.2.8 Config Variables / Biến thiết lập](#bp-vars-config)
-  - [3.3 Functions, Events, and Event Dispatchers / Hàm, Sự kiện, Phát sự kiện](#bp-functions)
-    - [3.3.1 Function Naming / Đặt tên hàm](#bp-funcs-naming)
-    - [3.3.1.1 All Functions Should Be Verbs / Tất cả hàm nên là động từ](#bp-funcs-naming-verbs)
-    - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable` / Trả lời thông báo biến luôn luôn là `OnRep_Variable`](#bp-funcs-naming-onrep)
-    - [3.3.1.3 Info Functions Returning Bool Should Ask Questions / Trả giá trị đúng-sai nên đặt câu hỏi](#bp-funcs-naming-bool)
-    - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On` / Xử lý sự kiện và phát sự kiện nên bắt đầu bằng `On`](#bp-funcs-naming-eventhandlers)
-    - [3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target / Thủ tục gọi từ xa nên có tiền tố là mục tiêu](#bp-funcs-naming-rpcs)
-    - [3.3.2 All Functions Must Have Return Nodes / Tất cả hàm phải có node Return](#bp-funcs-return)
-    - [3.3.3 No Function Should Have More Than 50 Nodes / Không hàm nào nên có quá 50 Nodes](#bp-graphs-funcs-node-limit)
-    - [3.3.4 All Public Functions Should Have A Description / Tất cả hàm công khai phải có mô tả](#bp-graphs-funcs-description)
-    - [3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name / Tất cả hàm của Plugin `BlueprintCallable` phải được phân loại bởi tên plugin ](#bp-graphs-funcs-plugin-category)
-  - [3.4 Blueprint Graphs / Đồ hình Blueprint](#bp-graphs)
-    - [3.4.1 No Spaghetti / Không mỳ ăn liền](#bp-graphs-spaghetti)
-    - [3.4.2 Align Wires Not Nodes / Căn theo đường nối, không phải nodes](#bp-graphs-align-wires)
-    - [3.4.3 White Exec Lines Are Top Priority / Đường thực thi là ưu tiên số 1](#bp-graphs-exec-first-class)
-    - [3.4.4 Graphs Should Be Reasonably Commented / Đồ hình nên có comment hợp lý](#bp-graphs-block-comments)
-    - [3.4.5 Graphs Should Handle Casting Errors Where Appropriate / Đồ hình nên xử lý ngoại lệ Casting phù hợp](#bp-graphs-cast-error-handling)
-    - [3.4.6 Graphs Should Not Have Any Dangling, Loose, Dead Nodes / Đồ hình không nên có node treo, node không sử dụng](#bp-graphs-dangling-nodes)
-- [4. Static Meshes / Lưới tĩnh](#4)
-  - [4.1 Static Mesh UVs / UV lưới tĩnh](#s-uvs)
-    - [4.1.1 All Meshes Must Have UVs / Tất cả lưới phải có UV](#s-uvs-no-missing)
-    - [4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps / Tất cả lưới phải có UV cho Lightmaps(UV không chồng đè)](#s-uvs-no-overlapping)
-  - [4.2 LODs Should Be Set Up Correctly / LODs phải được setup đúng](#s-lods)
-  - [4.3 Modular Socketless Assets Should Snap To The Grid Cleanly / Các asset module phải bắt dính vào lưới](#s-modular-snapping)
-  - [4.4 All Meshes Must Have Collision / Tất cả lưới phải có Collision](#s-collision)
-  - [4.5 All Meshes Should Be Scaled Correctly / Tất cả lưới phải đúng tỉ lệ](#s-scaled)
+      - [3.2.2.2 Slider và khoảng giá trị](#bp-vars-editable-ranges)
+    - [3.2.3 Danh mục](#bp-vars-categories)
+    - [3.2.4 Độ sâu truy cập của biến](#bp-vars-access)
+      - [3.2.4.1 Biến riêng tư](#bp-vars-access-private)
+    - [3.2.5 Hiển thị nâng cao ](#bp-vars-advanced)
+    - [3.2.6 Biến tạm thời(Transient)](#bp-vars-transient)
+    - [3.2.8 Biến thiết lập](#bp-vars-config)
+  - [3.3 Hàm, Sự kiện, Phát sự kiện](#bp-functions)
+    - [3.3.1 Đặt tên hàm](#bp-funcs-naming)
+    - [3.3.1.1 Tất cả hàm nên là động từ](#bp-funcs-naming-verbs)
+    - [3.3.1.2 Trả lời thông báo biến (Property RepNotify Functions) luôn luôn là `OnRep_Variable`](#bp-funcs-naming-onrep)
+    - [3.3.1.3 Hàm trả giá trị đúng-sai nên đặt tên dạng câu hỏi đúng sai](#bp-funcs-naming-bool)
+    - [3.3.1.4 Xử lý sự kiện(Event Handler) và phát sự kiện(Event Dispatcher) nên bắt đầu bằng `On`](#bp-funcs-naming-eventhandlers)
+    - [3.3.1.5 Thủ tục gọi từ xa nên có tiền tố là mục tiêu](#bp-funcs-naming-rpcs)
+    - [3.3.2 Tất cả hàm phải có node Return](#bp-funcs-return)
+    - [3.3.3 Không hàm nào nên có quá 50 Nodes](#bp-graphs-funcs-node-limit)
+    - [3.3.4 Tất cả hàm công khai phải có mô tả](#bp-graphs-funcs-description)
+    - [3.3.5 Tất cả hàm của Plugin `BlueprintCallable` phải được phân loại bởi tên plugin ](#bp-graphs-funcs-plugin-category)
+  - [3.4 Đồ hình Blueprint](#bp-graphs)
+    - [3.4.1 Không để các đường dây rối như mớ bòng bong](#bp-graphs-spaghetti)
+    - [3.4.2 Căn theo đường nối, không phải nodes](#bp-graphs-align-wires)
+    - [3.4.3 Đường thực thi là ưu tiên số 1](#bp-graphs-exec-first-class)
+    - [3.4.4 Đồ hình nên có comment hợp lý](#bp-graphs-block-comments)
+    - [3.4.5 Đồ hình nên xử lý ngoại lệ Casting phù hợp](#bp-graphs-cast-error-handling)
+    - [3.4.6 Đồ hình không nên có node treo, node không sử dụng](#bp-graphs-dangling-nodes)
+- [4. Static Meshes - Lưới tĩnh](#4)
+  - [4.1 UV lưới tĩnh (Static Meshes)](#s-uvs)
+    - [4.1.1 Tất cả lưới phải có UV](#s-uvs-no-missing)
+    - [4.1.2 Tất cả lưới phải có UV cho Lightmaps(UV không chồng đè)](#s-uvs-no-overlapping)
+  - [4.2 LODs phải được setup đúng](#s-lods)
+  - [4.3 Các asset module phải bắt dính vào lưới](#s-modular-snapping)
+  - [4.4 Tất cả lưới phải có Collision](#s-collision)
+  - [4.5 Tất cả lưới phải đúng tương quan tỉ lệ đời thực](#s-scaled)
 - [5. Niagara](#Niagara)
-  - [5.1 No Spaces, Ever / Không bao giờ dùng dấu cách](#ng-rules)
+  - [5.1 Không bao giờ dùng dấu cách](#ng-rules)
 - [6. Levels / Maps](#levels)
-  - [6.1 No Errors Or Warnings / Không lỗi, không cảnh báo](#levels-no-errors-or-warnings)
-  - [6.2 Lighting Should Be Built / Ánh sáng phải build](#levels-lighting-should-be-built)
-  - [6.3 No Player Visible Z Fighting / Không Z Fighting đối với người chơi](#levels-no-visible-z-fighting)
-  - [6.4 Marketplace Specific Rules / Luật của Marketplace](#levels-mp-rules)
-    - [6.4.1 Overview Level / Bản đồ Tổng quát](#levels-mp-rules-overview)
-    - [6.4.2 Demo Level / Bản đồ demo](#levels-mp-rules-demo)
+  - [6.1 Không lỗi, không cảnh báo](#levels-no-errors-or-warnings)
+  - [6.2 Ánh sáng phải build](#levels-lighting-should-be-built)
+  - [6.3 Không Z Fighting đối với người chơi](#levels-no-visible-z-fighting)
+  - [6.4 Luật của Marketplace](#levels-mp-rules)
+    - [6.4.1 Bản đồ Tổng quát](#levels-mp-rules-overview)
+    - [6.4.2 Bản đồ demo](#levels-mp-rules-demo)
 - [7. Textures](#textures)
-  - [7.1 Dimensions Are Powers of 2 / Độ phân giải phải là luỹ thừa của 2](#textures-dimensions)
-  - [7.2 Texture Density Should Be Uniform / Mật độ texture nên đồng nhất](#textures-density)
-  - [7.3 Textures Should Be No Bigger than 8192 / texture không nên to hơn 8192](#textures-max-size)
-  - [7.4 Textures Should Be Grouped Correctly / texture nên được nhóm đúng](#textures-group)
+  - [7.1 Độ phân giải phải là luỹ thừa của 2](#textures-dimensions)
+  - [7.2 Mật độ texture nên đồng nhất](#textures-density)
+  - [7.3 Texture không nên to hơn 8192](#textures-max-size)
+  - [7.4 Texture nên được nhóm đúng](#textures-group)
 
 ## Các thuật ngữ quan trọng
 
@@ -231,77 +208,82 @@ Khi giúp người nào đó nếu họ có quy chuẩn của họ, hay sử d�
 <a name="0.4"></a>
 ### 0.4 Một team không có quy chuẩn không phải là một team
 
-When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
-
 <a name="0.5"></a>
-### 0.5 Don't Break The Law
+### 0.5 Đừng phá luật
 
-Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
+Tôn trọng bản quyền, pháp luật:
 
-* Don't distribute content you don't have the rights to distribute
-* Don't infringe on someone else's copyrighted or trademark material
-* Don't steal content
-* Follow licensing restrictions on content, e.g. attribute when attributions are needed
+* Không xuất bản nội dung mà bạn không có quyền xuất bản.
+* Không vi phạm bản quyền hay thương hiệu của người khác.
+* Không ăn cắp nội dung
+* Tuân thủ các giới hạn bản quyền về nội dung.
 
 <a name="00"></a>
-## 00. Globally Enforced Opinions
+## 00. Những điểm bắt buộc toàn diện
 
 @TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
 
 <a name="00.1"></a>
-### 00.1 Forbidden Characters
+### 00.1 Ký tự bị cấm
 
 <a name="identifiers-1"></a>
-#### Identifiers
+#### Những định danh
 
-In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+Bất cứ `Identifier` của bất cứ loại nào, **không bao giờ** sử dụng trừ khi bắt buộc phải:
 
-* White space of any kind
-* Backward slashes `\`
-* Symbols i.e. `#!@$%`
-* Any Unicode character
+* Bất cứ kiểu ký tự khoảng trắng nào (space, tab, empty character ...)
+* Dấu gạch chéo ngược `\`
+* Biểu tượng vd: `#!@$%`
+* Các ký tự Unicode
 
-Any `Identifier` should strive to only have the following characters when possible (the RegEx `[A-Za-z0-9_]+`)
+Bất cứ `Identifier` chỉ nên có các ký tự sau đây(the RegEx `[A-Za-z0-9_]+`)
 
 * ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * abcdefghijklmnopqrstuvwxyz
 * 1234567890
-* _ (sparingly)
+* _ (hạn chế)
 
-The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent downtime due to potentially bad character handling for identifiers in code you don't control.
+Lý do cho việc này để đảm bảo tính tương thích cao nhất cho tất cả dữ liệu trên tất cả các nền tảng, công cụ, ngăn ngừa downtime do việc xử lý các ký tự xấu trong định danh ở các phần mã lệnh bạn không kiểm soát được
 
 <a name="anc"></a>
 <a name="1"></a>
-## 1. Asset Naming Conventions
+## 1. Quy tắc đặt tên Asset
 
-Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+Quy tắc đặt tên Asset phải được coi như luật. Một dự án tuân thủ quy tắc đặt tên các asset sẽ dễ dàng quản lý, tìm kiếm, phân loại, bảo trì, duy trì.
 
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
+Hầu hết mọi thứ đều có tiền tố là từ viết tắt cho kiểu asset tiếp đến là dấu gạch nối.
 
 <a name="base-asset-name"></a>
 <a name="1.1"></a>
 ### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+Trong đó: 
+Prefix: Tiền tố
+Base Asset Name: Tên cơ sở
+Variant: Biến thể
+Suffix: Hậu tố
 
-All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
+Tất cả assets phải có _BaseAssetName_. Base name là một nhóm các asset liên quan đến nhau một cách logic. Các asset cùng một nhóm phải tuân thủ quy tắc `Prefix_BaseAssetName_Variant_Suffix`.
 
-Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset names. Here are some detailed rules regarding each element.
+Tên asset phải mang tính gợi ý đến chủ thể, chức năng, tính chất của asset. Sau đây là một số quy tắc chi tiết.
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
+`Prefix` và `Suffix` được đặt bởi kiểu asset theo bảng bổ nghĩa [Asset Name Modifier](#asset-name-modifiers).
 
-`BaseAssetName` should be determined by a short and easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
+`BaseAssetName` nên được đặt một cách ngắn gọn, dễ nhận hiểu và liên quan tới bối cảnh của nhóm asset. Ví dụ: Nếu bạn có một nhân vật tên là Bob, tất cả asset liên quan tới Bob phải có tên cơ sở `BaseAssetName` == `Bob`.
 
-For unique and specific variations of assets, `Variant` is either a short and easily recognizable name that represents logical grouping of assets that are a subset of an asset's base name. For example, if Bob had multiple skins these skins should still use `Bob` as the `BaseAssetName` but include a recognizable `Variant`. An 'Evil' skin would be referred to as `Bob_Evil` and a 'Retro' skin would be referred to as `Bob_Retro`.
+Cho những biến thể đặc biệt của assets, `Variant` cần ngắn, dễ hiểu, thể hiện một cách logic về nhóm assets và tập hợp con của nhóm assets. Ví dụ: Nếu Bob có nhiều bề ngoài khác nhau, mỗi bề ngoài cần phải dùng `Bob` làm tên cơ sở nhưng có thêm phần biến thể `Variant`. Một Bob tàn ác sẽ được đặt tên là `Bob_TanAc` và Bob cổ điển sẽ được đặt tên là `Bob_CoDien`. Nên đặt tên bằng tiếng Anh sẽ ngắn gọn và xúc tích hơn. Ví dụ: `Bob_Evil`, `Bob_Retro`.
 
-For unique but generic variations of assets, `Variant` is a two digit number starting at `01`. For example, if you have an environment artist generating nondescript rocks, they would be named `Rock_01`, `Rock_02`, `Rock_03`, etc. Except for rare exceptions, you should never require a three digit variant number. If you have more than 100 assets, you should consider organizing them with different base names or using multiple variant names.
 
-Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+Cho những biến thể của các asset phổ thông. `Variant` dùng 2 chữ số bắt đầu từ `01`. Ví dụ cho những hòn đá không có gì đặc biệt `Rock_01`, `Rock_02`, `Rock_03`... Trừ những trường hợp vô cùng hiếm không nên để quá 3 chữ số. Nếu có hơn 100 assets đặt tên như vậy thì nên suy nghĩ về việc đặt lại tên cơ sở, hoặc nhiều tên biến thể hơn.
+
+Tuỳ thuộc vào tên biến thể, chúng ta có thể ghép nối các phần biến thể với nhau. Ví dụ:
+Các asset sàn nhà `Flooring` cho một dự án Arch Viz `Flooring` với các phần biến thể ghép như sau `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
 
 <a name="1.1-examples"></a>
-#### 1.1 Examples
+#### 1.1 Ví dụ
 
 ##### 1.1e1 Bob
 
-| Asset Type              | Asset Name                                                 |
+| Kiểu Asset              | Tên Asset                                                  |
 | ----------------------- | ---------------------------------------------------------- |
 | Skeletal Mesh           | SK_Bob                                                     |
 | Material                | M_Bob                                                      |
@@ -311,7 +293,7 @@ Depending on how your asset variants are made, you can chain together variant na
 
 ##### 1.1e2 Rocks
 
-| Asset Type              | Asset Name                                                 |
+| Kiểu Asset              | Asset                                                      |
 | ----------------------- | ---------------------------------------------------------- |
 | Static Mesh (01)        | S_Rock_01                                                  |
 | Static Mesh (02)        | S_Rock_02                                                  |
@@ -321,7 +303,7 @@ Depending on how your asset variants are made, you can chain together variant na
 
 <a name="asset-name-modifiers"></a>
 <a name="1.2"></a>
-### 1.2 Asset Name Modifiers
+### 1.2 Phần bổ nghĩa cho tên Asset
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
@@ -331,7 +313,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
+| Level / Map             |            |            | [Phải ở trong thư mục tên Map](#2.4) |
 | Level (Persistent)      |            | _P         |                                  |
 | Level (Audio)           |            | _Audio     |                                  |
 | Level (Lighting)        |            | _Lighting  |                                  |
@@ -339,9 +321,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Level (Gameplay)        |            | _Gameplay  |                                  |
 | Blueprint               | BP_        |            |                                  |
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
+| Static Mesh             | S_         |            | Nhiều nơi dùng SM_. Chúng ta dùng S_.         |
 | Skeletal Mesh           | SK_        |            |                                  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
+| Texture                 | T_         | _?         | Xem [Textures](#anc-textures)    |
 | Particle System         | PS_        |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
@@ -391,9 +373,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Blueprint Component     | BP_        | Component  | I.e. BP_InventoryComponent       |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
+| Blueprint Macro Library | BPML_      |            | Không dùng thư viện Macro nếu có thể. |
+| Enumeration             | E          |            | Không gạch dưới.                   |
+| Structure               | F or S     |            | Không gạch dưới.                   |
 | Tutorial Blueprint      | TBP_       |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
@@ -416,7 +398,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="1.2.6"></a>
 ### 1.2.6 Textures
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| Kiểu Asset              | Prefix - Tiền tố     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
 | Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
@@ -429,7 +411,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Texture (Mask)          | T_         | _M         |                                  |
 | Texture (Specular)      | T_         | _S         |                                  |
 | Texture (Metallic)      | T_         | _M         |                                  |
-| Texture (Packed)        | T_         | _*         | See notes below about [packing](#anc-textures-packing). |
+| Texture (Packed)        | T_         | _*         | Xem ghi chú phía dưới [packing](#anc-textures-packing). |
 | Texture Cube            | TC_        |            |                                  |
 | Media Texture           | MT_        |            |                                  |
 | Render Target           | RT_        |            |                                  |
@@ -439,15 +421,15 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
 #### 1.2.6.1 Texture Packing
-It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix letters from above together, e.g. `_ERO`.
+Thực hành đóng gói nhiều lớp texture vào một texture là một việc phổ biến. Một ví dụ là đóng gói `Emissive`, `Roughness`, `Ambient Occlusion` thành 3 kênh Red, Green, and Blue channels của vật liệu. Để xác định hậu tố, đơn giản là nối 3 hậu tố của 3 phần lại với nhau: `_ERO`.
 
-> It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel and as this is common practice, adding `A` to the `_D` suffix is optional.
+> Bao gồm kênh Alpha/Opacity vào trong kênh alpha của Diffuse/Albedo texture là phổ biến nên có thể ngầm hiểu và bỏ qua hậu tố `A` sau `_D`
 
-Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel as a texture with an alpha channel incurs more overhead than one without.
+Đóng gói 4 kênh data vào một texture (RGBA) là ko nên ngoại trừ trường hợp texture Diffuse/Albedo. Bởi việc này phát sinh nhiều vấn đề hơn là không có.
 
 <a name="anc-misc"></a>
 <a name="1.2.7"></a>
-### 1.2.7 Miscellaneous
+### 1.2.7 Khác
 
 | Asset Type                 | Prefix     | Suffix     | Notes                            |
 | -------------------------- | ---------- | ---------- | -------------------------------- |
@@ -455,7 +437,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Camera Anim                | CA_        |            |                                  |
 | Color Curve                | Curve_     | _Color     |                                  |
 | Curve Table                | Curve_     | _Table     |                                  |
-| Data Asset                 | *_         |            | Prefix should be based on class. |
+| Data Asset                 | *_         |            | Tiền tố nên dựa trên lớp / class. |
 | Data Table                 | DT_        |            |                                  |
 | Float Curve                | Curve_     | _Float     |                                  |
 | Foliage Type               | FT_        |            |                                  |
@@ -507,15 +489,15 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Media Sound Wave        | MSW_       |            |                                  |
 | Reverb Effect           | Reverb_    |            |                                  |
 | Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
+| Sound Class             |            |            | Không tiền tố, hậu tố. Nên đặt trong folder tên SoundClasses |
+| Sound Concurrency       |            | _SC        | Đặt tên sau tên SoundClass |
 | Sound Cue               | A_         | _Cue       |                                  |
 | Sound Mix               | Mix_       |            |                                  |
 | Sound Wave              | A_         |            |                                  |
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
-### 1.2.11 User Interface
+### 1.2.11 Giao diện người dùng - UI
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -526,7 +508,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
-### 1.2.12 Effects
+### 1.2.12 Hiệu ứng
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -537,7 +519,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="2"></a>
 <a name="structure"></a>
-## 2. Content Directory Structure
+## 2. Cấu trúc thư mục
 
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
