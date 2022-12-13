@@ -39,7 +39,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
 - [Các thuật ngữ quan trọng](#important-terminology)
   - [Levels/Maps - Bản đồ](#terms-level-map)
   - [Identifiers - Định danh / Tên gọi](#terms-identifiers)
-  - [Cases - "Cách đặt tên"](#terms-cases)
+  - [Cases - Quy chuẩn đặt tên](#terms-cases)
   - [Variables / Properties - Biến / Thuộc tính](#terms-var-prop)
     - [Property - Thuộc tính](#terms-property)
     - [Variable - Biến](#terms-variable)
@@ -156,70 +156,69 @@ If you have made a notable fork or translation that is not suitable for a pull r
   - [7.3 Textures Should Be No Bigger than 8192 / texture không nên to hơn 8192](#textures-max-size)
   - [7.4 Textures Should Be Grouped Correctly / texture nên được nhóm đúng](#textures-group)
 
-## Important Terminology
+## Các thuật ngữ quan trọng
 
 <a name="terms-level-map"></a>
 ##### Levels/Maps
-
-The word 'map' generally refers to what the average person calls a 'level' and may be used interchangeably. See this term's history [here](https://en.wikipedia.org/wiki/Level_(video_gaming)).
+Map hoặc level: 2 từ này có thể dùng tráo đổi cho nhau, cùng chỉ về một không gian người chơi có thể tương tác, tiếp xúc.
+(https://en.wikipedia.org/wiki/Level_(video_gaming)).
 
 <a name="terms-identifiers"></a>
-##### Identifiers
-An `Identifier` is anything that resembles or serves as a "name". For example, the name of an asset, or the name of a material later, or a blueprint property, a variable, or a folder name, or for a data table row name, etc...
+##### Identifiers - Định danh
+Một `Identifier` là bất cứ gì đóng vai trò "tên gọi". Ví dụ, tên của một asset, or tên của một vật liệu, or a thuộc tính, biến của blueprint property, hay tên của một folder, hoặc tên một hàng trong bảng dữ liệu, v.v...
 
 <a name="terms-cases"></a>
-##### Cases
+##### Cases - Quy chuẩn đặt tên
 
-There are a few different ways you can `CaseWordsWhenNaming`. Here are some common casing types:
+Có một vài cách đặt tên thường dùng `CaseWordsWhenNaming`. Dưới đây là một số kiểu phổ biến:
 
 > ###### PascalCase
 >
-> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+> Viết hoa tất cả các chữ cái đầu tiên của mỗi từ, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
 >
 > ###### camelCase
 >
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+> Chữ cái đầu tiên của từ đầu tiên luôn viết thường, tất cả chữ cái của các từ còn lại viết hoa, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
 > ###### Snake_case
 >
-> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+> Mỗi từ có thể viết hoa hoặc không viết hoa chữ cái đầu tiên nhưng được phân cách bởi dấu gạch dưới e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
 <a name="terms-var-prop"></a>
-##### Variables / Properties
+##### Variables / Properties - Biến / Thuộc tính
 
-The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+Trong hầu hết trường hợp 2 từ 'variable' và 'property' có thể dùng tráo đổi cho nhau. Nếu 2 từ được dùng chung trong cùng một ngữ cảnh:
 
 <a name="terms-property"></a>
-###### Property
-Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`.
+###### Property - Thuộc tính
+Thường chỉ đến các biến được định nghĩa trong lớp (class). Ví dụ: nếu `BP_Barrel` có một biến `bExploded`, thì `bExploded` được nói là một thuộc tính của lớp `BP_Barrel`.
 
-When in the context of a class, it is often used to imply accessing previously defined data.
+Khi trong ngữ cảnh của lớp (class), nó thường ngầm định cho việc truy cập dữ liệu định nghĩa trước.
 
 <a name="terms-variable"></a>
-###### Variable
+###### Variable - Biến
 Usually refers to a variable defined as a function argument or a local variable inside a function.
 
 When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
 
 <a name="0"></a>
-## 0. Principles
+## 0. Nguyên tắc
 
-These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+Những nguyên tắc này được sửa đổi dựa theo  [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it
+### 0.1 Nếu dự án của bạn đã có quy chuẩn, bạn nên tuân theo quy chuẩn của nó.
+Nếu bạn làm với một dự án của một team đã có quy chuẩn, bạn nên tôn trọng quy chuẩn đó. Ứu tiên quy chuẩn có sẵn trước quy chuẩn này.
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
+Quy chuẩn là chết, con người là sống. Bạn nên đề xuất thay đổi đối với những quy chuẩn có sẵn sao cho phù hợp với tình hình thực tế.
 
-Style guides should be living documents. You should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
-
-> #### "Arguments over style are pointless. There should be a style guide, and you should follow it."
+> #### "Tranh luận về quy chuẩn là vô nghĩa. Cần phải có một quy chuẩn và bạn nên tuân thủ nó."
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed
+### 0.2 Mọi cấu trúc, assets, và mã lệnh trong dự án nên thống nhất như một người phát triển cho dù số người tham gia dự án > 1.
 
-Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
+Chuyển từ dự án này sang dự án khác không để tình trạng học lại cấu trúc và quy chuẩn. Tuân thủ nghiêm khắc quy chuẩn sẽ triệt tiêu sự phán đoán mơ hồ không cần thiết.
 
 It also allows for more productive creation and maintenance as one does not need to think about style. Simply follow the instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
 
