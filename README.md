@@ -521,14 +521,12 @@ Thực hành đóng gói nhiều lớp texture vào một texture là một vi�
 <a name="structure"></a>
 ## 2. Cấu trúc thư mục
 
-Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
+Cấu trúc thư mục cần được tôn trọng tương tự như các quy tắc đặt tên. Có nhiều cách để đặt tên thư mục trong dự án UE. Trong quy chuẩn này chúng ta sẽ sử dụng cấu trúc thư mục phục vụ cho việc lọc, tìm kiếm của Content Browser.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
-
-> If you are using the prefix [naming convention](#1.2) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
+> Nếu đã sử dụng các tiền tố và hậu tố trong quy tắc đặt tên ở trên [Quy tắc đặt tên](#1.2), sử dụng thư mục để chứa các asset cùng loại là dư thừa ví dụ các folder tên `Meshes`, `Textures`, and `Materials` bởi các asset này đã được phân loại bằng tiền tố và hậu tố cùng các bộ lọc của content browser.
 
 <a name="2e1"><a>
-### 2e1 Example Project Content Structure
+### 2e1 Ví dụ về cấu trúc thư mục
 <pre>
 |-- Content
     |-- <a href="#2.2">GenericShooter</a>
@@ -581,60 +579,61 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
             |-- Rifles
 </pre>
 
-The reasons for this structure are listed in the following sub-sections.
+Lý do cho cấu trúc này được liệt kê ở phần phụ sau
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
-### 2.1 Folder Names
+### 2.1 Tên thư mục
 
-These are common rules for naming any folder in the content structure.
+Có những quy tắc chung cho việc đặt tên các thư mục trong cấu trúc nội dung
 
 <a name="2.1.1"></a>
-#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases)
+#### 2.1.1 Luôn sử dụng cấu trúc PascalCase [<sup>*</sup>](#terms-cases)
 
-PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+Ví dụ: `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
 
-See [Cases](#terms-cases).
+Xem [Chữ cái viết hoa](#terms-cases).
 
 <a name="2.1.2"></a>
-#### 2.1.2 Never Use Spaces
+#### 2.1.2 Không bao giờ sử dụng ký tự khoảng trắng(space, tab...)
 
-Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally, your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+[2.1.1](#2.1.1), Các ký tự khoảng trắng làm cho các công cụ xử lý hàng loạt gặp khó khăn. Lý tưởng nhất nên đặt dự án của bạn ở thư mục gốc ví dụ như `D:\Project` thay vì `C:\Users\My Name\My Documents\Unreal Projects`.
 
 <a name="2.1.3"></a>
-#### 2.1.3 Never Use Unicode Characters And Other Symbols
+#### 2.1.3 Không sử dụng ký tự Unicode và các biểu tượng.
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+Nếu một trong các nhân vật của bạn tên 'Zoë', thư mục của nó nên tên là `Zoe`. Các ký tự Unicode còn tệ hơn [Khoảng trắng](#2.1.2) cho các công cụ engineering bởi một vài phần của UE không hỗ trợ ký tự Unicode.
 
-Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
+Một ví dụ: Nếu dự án của bạn gặp vấn đề [không thể giải thích](https://answers.unrealengine.com/questions/101207/undefined.html)  và tên username trên máy tính của bạn có chứa kí tự Unicode (vd: tên bạn là `Nguyễn`), bất cứ dự án nào năm dưới thư mục `My Documents` sẽ gặp vấn đề này. Thường chỉ cần di chuyển dự án của bạn vào thư mục gốc vd như `D:\Project` sẽ fix được vấn đề khó hiểu này.
 
-Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools.
+Sử dụng các ký tự ngoài `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, và `#` cũng có thể dẫn đến các lỗi khó hiểu trên các nền tảng khác nhau, source control và các công cụ engineering yếu.
 
 <a name="2.2"></a>
 <a name="structure-top-level"><a>
-### 2.2 Use A Top Level Folder For Project Specific Assets
+### 2.2 Sử dụng thư mục cấp cao nhất cho những assets chỉ định
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
+Tất cả assets của dự án cần tồn tại trong thử mục đặt tên sau dự án. Ví dụ dự án của chúng ta tên là 'Generic Shooter'. _tất cả_ content của nó phải ở trong thư mục `Content/GenericShooter`.
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
+> Thư mục `Developers` không dùng cho các asset mà dự án phụ thuộc vào. Xem [Thư mục Developer](#2.3) để biết thêm chi tiết.
 
-There are multiple reasons for this approach.
+Có nhiều lý do cho phương pháp tiếp cận này.
 
 <a name="2.2.1"></a>
-#### 2.2.1 No Global Assets
+#### 2.2.1 Không asset toàn cục (Global)
 
-Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder, it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
+Thông thường trong các quy chuẩn viết mã lệnh lập trình, chúng ta không nên làm ô nhiễm không gian biến toàn cục vì vậy cũng theo nguyên lý này nếu asset được cho phép tồn tại ngoài thư mục của dự án nó sẽ trở nên khó để áp đặt các quy chuẩn cấu trúc và vì thế sẽ phát sinh các thói quen xấu trong việc tổ chức sắp xếp assets.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
+Mỗi asset cần phải có mục đích của nó, nếu không nó sẽ không thuộc về dự án. Nếu asset là một thử nghiệm và không được sử dụng trong dự án nó nên đặt trong thư mục [`Developer`](#2.3).
 
 <a name="2.2.2"></a>
-#### 2.2.2 Reduce Migration Conflicts
+#### 2.2.2 Giảm thiểu xung đột trong migration
 
-When working on multiple projects it is common for a team to copy assets from one project to another if they have made something useful for both. When this occurs, the easiest way to perform the copy is to use the Content Browser's Migrate functionality as it will copy over not just the selected asset but all of its dependencies.
+Khi làm việc với nhiều dự án cùng lúc, việc sử dụng asset từ dự án này sang dự án khác là việc phổ biến. Khi việc này xảy ra, cách dễ dàng nhất là sử dụng chức năng Migrate của Content Browser để copy cả những phần phụ thuộc.
 
-These dependencies are what can easily get you into trouble. If two project's assets do not have a top level folder and they happen to have similarly named or already previously migrated assets, a new migration can accidentally wipe any changes to the existing assets.
+Những phụ thuộc này là nguồn gốc của rắc rối. Nếu assets của 2 dự án đều không có thư mục cấp cao nhất (top level folder) và nếu như cả 2 đều có tên asset giống nhau hoặc asset đã migrate từ trước, đợt migration mới này sẽ ghi đè và xoá sạch những thay đổi ở asset đã có 
 
-This is also the primary reason why Epic's Marketplace staff enforces the same policy for submitted assets.
+Đây cũng là lý do chính mà đội ngũ Marketplace của Epic áp đặt chính sách và tiêu chuẩn này cho các asset được xuất bản lên chợ.
+
 
 After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
 
