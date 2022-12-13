@@ -632,7 +632,7 @@ Khi làm việc với nhiều dự án cùng lúc, việc sử dụng asset từ
 
 Những phụ thuộc này là nguồn gốc của rắc rối. Nếu assets của 2 dự án đều không có thư mục cấp cao nhất (top level folder) và nếu như cả 2 đều có tên asset giống nhau hoặc asset đã migrate từ trước, đợt migration mới này sẽ ghi đè và xoá sạch những thay đổi ở asset đã có 
 
-Đây cũng là lý do chính mà đội ngũ Marketplace của Epic áp đặt chính sách và tiêu chuẩn này cho các asset được xuất bản lên chợ.
+Đây cũng là lý do chính mà đội ngũ Marketplace của Epic áp đặt chính sách và tiêu chuẩn này cho các asset được xuất bản lên Marketplace
 
 
 After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
