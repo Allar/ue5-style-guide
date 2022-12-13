@@ -46,7 +46,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
 - [0. Principles - Nguyên tắc cơ bản](#0)
   - [0.1 Nếu project đã có guideline thì bám theo guide line của project](#0.1)
   - [0.2 Tất cả cấu trúc, assets và mã nguồn trong một dự án UE phải thống nhất một theo một thể không cần biết có bao nhiêu người cùng tham gia dự án](#0.2)
-  - [0.3 Mỗi người bạn tốt của nhau thì phải nhắc nhau tuân theo guideline](#0.3)
+  - [0.3 Nhắc nhở phạm quy và cùng khắc phục](#0.3)
   - [0.4 Một team mà không có guide line thì không phải là một team](#0.4)
   - [0.5 Đừng phá luật](#0.5)
 - [00. Yêu cầu chung](#00)
@@ -219,20 +219,17 @@ Quy chuẩn là chết, con người là sống. Bạn nên đề xuất thay đ
 ### 0.2 Mọi cấu trúc, assets, và mã lệnh trong dự án nên thống nhất như một người phát triển cho dù số người tham gia dự án > 1.
 
 Chuyển từ dự án này sang dự án khác không để tình trạng học lại cấu trúc và quy chuẩn. Tuân thủ nghiêm khắc quy chuẩn sẽ triệt tiêu sự phán đoán mơ hồ không cần thiết.
-
-It also allows for more productive creation and maintenance as one does not need to think about style. Simply follow the instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
+Điều này cho phép nâng cao hiệu suất làm việc, sáng tạo, duy trì bởi mỗi cá nhân không cần phải suy nghĩ nhiều về các quy chuẩn riêng. Đơn giản là làm theo quy chuẩn. Quy chuẩn này được viết với những nhu cầu thực tế nhất, tuân theo quy chuẩn này bạn sẽ tối thiểu hoá việc phải truy tìm những lỗi khó hiểu.
 
 <a name="0.3"></a>
-### 0.3 Friends do not let friends have bad style
+### 0.3 Anh em đồng nghiệp đừng để anh em đồng nghiệp phạm quy. Nếu thấy lỗi thì bảo nhau sửa nhé.
 
-If you see someone working either against a style guide or no style guide, try to correct them.
+Khi làm việc trong nhóm hoặc thảo luận với cộng đồng (discord/reddit/forum/stackOverFlow...). Sẽ dễ dàng hơn nếu muốn tìm kiếm sự trợ giúp cho những người làm việc có quy chuẩn. Không ai thích nhìn vào mớ bòng bong đồ hình Blueprint với những cái tên vô nghĩa, khó hiểu.
 
-When working within a team or discussing within a community such as [Unreal Slackers](http://join.unrealslackers.org/), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets that have names they can't understand.
-
-If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+Khi giúp người nào đó nếu họ có quy chuẩn của họ, hay sử dụng nó, nếu họ không có quy chuẩn thì dắt vào đây.
 
 <a name="0.4"></a>
-### 0.4 A team without a style guide is no team of mine
+### 0.4 Một team không có quy chuẩn không phải là một team
 
 When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
 
