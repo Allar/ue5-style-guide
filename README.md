@@ -421,9 +421,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
 #### 1.2.6.1 Texture Packing
-Thực hành đóng gói nhiều lớp texture vào một texture là một việc phổ biến. Một ví dụ là đóng gói `Emissive`, `Roughness`, `Ambient Occlusion` thành 3 kênh Red, Green, and Blue channels của vật liệu. Để xác định hậu tố, đơn giản là nối 3 hậu tố của 3 phần lại với nhau: `_ERO`.
+Thực hành đóng gói nhiều lớp texture vào một texture là một việc phổ biến. Ví dụ đóng gói `Emissive`, `Roughness`, `Ambient Occlusion` thành 3 kênh Red, Green, and Blue channels của vật liệu. Để xác định hậu tố, đơn giản là nối 3 hậu tố của 3 phần lại với nhau: `_ERO`.
 
-> Bao gồm kênh Alpha/Opacity vào trong kênh alpha của Diffuse/Albedo texture là phổ biến nên có thể ngầm hiểu và bỏ qua hậu tố `A` sau `_D`
+> Kênh Alpha/Opacity tồn tại trong Diffuse/Albedo texture là phổ biến nên có thể ngầm hiểu và bỏ qua hậu tố `A` sau `_D`
 
 Đóng gói 4 kênh data vào một texture (RGBA) là ko nên ngoại trừ trường hợp texture Diffuse/Albedo. Bởi việc này phát sinh nhiều vấn đề hơn là không có.
 
@@ -523,7 +523,7 @@ Thực hành đóng gói nhiều lớp texture vào một texture là một vi�
 
 Cấu trúc thư mục cần được tôn trọng tương tự như các quy tắc đặt tên. Có nhiều cách để đặt tên thư mục trong dự án UE. Trong quy chuẩn này chúng ta sẽ sử dụng cấu trúc thư mục phục vụ cho việc lọc, tìm kiếm của Content Browser.
 
-> Nếu đã sử dụng các tiền tố và hậu tố trong quy tắc đặt tên ở trên [Quy tắc đặt tên](#1.2), sử dụng thư mục để chứa các asset cùng loại là dư thừa ví dụ các folder tên `Meshes`, `Textures`, and `Materials` bởi các asset này đã được phân loại bằng tiền tố và hậu tố cùng các bộ lọc của content browser.
+> Nếu đã sử dụng các tiền tố và hậu tố trong quy tắc đặt tên ở trên [Quy tắc đặt tên](#1.2), sử dụng thư mục để chứa các asset cùng loại là không cần thiết ví dụ các folder tên `Meshes`, `Textures`, and `Materials` bởi các asset này đã được phân loại bằng tiền tố và hậu tố cùng các bộ lọc của content browser.
 
 <a name="2e1"><a>
 ### 2e1 Ví dụ về cấu trúc thư mục
@@ -634,15 +634,16 @@ Những phụ thuộc này là nguồn gốc của rắc rối. Nếu assets c�
 
 Đây cũng là lý do chính mà đội ngũ Marketplace của Epic áp đặt chính sách và tiêu chuẩn này cho các asset được xuất bản lên Marketplace
 
-
-After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+Sau khi migration, hợp nhất an toàn các assets bằng công cụ 'Replace References' trong Content Browser. Sự xuất hiện của một thư mục không thuộc top level dự án xác định rõ ràng đây là thư mục cần được hợp nhất vào dự án. Một khi các asset(tài nguyên game) đã được hợp nhất hoàn toàn với dự án sẽ không còn một folder nào khác ngoài folder project. Phương pháp này _100%_ đảm bảo bất cứ sự hợp nhất nào cũng diễn ra một cách an toàn.
 
 <a name="2.2.2e1"></a>
-##### 2.2.2e1 Master Material Example
+##### 2.2.2e1 Ví dụ vật liệu chủ
 
-For example, say you created a master material in one project that you would like to use in another project so you migrated that asset over. If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a master material already, this should work without issue.
+Ví dụ, nếu bạn tạo một vật liệu chủ ở dự án A này và muốn sử dụng nó trong dự án B, vì thế bạn migrate vật liệu chủ từ A sang B. Nếu vật liệu này không ở trong thư mục dự án bậc 0, ví dụ `Content/MaterialLibrary/M_Master`. Nếu dự án B không có vật liệu `M_Master`, mọi việc sẽ diễn ra suôn sẻ.
 
-As work on one or both projects progress, their respective master materials may change to be tailored for their specific projects due to the course of normal development.
+Theo tiến trình phát triển của dự án, vật liệu chủ của từng dự án sẽ có sự biến đổi phù hợp với mục đích của dự án.
+
+Vấn để nảy sinh khi, một artist của dự án A tạo ra một nhóm các static mesh hữu ích và một vài artist khác muốn sử dụng nó trong dự án của họ. Nếu artist của dự án A sử dụng bản sao vật liệu trong `Content/MaterialLibrary/M_Master` vì họ được hướng dẫn như thế, khi tiến hành migrate sẽ rất có khả năng xung đột với lần migrate trước của 
 
 The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Content/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset.
 
