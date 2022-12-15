@@ -639,26 +639,25 @@ Sau khi migration, hợp nhất an toàn các assets bằng công cụ 'Replace 
 <a name="2.2.2e1"></a>
 ##### 2.2.2e1 Ví dụ vật liệu chủ
 
-Ví dụ, nếu bạn tạo một vật liệu chủ ở dự án A này và muốn sử dụng nó trong dự án B, vì thế bạn migrate vật liệu chủ từ A sang B. Nếu vật liệu này không ở trong thư mục dự án bậc 0, ví dụ `Content/MaterialLibrary/M_Master`. Nếu dự án B không có vật liệu `M_Master`, mọi việc sẽ diễn ra suôn sẻ.
+Ví dụ, nếu bạn tạo một vật liệu chủ ở dự án A này và muốn sử dụng nó trong dự án B, vì thế bạn migrate vật liệu chủ từ A sang B. Nếu vật liệu này không ở trong thư mục dự án bậc 1, ví dụ `Content/MaterialLibrary/M_Master`. Nếu dự án B không có vật liệu `M_Master`, mọi việc sẽ diễn ra suôn sẻ.
 
 Theo tiến trình phát triển của dự án, vật liệu chủ của từng dự án sẽ có sự biến đổi phù hợp với mục đích của dự án.
 
-Vấn để nảy sinh khi, một artist của dự án A tạo ra một nhóm các static mesh hữu ích và một vài artist khác muốn sử dụng nó trong dự án của họ. Nếu artist của dự án A sử dụng bản sao vật liệu trong `Content/MaterialLibrary/M_Master` vì họ được hướng dẫn như thế, khi tiến hành migrate sẽ rất có khả năng xung đột với lần migrate trước của 
+Vấn để nảy sinh khi, một artist của dự án A tạo ra một nhóm các static mesh hữu ích và một vài artist khác muốn sử dụng nó trong dự án của họ. Nếu artist của dự án A sử dụng bản sao vật liệu trong `Content/MaterialLibrary/M_Master` vì họ được hướng dẫn như thế, khi tiến hành migrate sẽ rất có khả năng xung đột với lần migrate trước của `Content/MaterialLibrary/M_Master`.
 
-The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Content/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset.
+Sự cố này khó đoán trước được bởi người migrate những static mesh này không cùng một người đã quen thuộc với master material của cả 2 dự án. Họ thậm chí còn không biết những static mesh này phụ thuộc vào Material Instances cái phụ thuộc vào Master Material. Công cụ migrate sẽ di chuyển cả chuỗi phụ thuộc cùng với asset cần migrate vì vậy nó sẽ mang theo cả `Content/MaterialLibrary/M_Master` khi nó sao chép asset từ dự án nguồn sang dự án mục tiêu và vô hình chung ghi đè lên asset đã có của dự án mục tiêu
 
-This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar with the development of both project's master material, and they may not be even aware that the static meshes in question rely on material instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project and it will overwrite the existing asset.
-
-It is at this point where if the master materials for both projects are incompatible in _any way_, you risk breaking possibly the entire material library for a project as well as any other dependencies that may have already been migrated, simply because assets were not stored in a top level folder. The simple migration of static meshes now becomes a very ugly task.
+Nếu ở thời điểm này Vật liệu chủ cho cả 2 dự án không tương thích với nhau, chúng ta đã mạo hiểm khả năng làm hỏng cả chuỗi thư viện vật liệu của dự án và các asset khác phụ thuộc vào nó bởi đơn giản là chúng ta đã không đặt các asset vào thư mục bậc 1 của dự án.
 
 <a name="2.2.3"></a>
-#### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+#### 2.2.3 Thêm tài nguyên thư viện, Templates và Marketplace Samples được đảm bảo an toàn.
 
-An extension to [2.2.2](#2.2.2), if a team member decides to add sample content, template files, or assets they bought from the marketplace, it is guaranteed, as long your project's top-level folder is uniquely named,that these new assets will not interfere with your project.
+Mở rọng cho [2.2.2](#2.2.2), nếu một thành viên quyết định thêm tài nguyên mẫu, template hoặc tài nguyên mua từ Marketplace, tiến trình này được đảm bảo an toàn nếu dự án của chúng ta nằm trong cấu trúc thư mục bậc 1, những tài nguyên mới này sẽ không xung đột với tài nguyên trong dự án của chúng ta.
 
-You can not trust marketplace content to fully conform to the [top level folder rule](#2.2). There exists many assets that have the majority of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the global `Content` folder.
+Chúng ta không thể hoàn toàn tin tưởng các tài nguyên từ Marketplace luôn luôn tuân thủ quy tắc
+You can not trust marketplace content to fully conform to the [Thư mục bậc 1](#2.2). Có những tài nguyên mà phần lớn nội dung của nó ở thư mục bậc 1 và cũng có vài tài nguyên chỉnh sửa nội dung của Epic sample cùng với nhiều files làm ô nhiễm không gian thư mục toàn cục (global) `Content`
 
-When adhering to [2.2](#2.2), the worst marketplace conflict you can have is if two marketplace assets both have the same Epic sample content. If all your assets are in a project specific folder, including sample content you may have moved into your folder, your project will never break.
+Khi tuân thử theo [2.2](#2.2), sự xung đột tồi tệ nhất mà bạn có thể gặp phải là 2 tài nguyên từ marketplace có cùng nội dung từ Epic sample. Nếu tất cả tài nguyên của chúng ta nằm trong một thư mục cụ thể, bao gồm cả sample content mà chúng ta đã di rời vào thư mục bậc 1 của dự án, dự án của chúng ta sẽ không bao giờ đổ vỡ.
 
 <a name="2.2.4"></a>
 #### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
