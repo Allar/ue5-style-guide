@@ -660,29 +660,31 @@ You can not trust marketplace content to fully conform to the [Thư mục bậc 
 Khi tuân thử theo [2.2](#2.2), sự xung đột tồi tệ nhất mà bạn có thể gặp phải là 2 tài nguyên từ marketplace có cùng nội dung từ Epic sample. Nếu tất cả tài nguyên của chúng ta nằm trong một thư mục cụ thể, bao gồm cả sample content mà chúng ta đã di rời vào thư mục bậc 1 của dự án, dự án của chúng ta sẽ không bao giờ đổ vỡ.
 
 <a name="2.2.4"></a>
-#### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+#### 2.2.4 DLC, Bản vá, Dự án con sẽ dễ dàng duy trì, bảo trì hơn.
 
-If your project plans to release DLC or has multiple sub-projects associated with it that may either be migrated out or simply not cooked in a build, assets relating to these projects should have their own separate top level content folder. This make cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort. If you need to change a material of an asset or add some very specific asset override behavior in a patch, you can easily put these changes in a patch folder and work safely without the chance of breaking the core project.
+Nếu dự án của bạn có kế hoạch xuất bản DLC hoặc có nhiều dự án con liên quan tới có khả năng sẽ migrate ra ngoài, hoặc không cooked khi build, tài nguyên của những dự án như thế phải có riêng thư mục bậc 1. Việc này cho phép cook DLC từ dự án chủ dễ dàng hơn. Những dự án con cũng có thể migrate ra vào dễ dàng. Nếu chúng ta cần thay đổi vật liệu cảu một tài nguyên hoặc thêm một số tính năng riêng biệt ghi đè trong một bản vá, chúng ta có thể dễ dàng đặt những thay đổi đó trong thư mục vá và làm việc một cách an tâm là nó sẽ không gây hỏng dự án gốc.
 
 <a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing
+### 2.3 Sử dụng thư mục `Developers` cho những thử nghiệm cục bộ
 
-During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
+Trong quá trình phát triển dự án, các thành viên sẽ có thử nghiệm rất nhiều vì vậy cần một không gian an toàn để họ có thể thực hiện các thử nghiệm của mình mà không gây ảnh hưởng tới dự án. Đây là một công việc liên tục nên chúng ta sẽ muốn cho nó vào server quản lý phiên bản. Không phải tất cả các team đều có nhu cầu sử dụng thư mục Developer, nhưng một khi đã sử dụng thì thường gặp các vấn đề khi subbmit tài nguyên lên source control.
 
-It is very easy for a team member to accidentally use assets that are not ready for use, which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working for everyone on the team to resolve.
+Một sự cố phổ biến khác là các thành viên chẳng may sử dụng những tài nguyên chưa hoàn thiện, các sự cố nảy sinh tiếp theo do các tài nguyên này bị xoá đi. 
 
-If these modular assets were placed in a Developer folder, the world builder should never have had a reason to use them and the whole issue would never happen. The Content Browser has specific View Options that will hide Developer folders (they are hidden by default) making it impossible to accidentally use Developer assets under normal use.
+Ví dụ: Một artist đang cải tiến các modul các static meshes và vẫn đang liên tục cải tiến về mặt kích thước, đường dóng cho thật đúng. Các artist thiết kế bối cảnh nếu thấy những tài nguyên này trong thư mục chính của dự án và sử dụng nó để thiết kế bối cảnh mà không biết rằng nó có thể bị bỏ đi sẽ dẫn đến lãng phí công sức thời gian của nhiều người.
 
-Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
+The Content Browser mặc định sẽ ẩn thư mục Developer tránh những sự cố kiểu này xảy ra.
+
+Khi những tài nguyên này sẵn sàng được sử dụng, artist di dời những tài nguyên này vào thư mục cụ thể trong dự án và sử dụng công cụ *fix up redirectors* 'thăng cấp' tài nguyên từ cấp độ thử nghiệm lên cấp độ production.
 
 <a name="2.4"></a>
 <a name="structure-maps"></a>
-### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps
+### 2.4 Tất cả Map[<sup>*</sup>](#terms-level-map) Files phải nằm trong folder Maps.
 
-Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+File map có những quy tắc đặc biệt riêng và tuỳ thuộc mỗi dự án, đặc biệt là sử dụng sub-levels hoặc level streaming. Dù tuân thủ theo hệ thống nào thì tất cả map đều thuộc về `/Content/Project/Maps`.
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+Để có thể truyền đạt tới bất cứ ai để mở một map mà không cần phải giải thích tiết kiệm rất nhiều thời gian. Sử dụng thư mục con trong `Maps` cũng phổ biến ví dụ `Maps/Campaign1/` or `Maps/Arenas`, nhưng quan trọng nhất là chúng đều nằm trong `/Content/Project/Maps`.
 
 This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
 
