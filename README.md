@@ -738,25 +738,25 @@ Bằng cách này toàn bộ các vật liệu 'toàn cục' phải ở cùng m�
 
 > Điều này cũng tuân thủ quy tắc 'chỉ sử dụng vật liệu nhân bản'. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+Thư mục `MaterialLibrary` không nhất thiết chỉ chứa mỗi vật liệu. Những texture phụ trợ, hàm material, và những thứ tự nhiên thuộc về thư mục này như texture noise chung chung nên ở thư mục `MaterialLibrary/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Bất cứ thử nghiệm hoặc tìm lỗi về vật liệu nào nên nằm trong `MaterialLibrary/Debug`. Điều này làm cho những vật liệu lỗi dễ đàng được loại bỏ trước khi đóng gói và xuất bản.
 
 <a name="2.9"></a>
 <a name="structure-no-empty-folders"></a>
-### 2.9 No Empty Folders
+### 2.9 Không để thư mục nào bị trống
 
-There simply shouldn't be any empty folders. They clutter the content browser.
+Tránh làm phân mảnh thư mục content browser bởi các thư mục trống.
 
-If you find that the content browser has an empty folder you can't delete, you should perform the following:
-1. Be sure you're using source control.
-1. Immediately run Fix Up Redirectors on your project.
-1. Navigate to the folder on-disk and delete the assets inside.
-1. Close the editor.
-1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
-1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
-1. Ensure the folder is now gone.
-1. Submit changes to source control.
+Nếu có thư mục trống không xoá được:
+1. Đảm bảo là bạn sử dụng source control. (trong tương lai)
+1. Dùng lệnh Fix Up Redirectors.
+1. Mở thư mục trên ổ đĩa và xoá những assets bên trong.
+1. Đóng editor.
+1. Đồng bộ hoá với source control (i.e. Perforce, gitCentral)
+1. Mở Unreal Editor. Xác nhận mọi thứ vẫn hoạt động. Nếu không thì đảo ngược quá trình, xem xét mọi thứ sai ở đâu và thử lại.
+1. Đảm bảo thư mục đã bị loại.
+1. Xác nhận thay đổi đến source control.
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -765,44 +765,45 @@ If you find that the content browser has an empty folder you can't delete, you s
 <a name="bp"></a>
 ## 3. Blueprints
 
-This section will focus on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+Phân này tập chung vào các lớp Blueprint. Bất cứ khi nào có thể, nên sử dụng theo tiêu chuẩn của[Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
-### 3.1 Compiling
+### 3.1 Compiling - Biên dịch
 
-All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+Tất cả blueprint cần được biên dịch sạch lỗi và cảnh báo. Chúng ta nên sửa những cảnh bảo và lỗi của blueprint ngay lập tức vì chúng có thể nhanh chóng chồng chéo lên nhau và tạo nên những lỗi không ngờ được.
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+Không submit blueprints lỗi lên source control. Nếu phải lưu chúng lên source control hãy shelve. 
+Shelve : Lưu thay đổi mà không đăng ký vào Source Control.
 
-Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
+Blueprint lỗi có thể tạo ra nhiều kiểu lỗi như mất liên kết tham chiếu, hành vi không dự đoán trước, lỗi cooking, thường xuyên phải biên dịch lại không cần thiết. Một blueprint bị lỗi có đủ sức mạnh để phá hỏng hoàn toàn game.
 
 <a name="3.2"></a>
 <a name="bp-vars"></a>
-### 3.2 Variables
+### 3.2 Variables - Biến
 
-The words `variable` and `property` may be used interchangeably.
+Hai từ `variable` và `property` có thể dùng thay thế cho nhau.
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
-#### 3.2.1 Naming
+#### 3.2.1 Naming - Đặt tên
 
 <a name="3.2.1.1"></a>
 <a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns
+##### 3.2.1.1 Nouns - Danh từ
 
-All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
+Tất cả các biến non-boolean cần có tên rõ ràng, không mơ hồ, gợi nhớ.
 
 <a name="3.2.1.2"></a>
 <a name="bp-var-naming-case"></a>
 ##### 3.2.1.2 PascalCase
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+Biến non-boolean cần phải ở dạng [PascalCase](#terms-cases).
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples
+###### 3.2.1.2e Ví dụ:
 
 * `Score`
 * `Kills`
@@ -823,11 +824,12 @@ UE4 Blueprint editors know not to include the `b` in user-friendly displays of t
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names
+##### 3.2.1.4 Tên Boolean
 
 <a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information
+###### 3.2.1.4.1  Thông tin chung và thông tin độc lập
 
+Tất cả 
 All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
 
 Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
