@@ -654,8 +654,7 @@ Nếu ở thời điểm này Vật liệu chủ cho cả 2 dự án không tư�
 
 Mở rọng cho [2.2.2](#2.2.2), nếu một thành viên quyết định thêm tài nguyên mẫu, template hoặc tài nguyên mua từ Marketplace, tiến trình này được đảm bảo an toàn nếu dự án của chúng ta nằm trong cấu trúc thư mục bậc 1, những tài nguyên mới này sẽ không xung đột với tài nguyên trong dự án của chúng ta.
 
-Chúng ta không thể hoàn toàn tin tưởng các tài nguyên từ Marketplace luôn luôn tuân thủ quy tắc
-You can not trust marketplace content to fully conform to the [Thư mục bậc 1](#2.2). Có những tài nguyên mà phần lớn nội dung của nó ở thư mục bậc 1 và cũng có vài tài nguyên chỉnh sửa nội dung của Epic sample cùng với nhiều files làm ô nhiễm không gian thư mục toàn cục (global) `Content`
+Chúng ta không thể hoàn toàn tin tưởng các tài nguyên từ Marketplace luôn luôn tuân thủ quy tắc [Thư mục bậc 1](#2.2). Có những tài nguyên mà phần lớn nội dung của nó ở thư mục bậc 1 và cũng có vài tài nguyên chỉnh sửa nội dung của Epic sample cùng với nhiều files làm ô nhiễm không gian thư mục toàn cục (global) `Content`
 
 Khi tuân thử theo [2.2](#2.2), sự xung đột tồi tệ nhất mà bạn có thể gặp phải là 2 tài nguyên từ marketplace có cùng nội dung từ Epic sample. Nếu tất cả tài nguyên của chúng ta nằm trong một thư mục cụ thể, bao gồm cả sample content mà chúng ta đã di rời vào thư mục bậc 1 của dự án, dự án của chúng ta sẽ không bao giờ đổ vỡ.
 
@@ -686,59 +685,58 @@ File map có những quy tắc đặc biệt riêng và tuỳ thuộc mỗi dự
 
 Để có thể truyền đạt tới bất cứ ai để mở một map mà không cần phải giải thích tiết kiệm rất nhiều thời gian. Sử dụng thư mục con trong `Maps` cũng phổ biến ví dụ `Maps/Campaign1/` or `Maps/Arenas`, nhưng quan trọng nhất là chúng đều nằm trong `/Content/Project/Maps`.
 
-This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
+Đơn giản hoá quá trình cook. Tập hợp các level cho quá trình build. Nếu các Level ở cùng một thư mục hạn chế khả năng cook bị sót.
 
 <a name="2.5"></a>
 <a name="structure-core"></a>
-### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets
+### 2.5 Sử dụng thư mục `Core` cho các Blueprint và Assets cốt lõi
 
-Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+Sử dụng thư mục `/Content/Project/Core` cho những tài nguyên cốt yếu. Ví dụ: base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState` ...
 
-This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+Những thành viên không thuộc team dev gần như không có lý do để vào khu vực thư mục `Core` này. Tuân thủ quy tắc cấu trúc, designer nên thêm những thay đổi tính năng của họ ở trong lớp con. Những người thiết kế môi trường nên sử dụng Blueprints có sẵn trong những folder chỉ định thay vì chỉnh sửa base class.
 
-For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+Ví dụ: Nếu dự án có những vật phẩm nhặt được (Pickups) cần được đặt trong level, cần có một lớp vật phẩm gốc (base class) trong thư mục `Core/Pickups` định nghĩa những thuộc tính, hành vi cơ bản của lớp Pickup. Những vật phẩm cụ thể ví dụ như Health hoặc Ammo nên ở trong thư mục `/Content/Project/Placeables/Pickups/`. Người thiết kế game có thể định nghĩa và tinh chỉnh những vật phẩm trong thư mục này nhưng họ không nên động chạm đến `Core/Pickups` vì có khả năng họ sẽ làm hỏng những vật phẩm khác trên toàn dự án.
 
 <a name="2.6"></a>
 <a name="structure-assettypes"></a>
-### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
+### 2.6 Không tạo thư mục `Assets` hoặc kiểu `AssetTypes`
 
 <a name="2.6.1"></a>
-#### 2.6.1 Creating a folder named `Assets` is redundant
-
-All assets are assets.
+#### 2.6.1 Tạo thư mục `Assets` là dư thừa.
+Mọi Assets đều là Assets.
 
 <a name="2.6.2"></a>
-#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
+#### 2.6.2 Thư mục tên `Meshes`, `Textures`, hoặc `Materials` cũng là dư thừa.
 
-All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+Tất cả tên của asset phải được đặt tên với chủ ý phân loại kiểu asset trong tư tưởng. Sử dụng tên thư mục để phân loại là không cần thiết bởi Content Browser đã có công cụ phân loại mạnh mẽ và ưu thế hơn.
 
-Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+Để xem các static mesh trong `Environment/Rocks/`? Đơn giản là bật filter Static Mesh. Nếu tất cả asset đều được đặt tên đúng, chúng cũng sẽ được sắp xếp theo thứ tự alphabe cho dù có các thành phần tiền tố. Điều này cũng triệt tiêu khả năng phải `Control-Click` để chọn nhiều thư mục trong `Content Browser`.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> Không những thế full path name của một asset cũng trở nên gọn gàng hơn. Tiền tố `S_` chỉ có 2 chữ cái trong khi `Meshes/` là 7 chữ cái.
 
-Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
+Loại trừ các trường hợp bất khả kháng như có ai đó đặt nhầm static mesh hoặc texture vào thư mục `Materials`.
 
 <a name="2.7"></a>
 <a name="structure-large-sets"></a>
-### 2.7 Very Large Asset Sets Get Their Own Folder Layout
+### 2.7 Những Asset đồ sộ cần có cấu trúc thư mục riêng của nó.
 
-This can be seen as a pseudo-exception to [2.6](#2.6).
+Đây có thể coi là một "ngoại lệ giả" pseudo-exception đối với [2.6](#2.6).
 
-There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
+Có những kiểu asset có rất nhiều file liên quan, phụ thuộc mà trong đó mỗi asset lại có một mục đích đặc biệt riêng. Hai kiểu phổ biến là Animation và Audio. Nếu chúng ta thấy rằng có hơn 15 asset kiểu đó thuộc về nhau, chúng nên ở cùng nhau.
 
-For example, animations that are shared across multiple characters should lay in `Characters/Common/Animations` and may have sub-folders such as `Locomotion` or `Cinematic`.
+Ví dụ: Đoạn animation được nhiều nhân vật dùng nên nằm trong thư mục `Characters/Common/Animations` và có thể có những thư mục con như `Locomotion` hoặc `Cinematic`.
 
-> This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> Những điều này không áp dụng cho nhưng asset kiểu texture hoặc material. Rất phổ biến cho việc thư mục `Rocks` có một lượng lớn texture nếu có một lượng lớn rocks, tuy nhiên những texture này chỉ liên quan tới một vài hòn đá cụ thể và cần phải được đặt tên phù hợp. Mặc dù những texture này là một phần của [Material Library](#2.8).
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
 ### 2.8 `MaterialLibrary`
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+Những vật liệu chủ, vật liệu lớp (layered materials), hoặc bất cứ dạng nào không thuộc về một asset cụ thể. Những asset này phải được đặt trong `Content/Project/MaterialLibrary`.
 
-This way all 'global' materials have a place to live and are easily located.
+Bằng cách này toàn bộ các vật liệu 'toàn cục' phải ở cùng một chỗ và dễ dàng truy cập.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> Điều này cũng tuân thủ quy tắc 'chỉ sử dụng vật liệu nhân bản'. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
 
 The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
 
