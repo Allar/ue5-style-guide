@@ -814,13 +814,13 @@ Biến non-boolean cần phải ở dạng [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix
+##### 3.2.1.3 Biến Boolean tiền tố `b`
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+Tất cả biến boolean phải đặt tên ở dạng PascalCase với tiền tố `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+Ví dụ: Sử dụng `bDead` và `bEvil`, **không dùng** `Dead` and `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Trình sửa đổi Blueprint tự biết cách không thêm tiền tố `b` để hiển thị một cách thân thiện.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
@@ -829,32 +829,31 @@ UE4 Blueprint editors know not to include the `b` in user-friendly displays of t
 <a name="3.2.1.4.1"></a>
 ###### 3.2.1.4.1  Thông tin chung và thông tin độc lập
 
-Tất cả 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Tất cả biến Booleans cần đặt tên gợi mở thông tin nhất một cách có thể khi có khả năng. Không thêm những từ dạng câu hỏi như `Is`. Trường hợp này để dành cho tên function
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Ví dụ: Dùng `bDead` và `bHostile` **không dùng** `bIsDead` và `bIsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Không sử dụng những động từ như `bRunning`. Động từ thường dẫn đến những trạng thái phức hợp.
 
 <a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States
+###### 3.2.1.4.2 Trạng thái phức hợp - Complex States
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+Không dùng booleans để diễn tả các trạng thái phức hợp/hoặc phụ thuộc. Làm cho việc thêm và bớt các trạng thái trở nên phức tạp, khó đọc. Dùng biến enumeration thay cho việc đó.
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Ví dụ: Khi định nghĩa một vũ khí, **không dùng** `bReloading` và `bEquipping` nếu một vũ khí không thể cùng nạp và trang bị. Thay vì thế hãy định nghĩa biến enumeration tên `EWeaponState` và sử dụng biến với cái tên này `WeaponState`. Điều này làm cho việc thêm các trạng thái khác của vũ khí dễ dàng hơn nhiều.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Ví dụ: **Không dùng** `bRunning` nếu như chúng ta cũng cần các trạng thái khác như `bWalking` hoặc `bSprinting`. Những biến này cần được định nghĩa thuộc dạng enumeration với các trạng thái được đặt tên rõ ràng.
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context
+##### 3.2.1.5 Lưu ý đến ngữ cảnh
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+Tất cả các tên biến phải không bị thừa thãi đối với ngữ cảnh bởi tất cả các biến tham chiếu trong Blueprint sẽ luôn phải có ngữ cảnh.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples
+###### 3.2.1.5e Ví dụ:
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Xem xét biến Bluerprint trong `BP_PlayerCharacter`.
 
 **Bad**
 
@@ -865,7 +864,7 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+Tất cả cá biến trên đều có tên thừa thãi. Ngầm định rằng tất cả biến của `BP_PlayerCharacter` là thuộc về chính nó bởi `BP_PlayerCharacter` là thứ định nghĩa những biến này.
 
 **Good**
 
@@ -878,11 +877,10 @@ All of these variables are named redundantly. It is implied that the variable is
 
 <a name="3.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names
+##### 3.2.1.6 Không thêm kiểu dữ liệu cơ bản.
 
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
-
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
+Booleans, integers, floats, and enumerations là kiểu dữ liệu cơ bản.
+Strings và vectors trong Blueprint được coi là dữ liệu cơ bản. Tuy nhiên về mặt kỹ thuật thì chúng không phải là dữ liệu cơ bản.
 
 > While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
 
