@@ -882,67 +882,67 @@ Tất cả cá biến trên đều có tên thừa thãi. Ngầm định rằng 
 Booleans, integers, floats, and enumerations là kiểu dữ liệu cơ bản.
 Strings và vectors trong Blueprint được coi là dữ liệu cơ bản. Tuy nhiên về mặt kỹ thuật thì chúng không phải là dữ liệu cơ bản.
 
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+> Trong khi vector cấu thành từ 3 số thực giống như rotators.
 
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+> _không_ được coi dữ liệu dạng Text là kiểu dữ liệu cơ bản, Text là một đối tượng có nhiều hàm ẩn trong nó. Kiểu dữ liệu cơ bản của chuỗi ký tự là `String`, không phải `Text`.
 
-Atomic variables should not have their type name in their name.
+Kiểu dữ liệu cơ bản không được có tên kiểu dữ liệu của nó trong tên biến.
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+Ví dụ: Sử dụng `Score`, `Kills`, và `Description` **không dùng** `ScoreFloat`, `FloatKills`, `DescriptionString`.
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
+Điều này chỉ ngoại lệ khi biến đó thể hiện 'số lượng của' cái gì đó để đếm _và_ khi không có nó thì sẽ khó đọc.
 
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+Ví dụ: Một Actor tạo hàng rào cần số X các cột. Lưu trữ số X trong `NumPosts` hoặc `PostCount` thay vì `Posts` bởi `Posts` có thể bị nhầm lẫn với mảng các biến kiểu `Post`.
 
 <a name="3.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names
+##### 3.2.1.7 Nên thêm tên cho các kiểu dữ liệu phức hợp.
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Những kiểu dữ liệu phức hợp là biến cấu tạo từ tập hợp các biến cơ bản. Struct, Classes, Interface, và các biến có các hành vi ẩn như `Text` và `Name` là những biến phức hợp.
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+>Trong khi một Mảng các biến cơ bản là danh sách các biến, tuy nhiên Mảng không làm thay đổi tính chất 'atomicness' của kiểu biến.
 
-These variables should include their type name while still considering their context.
+Những biến này nên thêm tên kiểu biến tuy nhiên vẫn phải xem xét các tới yếu tố ngữ cảnh.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+Nếu một class sở hữu một bản sao của một biến phức hợp, ví dụ: `BP_PlayerCharacter` sở hữu một `BP_Hat`, nó nên được lưu với tên kiểu biến mà không nên có sự thay đổi thêm nào.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Ví dụ: Sử dụng `Hat`, `Flag`, và `Ability` **không dùng** `MyHat`, `MyFlag`, và `PlayerAbility`.
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+Nếu một lớp không sở hữu giá trị mà một biến phức hợp thể hiện, chúng ta nên dùng danh từ cùng với kiểu biến.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Ví dụ: Nếu `BP_Turret` có khả năng target một `BP_PlayerCharacter`, Nó nên lưu target của nó là `TargetPlayer` khi ở trong ngữ cảnh của `BP_Turret`, nó nên rõ ràng rằng đây là một tham chiếu đến một kiểu biến phức hợp khác mà nó không sở hữu.
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays
+##### 3.2.1.8 Mảng
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+Mảng nên tuân theo các quy tắc đặt tên như trên, nhưng nên được đặt tên là danh từ số nhiều
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Ví dụ: Sử dụng `Targets`, `Hats`, và `EnemyPlayers`, **không dùng** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables
+#### 3.2.2 Biến có khả năng chỉnh sửa
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Tất cả các biến có thể chỉnh sửa giá trị cho việc thiết lập hành vi của blueprint nên được đánh dấu là `Editable`.
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Ngược lại, tất cả các biến không an toàn khi thay đổi giá trị thì không nên bày ra và _không_ đánh dấu là `Editable`, trừ trường hợp cho các lý do kỹ thuật, các biến được đánh dâu là `Expose On Spawn`.
 
-Do not arbitrarily mark variables as `Editable`.
+Không đánh dấu `Editable` tuỳ tiện.
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
 ##### 3.2.2.1 Tooltips
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Tất cả biến `Editable`, `Expose On Spawn`, Phải có mô tả trong phần `Tooltip` về hiệu quả, ảnh hưởng của biến này tới hành vi của blueprint.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges
+##### 3.2.2.2 Slider và khoảng giá trị
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+Tất cả biến `Editable` nên sử dụng slider và khoảng giá trị if there is ever a value that a variable should _not_ be set to.
 
 Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
 
