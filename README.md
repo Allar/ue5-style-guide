@@ -942,12 +942,12 @@ Tất cả biến `Editable`, `Expose On Spawn`, Phải có mô tả trong phầ
 <a name="bp-vars-editable-ranges"></a>
 ##### 3.2.2.2 Slider và khoảng giá trị
 
-Tất cả biến `Editable` nên sử dụng slider và khoảng giá trị if there is ever a value that a variable should _not_ be set to.
+Tất cả biến `Editable` nên sử dụng slider và khoảng giá trị nếu có những giá trị có thể gây _lỗi_ hoặc vô nghĩa
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Ví dụ: Một blueprint tạo cọc hàng rào có biến tên là `PostsCount` thì những giá trị < 0 sẽ trở nên vô nghĩa. Sử dụng khoảng giá trị để thiết lập 0 là giá trị nhỏ nhất.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
-
+Nếu một biến tuỳ chỉnh được sử dụng trong phần Construction Script, cần phải có Slider Range để không vô tình gán những giá trị quá lớn hoặc quá nhỏ có thể làm crash chương trình.
+Khoảng giá trị chỉ cần thiết nếu được xác định. Trong khi Slider Range ngăn ngừa nguy cơ gán những giá trị quá lớn
 A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
 
 <a name="3.2.3"></a>
