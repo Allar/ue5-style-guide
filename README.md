@@ -1009,41 +1009,40 @@ Bởi vì vậy, tất cả các biến tạm thời nên luôn được khởi 
 <a name="bp-vars-config"></a>
 #### 3.2.8 Biến thiết lập (Config Variables)
 
-Đừng dùng flag `Config Variable`. Điều này sẽ làm cho designers 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+Đừng dùng flag `Config Variable`. Điều này sẽ làm cho designers khó điều chỉnh hành vi của blueprint. Các biến thiết lập chỉ nên sử dụng trong C++ vì lí do hiếm khi thay đổi những thông số thiết lập ấy (ví dụ: PI = 3.141592654...) Nghĩ tới chúng như những biến `Advanced Advanced Display`.
 
 <a name="3.3"></a>
 <a name="bp-functions"></a>
-### 3.3 Functions, Events, and Event Dispatchers
+### 3.3 Hàm, Sự kiện, Phát sự kiện
 
-This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
+Phần này bàn về cách chúng ta nên tạo ra các hàm, sự kiện, và phát sự kiện. Mọi thứ áp dụng vào hàm cần được áp dụng vào event, trừ khi có ghi chú.
 
 <a name="3.3.1"></a>
 <a name="bp-funcs-naming"></a>
-#### 3.3.1 Function Naming
+#### 3.3.1 Đặt tên hàm
 
-The naming of functions, events, and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about functions. For example:
+Đặt tên hàm, sự kiện, phát sự kiện là một việc tối quan trọng. Chỉ cần dựa vào cái tên có thể đưa ra một vài dữ kiện về hàm đấy. Ví dụ:
 
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
+* Đây có phải là một hàm thuần khiết? / Is it a pure function? 
+* Đây có phải là một hàm lấy thông tin trạng thái? / Is it fetching state information?
+* Đây là một hàm xử lý? / Is it a handler?
+* Đây là một RPC? / Is it an RPC?
+* Mục đích của nó là gì? / What is its purpose?
 
-These questions and more can all be answered when functions are named appropriately.
+Những câu hỏi trên hoặc nhiều hơn đều có thể được trả lời nếu tên hàm được đặt tên một cách xác đáng. 
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
-#### 3.3.1.1 All Functions Should Be Verbs
+#### 3.3.1.1 Tất cả các hàm nên là động từ.
 
-All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode. Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
+Tất cả các hàm và sự kiện đều thực hiện các dạng hành động, có thể là lấy thông tin, tính toán dữ liệu, kích nổ cái gì đó. Vì vậy tất cả các hàm phải nên lấy động từ làm khởi điểm và đặt trong thì hiện tại khi có thể. Chúng cũng nên có một vài ngữ cảnh về việc chúng làm gì.
 
-`OnRep` functions, event handlers, and event dispatchers are an exception to this rule.
+Hàm `OnRep`, xử lý sự kiện, phát sự kiện, là những ngoại lệ trong trường hợp này.
 
-Good examples:
+Những ví dụ tốt:
 
-* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
-* `Jump` - Good example if in a Character class, otherwise, needs context.
+* `Fire` - 1 ví dụ tốt nếu nó trong lớp Character / Weapon, vì nó có ngữ cảnh. Không tốt nếu trong lớp Barrel / Grass / hay lớp ngẫu nhiên nào khác.
+* `Jump` - Tốt nếu nằm trong lớp Character không thì phải cần ngữ cảnh.
 * `Explode`
 * `ReceiveMessage`
 * `SortPlayerArray`
@@ -1051,31 +1050,29 @@ Good examples:
 * `GetCoordinates`
 * `UpdateTransforms`
 * `EnableBigHeadMode`
-* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
+* `IsEnemy` - ["Is" là động từ tobe.](http://writingexplained.org/is-is-a-verb)
 
-Bad examples:
+Ví dụ tệ:
 
-* `Dead` - Is Dead? Will deaden?
+* `Dead` - là chết? Sẽ chết?
 * `Rock`
-* `ProcessData` - Ambiguous, these words mean nothing.
-* `PlayerState` - Nouns are ambiguous.
-* `Color` - Verb with no context, or ambiguous noun.
+* `ProcessData` - Mơ hồ, những từ này không có ý nghĩa cụ thể về công việc nó đang làm.
+* `PlayerState` - Danh từ mơ hồ.
+* `Color` - Động từ thiếu ngữ cảnh hay là danh từ mơ hồ.
 
 <a name="3.3.1.2"></a>
 <a name="bp-funcs-naming-onrep"></a>
-#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
-
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
+#### 3.3.1.2 Hàm Property RepNotify luôn đặt là `OnRep_Variable`. Đây là quy tắc bắt buộc bởi trình biên tập Blueprint. Nếu chúng ta viết hàm `OnRep` trong C++, nó cũng nên tuân theo quy tắc này khi exposing nó cho Blueprints.
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions
+#### 3.3.1.3 Hàm thông tin trả về giá trị Boolean nên là câu hỏi ?
 
-When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
+Khi tạo một hàm không làm thay đổi trạng thái hoặc thay đổi đối tượng mà chỉ đơn thuần là lấy thông tin, trạng thái, hoặc tính toán giá trị đúng/sai, nó nên hỏi câu hỏi. Điều này cũng nên tuân theo quy tắc động từ [the verb rule](#bp-funcs-naming-verbs).
 
-This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that action succeeded.
+Đây là một điều cực kỳ quan trọng bởi nếu không phải là câu hỏi thì sẽ được ngầm hiểu là hàm này thực hiện một số hành động, tác vụ và giá trị trả về là kết quả thành công của chuỗi hành động đó.
 
-Good examples:
+Một số ví dụ tốt:
 
 * `IsDead`
 * `IsOnFire`
@@ -1083,30 +1080,30 @@ Good examples:
 * `IsSpeaking`
 * `IsHavingAnExistentialCrisis`
 * `IsVisible`
-* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
-* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `HasWeapon` - ["Has" là một động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" là thời quá khứ của "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Sử dụng "was" khi có ý là 'previous frame' hoặc 'previous state'.
+* `CanReload` - ["Can" là động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-Bad examples:
+Ví dụ tệ:
 
-* `Fire` - Is on fire? Will fire? Do fire?
-* `OnFire` - Can be confused with event dispatcher for firing.
-* `Dead` - Is dead? Will deaden?
-* `Visibility` - Is visible? Set visibility? A description of flying conditions?
+* `Fire` - Đang cháy? Sẽ cháy? Bắn?
+* `OnFire` - Có thể bị nhẫm lẫn với phát sự kiện cho việc bắn.
+* `Dead` - Chết chưa? sẽ chết?
+* `Visibility` - Có nhìn thấy? Thiết lập nhìn thấy? Một điều kiện?
 
 <a name="3.3.1.4"></a>
 <a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
+#### 3.3.1.4 Xử lý sự kiện và Phát sự kiện nên bắt đầu với `On`
 
-Any function that handles an event or dispatches an event should start with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+Bất kỳ hàm nào xử lý sự kiện hoặc phát sự kiện phải bắt đầu với `On` và tuân thủ theo quy tắc động từ [the verb rule](#bp-funcs-naming-verbs). Động từ có thể chuyển xuống cuối và dùng thời quá khứ nếu dễ hiểu hơn.
 
-[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+Từ `On` trong [Cụm từ](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) được miễn theo quy tắc động từ.
 
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+`Handle` Không được phép sử dụng. Trong 'Unreal' sử dụng `On` thay vì `Handle`, trong khi các frameworks khác sẽ dùng `Handle` thay vì `On`.
 
-Good examples:
+Ví dụ tốt:
 
-* `OnDeath` - Common collocation in games
+* `OnDeath` - Cụm từ phổ biến trong game dev
 * `OnPickup`
 * `OnReceiveMessage`
 * `OnMessageRecieved`
@@ -1114,7 +1111,7 @@ Good examples:
 * `OnClick`
 * `OnLeave`
 
-Bad examples:
+Ví dụ tệ:
 
 * `OnData`
 * `OnTarget`
@@ -1123,31 +1120,32 @@ Bad examples:
 
 <a name="3.3.1.5"></a>
 <a name="bp-funcs-naming-rpcs"></a>
-#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
+#### 3.3.1.5 Các thủ tục gọi từ xa cần đi kèm với tiền tố là mục tiêu / Remote Procedure Calls (RPC) Should Be Prefixed With Target
+RPC: Các hàm được gọi local nhưng thực thi trên máy khác (riêng biệt với máy gọi hàm)
 
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+Bất cứ khi nào một hàm RPC được tạo, nó phải được đi kèm với tiền tố `Server`, `Client`, hoặc `Multicast`. Không có ngoại lệ.
 
-After the prefix, follow all other rules regarding function naming.
+Sau các tiền tố, tuân theo các luật khác trong việc đặt tên.
 
-Good examples:
+Ví dụ:
 
 * `ServerFireWeapon`
 * `ClientNotifyDeath`
 * `MulticastSpawnTracerEffect`
 
-Bad examples:
+Ví dụ tệ:
 
-* `FireWeapon` - Does not indicate its an RPC of some kind.
-* `ServerClientBroadcast` - Confusing.
-* `AllNotifyDeath` - Use `Multicast`, never `All`.
-* `ClientWeapon` - No verb, ambiguous.
+* `FireWeapon` - Không cho biết nó là một hàm RPC.
+* `ServerClientBroadcast` - Nhầm lẫn.
+* `AllNotifyDeath` - Sử dụng `Multicast`, Đừng bao giờ dùng `All`.
+* `ClientWeapon` - Không động từ, không hiểu làm gì, mơ hồ.
 
 
 <a name="3.3.2"></a>
 <a name="bp-funcs-return"></a>
-#### 3.3.2 All Functions Must Have Return Nodes
+#### 3.3.2 Tất cả các hàm phải có node return
 
-All functions must have return nodes, no exceptions.
+Tất cả các hàm phải có node return, không ngoại lệ.
 
 Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
 
