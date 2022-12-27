@@ -947,22 +947,21 @@ Tất cả biến `Editable` nên sử dụng slider và khoảng giá trị n�
 Ví dụ: Một blueprint tạo cọc hàng rào có biến tên là `PostsCount` thì những giá trị < 0 sẽ trở nên vô nghĩa. Sử dụng khoảng giá trị để thiết lập 0 là giá trị nhỏ nhất.
 
 Nếu một biến tuỳ chỉnh được sử dụng trong phần Construction Script, cần phải có Slider Range để không vô tình gán những giá trị quá lớn hoặc quá nhỏ có thể làm crash chương trình.
-Khoảng giá trị chỉ cần thiết nếu được xác định. Trong khi Slider Range ngăn ngừa nguy cơ gán những giá trị quá lớn
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+Khoảng giá trị chỉ cần thiết nếu được xác định. Trong khi Slider Range ngăn ngừa nguy cơ gán những giá trị quá lớn hoặc quá nhỏ. Khoảng giá không xác định cho phép gán những giá trị nằm ngoài Slider Range được coi là "nguy hiểm" tuy nhiên vẫn là giá trị đúng.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories
+#### 3.2.3 Categories - Danh mục
 
-If a class has only a small number of variables, categories are not required.
+Nếu một lớp chỉ có một số lượng nhỏ các biến thì danh mục không cần thiết.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+Nếu một lớp có từ (5-10) tuỳ biến, tất cả `Editable` biến nên có danh mục không thuộc default. Một cái tên phổ biến có thể là `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
+Những biến không tuỳ chỉnh được nên ở trong danh mục được chú giải rõ ràng về cách thức sử dụng chúng.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> Chúng ta có thể định dạng danh mục con bằng cách sử dụng ký tự `|`, Ví dụ: `Config | Animations`.
 
-Example: A weapon class set of variables might be organized as:
+Ví dụ:  Một lớp vũ khí có thể được tổ chức như sau:
 
     |-- Config
     |    |-- Animations
@@ -976,40 +975,41 @@ Example: A weapon class set of variables might be organized as:
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level
+#### 3.2.4 Độ sâu truy cập biến
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+Trong C++, các biến đều có khái niệm về độ sâu truy cập. Public có nghĩa là các đoạn code ở ngoài class cũng có thể truy cập. Protected có nghĩa là chỉ trong class và class con có thể truy cập. Private nghĩa là chỉ trong class mới được truy cập, class con cũng không thể truy cập.
 
-Blueprints do not have a defined concept of protected access currently.
+Blueprints hiện tại không có khái niệm biến Protected.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Coi như `Editable` biến là biến public. Biến non-editable là biến protected.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables
+##### 3.2.4.1 Biến Private
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+Chỉ dùng nếu biết rằng biến này chỉ nên được dùng trong class hiện tại
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display
+#### 3.2.5 Hiển thị nâng cao
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+Nếu một biến có thể tuỳ biến nhưng thường không nên động vào thì nên đánh dấu là `Advanced Display` để ẩn biến này đi trừ khi advanced display được tick sổ ra.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+Để tìm `Advanced Display` nó nằm trong detail panel.
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables
+#### 3.2.6 Các biến tạm thời (Transient)
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Các biến tạm thời là các biến không cần lưu các giá trị, không cần nạp, cần có giá trị khởi tạo là zero hoặc null. Đây là một cách thức hữu ích cho việc tham chiếu tới các đối tượng và actors mà giá trị của nó là không biết được cho tới khi hoạt động (run-time). Điều này ngăn ngừa trình biên tập (editor) lưu trữ một phiên bản tham chiếu tới nó, tăng tốc sự lưu trữ và nạp của blueprin class.
 
-Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
+Bởi vì vậy, tất cả các biến tạm thời nên luôn được khởi tạo là zero hoặc null. Không thì sẽ dẫn đến khó khăn trong quá trình debug lỗi.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables
+#### 3.2.8 Biến thiết lập (Config Variables)
 
+Đừng dùng flag `Config Variable`. Điều này sẽ làm cho designers 
 Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
 
 <a name="3.3"></a>
