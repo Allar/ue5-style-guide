@@ -1147,11 +1147,11 @@ Ví dụ tệ:
 
 Tất cả các hàm phải có node return, không ngoại lệ.
 
-Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+Return nodes thể hiện rõ ràng nó là điểm cuối cùng của chuỗi hành động. Trong Blueprint có thể sử dụng các node như `Sequence`, `ForLoopWithBreak`, dây nối ngược nodes, minh bạch về dòng thực thi của các chuỗi lệnh là điều quan trọng cho sự dễ hiểu, bảo trì, gỡ lỗi.
 
-The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+Trình biên dịch Blueprint có khả năng đi theo dòng thực thi lệnh và cảnh bảo nếu có một nhánh lệnh có những thứ chưa xử lý hoặc lỗi nếu chúng ta sử dụng node return.
 
-In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+Trong trường hợp một lập trình viên thêm một pin vào node Sequence hoặc thêm logic vào sau vòng lặp, nhưng vòng lặp lại trả về sớm hơn. Kết quả này có thể gây ra một lỗi trong dòng thực thi sau này. Cảnh bảo từ trình biên dịch Blueprint có thể cho thấy vấn đề ngay tức khắc.
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
