@@ -1340,7 +1340,7 @@ Level không được có hiện tượng trùng mặt ở những nơi mà play
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
-### 6.4 Quy tắc của Marketplace
+### 6.4 Quy chuẩn của Marketplace
 
 Nếu dự án của chúng ta được bán trên Marketplace, nó cần tuân thủ quy tắc của Marketplace.
 
