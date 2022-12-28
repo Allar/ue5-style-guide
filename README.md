@@ -1409,11 +1409,11 @@ Mỗi texture phải có thuộc tính Texture Group cho LOD và phải được
 * [billymcguffin](https://github.com/billymcguffin)
 * [akenatsu](https://github.com/akenatsu)
 
-## License
+## Bản quyền
 
 Bản quyền (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+Xm [Bản quyền](/LICENSE)
 
 **[⬆ Trở lên trên](#Mục lục)**
 
