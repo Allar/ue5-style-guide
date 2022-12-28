@@ -1,18 +1,16 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# [Gamemakin](https://gamemak.in) Quy chuẩn dự án Unreal Engine 4-5() {
 
-*A mostly reasonable approach to Unreal Engine 4*
-
-Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
+Cảm hứng lớn từ [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#)
 
-## Repo Notice
+## Lưu ý về Repo
 
-This repo is now located at https://github.com/Allar/ue5-style-guide. The default branch of this repository has been renamed `main`.
+Repo này hiện được lưu trữ ở https://github.com/Allar/ue5-style-guide. Tên branch mặc định của Repo này đã được đổi tên là `main`.
 
 
 
-## Table of contents
+## Mục lục
 - [Các thuật ngữ quan trọng](#important-terminology)
   - [Levels/Maps - Bản đồ](#terms-level-map)
   - [Identifiers - Định danh / Tên gọi](#terms-identifiers)
@@ -1315,7 +1313,7 @@ Như đã nhắc đến trong [00.1 Định danh bị cấm](#00), tất cả kh
 <a name="levels"></a>
 ## 6. Levels / Maps
 
-[Xem chú giải](#terms-level-map) "levels" và "maps".
+[Xem thuật ngữ](#terms-level-map) "levels" và "maps".
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
