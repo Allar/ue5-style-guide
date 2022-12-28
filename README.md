@@ -1416,7 +1416,7 @@ Xm [Bản quyền](/LICENSE)
 **[⬆ Trở lên trên](#Mục lục)**
 
 
-## Sửa đổi bổ xung
+## Sửa đổi bổ sung
 
 Khuyến khích sử dụng và chỉnh sửa cho phù hợp team của mình. Dưới đây, chúng ta có thể liệt kê một số sửa đổi đối với quy chuẩn. Điều này cho phép chúng ta cập nhật định kỳ quy chuẩn mà không bị xung đột với quy chuẩn gốc.
 
