@@ -87,7 +87,7 @@ This repo is now located at https://github.com/Allar/ue5-style-guide. The defaul
       - [3.2.2.1 Tooltips](#bp-vars-editable-tooltips)
       - [3.2.2.2 Slider và khoảng giá trị](#bp-vars-editable-ranges)
     - [3.2.3 Danh mục](#bp-vars-categories)
-    - [3.2.4 Độ sâu truy cập của biến](#bp-vars-access)
+    - [3.2.4 phạm vi truy cập của biến](#bp-vars-access)
       - [3.2.4.1 Biến riêng tư](#bp-vars-access-private)
     - [3.2.5 Hiển thị nâng cao ](#bp-vars-advanced)
     - [3.2.6 Biến tạm thời(Transient)](#bp-vars-transient)
@@ -975,9 +975,9 @@ Ví dụ:  Một lớp vũ khí có thể được tổ chức như sau:
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Độ sâu truy cập biến
+#### 3.2.4 phạm vi truy cập biến
 
-Trong C++, các biến đều có khái niệm về độ sâu truy cập. Public có nghĩa là các đoạn code ở ngoài class cũng có thể truy cập. Protected có nghĩa là chỉ trong class và class con có thể truy cập. Private nghĩa là chỉ trong class mới được truy cập, class con cũng không thể truy cập.
+Trong C++, các biến đều có khái niệm về phạm vi truy cập. Public có nghĩa là các đoạn code ở ngoài class cũng có thể truy cập. Protected có nghĩa là chỉ trong class và class con có thể truy cập. Private nghĩa là chỉ trong class mới được truy cập, class con cũng không thể truy cập.
 
 Blueprints hiện tại không có khái niệm biến Protected.
 
@@ -1147,7 +1147,7 @@ Ví dụ tệ:
 
 Tất cả các hàm phải có node return, không ngoại lệ.
 
-Return nodes thể hiện rõ ràng nó là điểm cuối cùng của chuỗi hành động. Trong Blueprint có thể sử dụng các node như `Sequence`, `ForLoopWithBreak`, dây nối ngược nodes, minh bạch về dòng thực thi của các chuỗi lệnh là điều quan trọng cho sự dễ hiểu, bảo trì, gỡ lỗi.
+Return nodes thể hiện rõ ràng nó là điểm cuối cùng của chuỗi lệnh. Trong Blueprint có thể sử dụng các node như `Sequence`, `ForLoopWithBreak`, dây nối ngược nodes, minh bạch về dòng thực thi của các chuỗi lệnh là điều quan trọng cho sự dễ hiểu, bảo trì, gỡ lỗi.
 
 Trình biên dịch Blueprint có khả năng đi theo dòng thực thi lệnh và cảnh bảo nếu có một nhánh lệnh có những thứ chưa xử lý hoặc lỗi nếu chúng ta sử dụng node return.
 
@@ -1155,11 +1155,11 @@ Trong trường hợp một lập trình viên thêm một pin vào node Sequenc
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
-#### 3.3.3 No Function Should Have More Than 50 Nodes
+#### 3.3.3 Không hàm nào nên có hơn 50 Nodes
 
-Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+Đơn giản, nếu có hàm nào nhiều node hơn như vậy thì nên phá vỡ ra thành những hàm nhỏ hơn để đảm bảo tính dễ đọc và dễ bảo trì.
 
-The following nodes are not counted as they are deemed to not increase function complexity:
+Những node sau không tính vào con số 50 vì nó không làm tăng sự phức tạp của hàm:
 
 * Comment
 * Route
@@ -1171,30 +1171,30 @@ The following nodes are not counted as they are deemed to not increase function 
 
 <a name="3.3.4"></a>
 <a name="bp-graphs-funcs-description"></a>
-#### 3.3.4 All Public Functions Should Have A Description
+#### 3.3.4 Tất cả hàm công khai phải có mô tả
 
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
-
-Simply, any function that has an access specificer of Public should have its description filled out.
+Quy tắc này cũng áp dụng nhiều đối với marketplace blueprints để cho người khác dễ sử dụng và hiểu về blueprint API của chúng ta. Không nên lãng phí thời gian của đồng nghiệp cho việc họ phải mất thời gian dò xem công dụng và cách dùng của Blueprint này là gì cũng như lãng phí thời gian phải giải thích cho người khác mỗi khi có người khác sử dụng
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
-#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name
+#### 3.3.5  Tất cả các hàm Plugin phải được cho vào danh mục của tên Plugin
 
-If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+Nếu dự án của chúng ta bao gồm một plugin định nghĩa hàm `static` `BlueprintCallable`
+, chúng phải được cho vào danh mục tên plugin hoặc danh mục con của plugin.
 
-For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+Ví dụ, `Zed Camera Interface` hoặc `Zed Camera Interface | Image Capturing`.
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
 ### 3.4 Blueprint Graphs
 
-This section covers things that apply to all Blueprint graphs.
+Phần này nói về những quy tắc áp dụng tới tất cả Blueprint graphps.
 
 <a name="3.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
-#### 3.4.1 No Spaghetti
+#### 3.4.1 Không rối như mớ bòng bong.
 
+Những đường nối phải rõ ràng điểm bắt đầu và kết thúc. 
 Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
 
 <a name="3.4.2"></a>
