@@ -1194,33 +1194,33 @@ Phần này nói về những quy tắc áp dụng tới tất cả Blueprint gr
 <a name="bp-graphs-spaghetti"></a>
 #### 3.4.1 Không rối như mớ bòng bong.
 
-Những đường nối phải rõ ràng điểm bắt đầu và kết thúc. 
-Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
+Những đường nối phải rõ ràng điểm bắt đầu và kết thúc. Đừng nên mất thời gian để người khác phải sắp xếp lại các node, đường dây mới có thể hiểu chuyện gì đang xảy ra, tốn thời gian của nhau.
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
-#### 3.4.2 Align Wires Not Nodes
+#### 3.4.2 Căn dóng theo đường dây không phải node
 
-Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straighten Connections command with BP nodes selected. Hotkey: Q
+Chúng ta không thể luôn tuỳ chỉnh kích thước của node, pin nhưng luôn có thể căn chỉnh vị trí của nó qua đó điều chỉnh vị trí của dây nối. Đường dây thẳng rõ ràng dòng chảy của mạch sự kiện. Sử dụng lệnh làm thẳng (chọn BP nodes). Hotkey: Q
 
-Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
+Trường hợp tốt: Những node được căn dóng để tạo đường thẳng cho dòng thực thi.
 ![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
 
-Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
+Trường hợp xấu: Dòng thực thi không thẳng vì căn dóng theo node.
 ![Bad](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
 
-Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
+Trường hợp chấp nhận được: Có một vài node cứng đầu không chịu hợp tác dù chúng ta cố gắng căn dóng như thế nào đi nữa. Trong trường hợp này hạn chế tối đa đường lắt léo bằng cách đưa các node lại gần nhau.
 ![Acceptable](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
 
 <a name="3.4.3"></a>
 <a name="bp-graphs-exec-first-class"></a>
-#### 3.4.3 White Exec Lines Are Top Priority
+#### 3.4.3 Các đường thực thi (màu trắng) là ưu tiên cao nhất.
 
-If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+Nếu chúng ta phải quyết định giữa việc làm thẳng đường thực thi hay làm thẳng đường dữ liệu thì luôn chọn làm thẳng đường thực thi.
 
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
-#### 3.4.4 Graphs Should Be Reasonably Commented
+#### 3.4.4 Graphs phải được comment có ý thức, hiệu quả
+
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
 
