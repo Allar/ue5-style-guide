@@ -515,7 +515,7 @@ Thực hành đóng gói nhiều lớp texture vào một texture là một vi�
 | Particle System         | PS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 <a name="2"></a>
 <a name="structure"></a>
@@ -758,7 +758,7 @@ Nếu có thư mục trống không xoá được:
 1. Đảm bảo thư mục đã bị loại.
 1. Xác nhận thay đổi đến source control.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="3"></a>
@@ -1237,7 +1237,7 @@ Nếu một hàm hoặc sự kiện được coi như luôn cast thành công th
 
 Tất cả các nodes trong blueprin phải có mục đích của nó. Không nên để những node trống, treo, không có trong dòng thực thi.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="4"></a>
@@ -1290,7 +1290,7 @@ Dù cho có thể không dùng đến Collision cho tính toán va chạm nhưng
 
 Nếu có sử dụng đến scale thì việc scale đấy phải là việc bắt buộc có chủ đích chứ không phải là scale sửa lỗi kích thước ko đúng.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="5"></a>
@@ -1298,19 +1298,16 @@ Nếu có sử dụng đến scale thì việc scale đấy phải là việc b�
 <a name="ng"></a>
 ## 5. Niagara
 
-Phần này nói về Niagara và các thứ liên quan.
-
 <a name="5.1"></a>
 <a name="ng-rules"></a>
 ### 5.1 Không bao giờ dùng dấu cách, khoảng trắng.
 
-Như
-As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space characters are forbidden in identifiers. This is especially true for Niagara systems as it makes working with things significantly harder if not impossible when working with HLSL or other means of scripting within Niagara and trying to reference an identifier.
+Như đã nhắc đến trong [00.1 Định danh bị cấm](#00), tất cả khoảng trắng và dấu cách là bị cấm. Điều này đặc biệt phải tuân thủ khi làm việc với Niagara khi mà một số script hoặc HLSL trong Niagara sẽ rất khó hay gần như không tham chiếu được tới các định danh có dấu cách, khoảng trắng.
 
 (Original Contribution by [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
 
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="6"></a>
@@ -1318,96 +1315,91 @@ As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space ch
 <a name="levels"></a>
 ## 6. Levels / Maps
 
-[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
-
-This section will focus on Level assets and their internals.
+[Xem chú giải](#terms-level-map) "levels" và "maps".
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
-### 6.1 No Errors Or Warnings
+### 6.1 Không lỗi hoặc cảnh báo
 
-All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+Sử dụng map check để kiểm tra và xử lý tất cả các lỗi, cảnh báo, tránh để các lỗi chồng chất lên nhau
 
-You can run a map check on an open level in the editor by using the console command "map check".
-
-Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+Ghi chú: Linter thậm chí còn khắt khe hơn trong việc kiểm tra lỗi và bắt cả những lỗi khi load level mà trình biên tập sẽ bỏ qua. (Hiện tại chưa có Linter cho UE5)
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
-### 6.2 Lighting Should Be Built
+### 6.2 Ánh sáng phải Built
 
-It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+Trong quá trình phát triển có thể không built nhưng nếu thửu nghiệm test/internal/shipping thì phải build ánh sáng.
 
 <a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
-### 6.3 No Player Visible Z Fighting
+### 6.3 Không Z Fighting (trùng mặt)
 
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
+Level không được có hiện tượng trùng mặt ở những nơi mà player có thể tiếp cận và có tầm nhìn
+[z-fighting](https://en.wikipedia.org/wiki/Z-fighting)
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules
+### 6.4 Quy tắc của Marketplace
 
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+Nếu dự án của chúng ta được bán trên Marketplace, nó cần tuân thủ quy tắc của Marketplace.
 
 <a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
-#### 6.4.1 Overview Level
+#### 6.4.1 Level Tổng quan
 
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+Nếu dự án có chứa các asset cần minh hoạ hoặc demo cần phải có map tên là "Overview".
 
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+Bản đồ này nếu để minh hoạ asset thì phải setup tuân thủ [Quy chuẩn của Epic](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
 
-For example, `InteractionComponent_Overview`.
+Ví dụ, `InteractionComponent_Overview`.
 
 <a name="6.4.2"></a>
 <a name="levels-mp-rules-demo"></a>
 #### 6.4.2 Demo Level
 
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+Nếu dự án của chúng ta có những asset cần demo thì phải có map tên là "Demo". Map này phải có dạng tài liệu giới thiệu hướng dẫn sử dụng trọng điểm trong đó. Xem ví dụ của Epic
 
-If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+Nếu dự án là một cơ chế chơi game hoặc dạng hệ thống chứ không phải là tập hợp các art asset có thể đặt tên ví dụ như: 
 
-For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+Ví dụ, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="7"></a>
 <a name="textures"></a>
 ## 7. Textures
 
-This section will focus on Texture assets and their internals.
-
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
-### 7.1 Dimensions Are Powers of 2
+### 7.1 Độ phân giải phải là luỹ thừa của 2
 
-All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+Có thể không phải là hình vuông nhưng các cạnh phải là luỹ thừa của 2.
 
-For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+Ví dụ: `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
 <a name="7.2"></a>
 <a name="textures-density"></a>
-### 7.2 Texture Density Should Be Uniform
+### 7.2 Mật độ texture phải đồng nhất.
 
-All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+Tất cả texture phải có kích thước phù hợp với mục đích sử dụng. Mỗi một dự án lại có một mật độ phù hợp khác nhau, nhưng các texture trong cùng dự án phải có mật độ đồng nhất.
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+Ví dụ, nếu một dự án yêu cầu mật độ là 8 pixel/unit thì cho hình hộp 100x100 unit cần texture độ phân giải là 1024x1024, vì đó là con số gần nhất mà vẫn thoả mãn điều kiện luỹ thừa của 2 và mật độ yêu cầu của dự án
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
-### 7.3 Textures Should Be No Bigger than 8192
+### 7.3 Textures không lớn hơn 8192
 
-No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+Lãng phí tài nguyên hệ thống, trừ khi có lý do rõ ràng bắt buộc phải dùng.
 
 <a name="7.4"></a>
 <a name="textures-group"></a>
-### 7.4 Textures Should Be Grouped Correctly
+### 7.4 Textures phải nhóm đúng
 
-Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
+Mỗi texture phải có thuộc tính Texture Group cho LOD và phải được thiết lập đúng dựa trên cách sử dụng. Ví dụ, tất cả UI texture phải thuộc nhóm UI Texture Group.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 ## Major Contributors
@@ -1423,11 +1415,11 @@ Copyright (c) 2016 Gamemakin LLC
 
 See [LICENSE](/LICENSE)
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 ## Amendments
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+Khuyến khích sử dụng và chỉnh sửa cho phù hợp team của mình. Dưới đây, chúng ta có thể liệt kê một số sửa đổi đối với quy chuẩn. Điều này cho phép chúng ta cập nhật định kỳ quy chuẩn mà không bị xung đột với quy chuẩn gốc.
 
 # };
