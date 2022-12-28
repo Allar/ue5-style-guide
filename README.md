@@ -1402,7 +1402,7 @@ Mỗi texture phải có thuộc tính Texture Group cho LOD và phải được
 **[⬆ Trở lên trên](#Mục lục)**
 
 
-## Major Contributors
+## Những người đóng góp chính
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
 * [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
@@ -1411,14 +1411,14 @@ Mỗi texture phải có thuộc tính Texture Group cho LOD và phải được
 
 ## License
 
-Copyright (c) 2016 Gamemakin LLC
+Bản quyền (c) 2016 Gamemakin LLC
 
 See [LICENSE](/LICENSE)
 
 **[⬆ Trở lên trên](#Mục lục)**
 
 
-## Amendments
+## Sửa đổi bổ xung
 
 Khuyến khích sử dụng và chỉnh sửa cho phù hợp team của mình. Dưới đây, chúng ta có thể liệt kê một số sửa đổi đối với quy chuẩn. Điều này cho phép chúng ta cập nhật định kỳ quy chuẩn mà không bị xung đột với quy chuẩn gốc.
 
