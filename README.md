@@ -322,7 +322,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Static Mesh             | S_         |            | Nhiều nơi dùng SM_. Chúng ta dùng S_.         |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | Xem [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
+| Niagara Particle System         | NS_        |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-animations"></a>
@@ -510,7 +510,7 @@ Thực hành đóng gói nhiều lớp texture vào một texture là một vi�
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Particle System         | PS_        |            |                                  |
+| Niagara Particle System         | NS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
 
 **[⬆ Trở lên trên](#Mục lục)**
@@ -763,7 +763,7 @@ Nếu có thư mục trống không xoá được:
 <a name="bp"></a>
 ## 3. Blueprints
 
-Phân này tập chung vào các lớp Blueprint. Bất cứ khi nào có thể, nên sử dụng theo tiêu chuẩn của[Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+Phân này tập chung vào các lớp Blueprint. Bất cứ khi nào có thể, nên sử dụng theo tiêu chuẩn của [Quy chuẩn Coding của Epic](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
 
