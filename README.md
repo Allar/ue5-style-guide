@@ -1221,22 +1221,21 @@ Nếu chúng ta phải quyết định giữa việc làm thẳng đường th�
 <a name="bp-graphs-block-comments"></a>
 #### 3.4.4 Graphs phải được comment có ý thức, hiệu quả
 
-
-Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+Khối các node phải được bao bởi comment mô tả hành vi của nó. Trong khi mỗi hàm phải được đặt tên sao cho mỗi node đều dễ hiểu, nhóm các node phục vụ một mục đích thì phải có block comment cho mục đích đó. Nếu tên hàm đã đủ cho mục đích đó thì không cần comment
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-cast-error-handling"></a>
-#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
+#### 3.4.5 Graphs phải xử lý ngoại lệ Casting hợp lý
 
-If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that the reference being casted could ever fail to be casted.
+Nếu một hàm hoặc sự kiện được coi như luôn cast thành công thì phải có cảnh báo khi cast fail để có thể biết sự cố xuất hiện ở đâu
 
-This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+Điều này không có nghĩa là tất cả các cast node luôn phải có xử lý fail. Trong nhiều trường hợp ví dụ như collisions thì cast fail không cần phải xử lý ngoại lệ mà chỉ cần cho dòng thực thi ngừng lại.
 
 <a name="3.4.6"></a>
 <a name="bp-graphs-dangling-nodes"></a>
-#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+#### 3.4.6 Graphs không nên có node treo, node không sử dụng.
 
-All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
+Tất cả các nodes trong blueprin phải có mục đích của nó. Không nên để những node trống, treo, không có trong dòng thực thi.
 
 **[⬆ Back to Top](#table-of-contents)**
 
