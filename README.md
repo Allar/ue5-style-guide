@@ -1,311 +1,285 @@
-# [Gamemakin](https://gamemak.in) UE4 Style Guide() {
+# [Gamemakin](https://gamemak.in) Quy chuẩn dự án Unreal Engine 4-5() {
 
-*A mostly reasonable approach to Unreal Engine 4*
-
-Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
+Cảm hứng lớn từ [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
 [![Analytics](https://ga-beacon.appspot.com/UA-80567399-1/repo?useReferrer)](#)
 
-## Repo Notice
+## Lưu ý về Repo
 
-This repo is now located at https://github.com/Allar/ue5-style-guide. The default branch of this repository has been renamed `main`.
+Repo này hiện được lưu trữ ở https://github.com/Allar/ue5-style-guide. Tên branch mặc định của Repo này đã được đổi tên là `main`.
 
-## This is currently for UE4. For UE5/v2, see the v2 branch
-## Linter and Style Guide Documentation
 
-More technical documentation regarding Linter and the Style Guide can be found at our [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) page.
 
-## Discuss This Style Guide
-
-Gamemakin LLC has a public Discord channel at http://discord.gamemak.in with a #linter channel if you'd like to discuss all things style guide and Linter plugin.
-
-## Linking To This Document
-
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
-
-## Forks And Translations
-
-If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
-
-* [Korean Translation](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
-* [Russian Translation](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
-* [Japanese Translation](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [Chinese Translation](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
-* [Brazilian Portuguese Translation](https://github.com/danlvr/ue5-style-guide/blob/main/README_PTBR.md) by danlvr.
-* [French Translation](https://github.com/Arnaud58/ue5-style-guide/blob/main/README.md) by Arnaud58
-
-## Table of contents
-- [Important Terminology](#important-terminology)
-  - [Levels/Maps](#terms-level-map)
-  - [Identifiers](#terms-identifiers)
-  - [Cases](#terms-cases)
-  - [Variables / Properties](#terms-var-prop)
-    - [Property](#terms-property)
-    - [Variable](#terms-variable)
-- [0. Principles](#0)
-  - [0.1 If your UE4 project already has a style guide, you should follow it](#0.1)
-  - [0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed](#0.2)
-  - [0.3 Friends do not let friends have bad style](#0.3)
-  - [0.4 A team without a style guide is no team of mine](#0.4)
-  - [0.5 Don't Break The Law](#0.5)
-- [00. Globally Enforced Opinions](#00)
-  - [00.1 Forbidden Characters](#00.1)
-    - [Identifiers](#identifiers)
-- [1. Asset Naming Conventions](#anc)
-  - [1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`](#base-asset-name)
-    - [1.1 Examples](#1.1-examples)
-  - [1.2 Asset Name Modifiers](#asset-name-modifiers)
-    - [1.2.1 Most Common](#anc-common)
+## Mục lục
+- [Các thuật ngữ quan trọng](#important-terminology)
+  - [Levels/Maps - Bản đồ](#terms-level-map)
+  - [Identifiers - Định danh / Tên gọi](#terms-identifiers)
+  - [Cases - Quy chuẩn chữ cái](#terms-cases)
+  - [Variables / Properties - Biến / Thuộc tính](#terms-var-prop)
+    - [Property - Thuộc tính](#terms-property)
+    - [Variable - Biến](#terms-variable)
+- [0. Principles - Nguyên tắc cơ bản](#0)
+  - [0.1 Nếu project đã có quy chuẩn thì bám theo quy chuẩn của project](#0.1)
+  - [0.2 Tất cả cấu trúc, assets và mã nguồn trong một dự án UE phải thống nhất một theo một thể không cần biết có bao nhiêu người cùng tham gia dự án](#0.2)
+  - [0.3 Nhắc nhở phạm quy và cùng khắc phục](#0.3)
+  - [0.4 Một team mà không có guide line thì không phải là một team](#0.4)
+  - [0.5 Đừng phá luật](#0.5)
+- [00. Yêu cầu chung](#00)
+  - [00.1 Những ký tự bị cấm](#00.1)
+    - [Identifiers - Định danh](#identifiers)
+- [1. Quy tắc đặt tên cho Asset](#anc)
+  - [1.1 Tên Asset - `Prefix_BaseAssetName_Variant_Suffix` - `TiềnTố_TênCơSở_BiếnThể_HậuTố`](#base-asset-name)
+    - [1.1 Ví dụ](#1.1-examples)
+  - [1.2 Phần bổ nghĩa cho tên Asset](#asset-name-modifiers)
+    - [1.2.1 Phổ biến nhất](#anc-common)
     - [1.2.2 Animations](#anc-animations)
   - [1.2.3 Artificial Intelligence](#anc-ai)
   - [1.2.4 Blueprints](#anc-bp)
   - [1.2.5 Materials](#anc-materials)
   - [1.2.6 Textures](#anc-textures)
     - [1.2.6.1 Texture Packing](#anc-textures-packing)
-  - [1.2.7 Miscellaneous](#anc-misc)
+  - [1.2.7 Miscellaneous - Khác](#anc-misc)
   - [1.2.8 Paper 2D](#anc-paper2d)
   - [1.2.9 Physics](#anc-physics)
   - [1.2.10 Sounds](#anc-sounds)
   - [1.2.11 User Interface](#anc-ui)
   - [1.2.12 Effects](#anc-effects)
-- [2. Content Directory Structure](#structure)
-  - [2e1 Example Project Content Structure](#2e1)
-  - [2.1 Folder Names](#structure-folder-names)
-    - [2.1.1 Always Use PascalCase](#2.1.1)
-    - [2.1.2 Never Use Spaces](#2.1.2)
-    - [2.1.3 Never Use Unicode Characters And Other Symbols](#2.1.3)
-  - [2.2 Use A Top Level Folder For Project Specific Assets](#structure-top-level)
-    - [2.2.1 No Global Assets](#2.2.1)
-    - [2.2.2 Reduce Migration Conflicts](#2.2.2)
-      - [2.2.2e1 Master Material Example](#2.2.2e1)
-    - [2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#2.2.3)
-    - [2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#2.2.4)
-  - [2.3 Use Developers Folder For Local Testing](#structure-developers)
-  - [2.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps)
-  - [2.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core)
-  - [2.6 Do Not Create Folders Called `Assets` or `AssetTypes`](#structure-assettypes)
-    - [2.6.1 Creating a folder named `Assets` is redundant](#2.6.1)
-    - [2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant](#2.6.2)
-  - [2.7 Very Large Asset Sets Get Their Own Folder Layout](#structure-large-sets)
+- [2. Cấu trúc thư mục](#structure)
+  - [2e1 Ví dụ về cấu trúc thư mục](#2e1)
+  - [2.1 Tên thư mục](#structure-folder-names)
+    - [2.1.1 Luôn dùng PascalCase](#2.1.1)
+    - [2.1.2 Không bao giờ dùng dấu cách](#2.1.2)
+    - [2.1.3 Không dùng các ký tự Unicode, vd: chữ có dấu](#2.1.3)
+  - [2.2 Sử dụng thư mục cấp cao nhất cho dự án](#structure-top-level)
+    - [2.2.1 Không dùng Assets toàn cục / No Global Assets](#2.2.1)
+    - [2.2.2 Giảm rủi ro xung đột Migration](#2.2.2)
+      - [2.2.2e1 Ví dụ vật liệu chủ / Master Material Example](#2.2.2e1)
+    - [2.2.3 Samples, Templates, và nội dung Marketplace Content Are Risk-Free](#2.2.3)
+    - [2.2.4 DLC, Sub-Projects, and Patches dễ duy trì](#2.2.4)
+  - [2.3 Sử dụng thư mục developer cho thử nghiệm](#structure-developers)
+  - [2.4 Tất cả file map<sup>*</sup> đều phải để trong thư mục Maps](#structure-maps)
+  - [2.5 Sử dụng thư mục `Core` cho những Blueprint và Assets cốt lõi](#structure-core)
+  - [2.6 Không tạo thư mục tên `Assets` hoặc `AssetTypes`](#structure-assettypes)
+    - [2.6.1 Tạo thư mục `Assets` là dư thừa](#2.6.1)
+    - [2.6.2 Tạo thư mục tên `Meshes`, `Textures`, hoặc `Materials` là dư thừa](#2.6.2)
+  - [2.7 Asset đồ sộ cần layout thư mục riêng của nó](#structure-large-sets)
   - [2.8 `MaterialLibrary`](#structure-material-library)
-  - [2.9 No Empty Folders](#structure-no-empty-folders)
+  - [2.9 Không thư mục trống](#structure-no-empty-folders)
 - [3. Blueprints](#bp)
-  - [3.1 Compiling](#bp-compiling)
-  - [3.2 Variables](#bp-vars)
-    - [3.2.1 Naming](#bp-var-naming)
-      - [3.2.1.1 Nouns](#bp-var-naming-nouns)
+  - [3.1 Biên dịch ](#bp-compiling)
+  - [3.2 Biến](#bp-vars)
+    - [3.2.1 Đặt tên](#bp-var-naming)
+      - [3.2.1.1 Danh từ](#bp-var-naming-nouns)
       - [3.2.1.2 PascalCase](#bp-var-naming-case)
-        - [3.2.1.2e Examples](#3.2.1.2e)
-      - [3.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
-      - [3.2.1.4 Boolean Names](#bp-var-bool-names)
-        - [3.2.1.4.1 General And Independent State Information](#3.2.1.4.1)
-        - [3.2.1.4.2 Complex States](#3.2.1.4.2)
-      - [3.2.1.5 Considered Context](#bp-vars-naming-context)
-        - [3.2.1.5e Examples](#3.2.1.5e)
-      - [3.2.1.6 Do _Not_ Include Atomic Type Names](#bp-vars-naming-atomic)
-      - [3.2.1.7 Do Include Non-Atomic Type Names](#bp-vars-naming-complex)
-      - [3.2.1.8 Arrays](#bp-vars-naming-arrays)
-    - [3.2.2 Editable Variables](#bp-vars-editable)
+        - [3.2.1.2e Ví dụ](#3.2.1.2e)
+      - [3.2.1.3 Tiền tố Boolean `b`](#bp-var-bool-prefix)
+      - [3.2.1.4 Tên Boolean ](#bp-var-bool-names)
+        - [3.2.1.4.1 Thông tin chung và độc lập](#3.2.1.4.1)
+        - [3.2.1.4.2 Trạng thái phức hợp](#3.2.1.4.2)
+      - [3.2.1.5 Xem xét ngữ cảnh](#bp-vars-naming-context)
+        - [3.2.1.5e Ví dụ](#3.2.1.5e)
+      - [3.2.1.6 Không thêm kiểu biến đơn giản vào tên](#bp-vars-naming-atomic)
+      - [3.2.1.7 Hãy thêm kiểu biến phức hợp vào tên](#bp-vars-naming-complex)
+      - [3.2.1.8 Arrays / Mảng](#bp-vars-naming-arrays)
+    - [3.2.2 Biến có khả năng chỉnh sửa](#bp-vars-editable)
       - [3.2.2.1 Tooltips](#bp-vars-editable-tooltips)
-      - [3.2.2.2 Slider And Value Ranges](#bp-vars-editable-ranges)
-    - [3.2.3 Categories](#bp-vars-categories)
-    - [3.2.4 Variable Access Level](#bp-vars-access)
-      - [3.2.4.1 Private Variables](#bp-vars-access-private)
-    - [3.2.5 Advanced Display](#bp-vars-advanced)
-    - [3.2.6 Transient Variables](#bp-vars-transient)
-    - [3.2.8 Config Variables](#bp-vars-config)
-  - [3.3 Functions, Events, and Event Dispatchers](#bp-functions)
-    - [3.3.1 Function Naming](#bp-funcs-naming)
-    - [3.3.1.1 All Functions Should Be Verbs](#bp-funcs-naming-verbs)
-    - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
-    - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
-    - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
-    - [3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
-    - [3.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
-    - [3.3.3 No Function Should Have More Than 50 Nodes](#bp-graphs-funcs-node-limit)
-    - [3.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
-    - [3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
-  - [3.4 Blueprint Graphs](#bp-graphs)
-    - [3.4.1 No Spaghetti](#bp-graphs-spaghetti)
-    - [3.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
-    - [3.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
-    - [3.4.4 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
-    - [3.4.5 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
-    - [3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
-- [4. Static Meshes](#4)
-  - [4.1 Static Mesh UVs](#s-uvs)
-    - [4.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
-    - [4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
-  - [4.2 LODs Should Be Set Up Correctly](#s-lods)
-  - [4.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#s-modular-snapping)
-  - [4.4 All Meshes Must Have Collision](#s-collision)
-  - [4.5 All Meshes Should Be Scaled Correctly](#s-scaled)
+      - [3.2.2.2 Slider và khoảng giá trị](#bp-vars-editable-ranges)
+    - [3.2.3 Danh mục](#bp-vars-categories)
+    - [3.2.4 phạm vi truy cập của biến](#bp-vars-access)
+      - [3.2.4.1 Biến riêng tư](#bp-vars-access-private)
+    - [3.2.5 Hiển thị nâng cao ](#bp-vars-advanced)
+    - [3.2.6 Biến tạm thời(Transient)](#bp-vars-transient)
+    - [3.2.8 Biến thiết lập](#bp-vars-config)
+  - [3.3 Hàm, Sự kiện, Phát sự kiện](#bp-functions)
+    - [3.3.1 Đặt tên hàm](#bp-funcs-naming)
+    - [3.3.1.1 Tất cả hàm nên là động từ](#bp-funcs-naming-verbs)
+    - [3.3.1.2 Trả lời thông báo biến (Property RepNotify Functions) luôn luôn là `OnRep_Variable`](#bp-funcs-naming-onrep)
+    - [3.3.1.3 Hàm trả giá trị đúng-sai nên đặt tên dạng câu hỏi đúng sai](#bp-funcs-naming-bool)
+    - [3.3.1.4 Xử lý sự kiện(Event Handler) và phát sự kiện(Event Dispatcher) nên bắt đầu bằng `On`](#bp-funcs-naming-eventhandlers)
+    - [3.3.1.5 Thủ tục gọi từ xa nên có tiền tố là mục tiêu](#bp-funcs-naming-rpcs)
+    - [3.3.2 Tất cả hàm phải có node Return](#bp-funcs-return)
+    - [3.3.3 Không hàm nào nên có quá 50 Nodes](#bp-graphs-funcs-node-limit)
+    - [3.3.4 Tất cả hàm công khai phải có mô tả](#bp-graphs-funcs-description)
+    - [3.3.5 Tất cả hàm của Plugin `BlueprintCallable` phải được phân loại bởi tên plugin ](#bp-graphs-funcs-plugin-category)
+  - [3.4 Đồ hình Blueprint](#bp-graphs)
+    - [3.4.1 Không để các đường dây rối như mớ bòng bong](#bp-graphs-spaghetti)
+    - [3.4.2 Căn theo đường nối, không phải nodes](#bp-graphs-align-wires)
+    - [3.4.3 Đường thực thi là ưu tiên số 1](#bp-graphs-exec-first-class)
+    - [3.4.4 Đồ hình nên có comment hợp lý](#bp-graphs-block-comments)
+    - [3.4.5 Đồ hình nên xử lý ngoại lệ Casting phù hợp](#bp-graphs-cast-error-handling)
+    - [3.4.6 Đồ hình không nên có node treo, node không sử dụng](#bp-graphs-dangling-nodes)
+- [4. Static Meshes - Lưới tĩnh](#4)
+  - [4.1 UV lưới tĩnh (Static Meshes)](#s-uvs)
+    - [4.1.1 Tất cả lưới phải có UV](#s-uvs-no-missing)
+    - [4.1.2 Tất cả lưới phải có UV cho Lightmaps(UV không chồng đè)](#s-uvs-no-overlapping)
+  - [4.2 LODs phải được setup đúng](#s-lods)
+  - [4.3 Các asset module phải bắt dính vào lưới](#s-modular-snapping)
+  - [4.4 Tất cả lưới phải có Collision](#s-collision)
+  - [4.5 Tất cả lưới phải đúng tương quan tỉ lệ đời thực](#s-scaled)
 - [5. Niagara](#Niagara)
-  - [5.1 No Spaces, Ever](#ng-rules)
+  - [5.1 Không bao giờ dùng dấu cách](#ng-rules)
 - [6. Levels / Maps](#levels)
-  - [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
-  - [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
-  - [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
-  - [6.4 Marketplace Specific Rules](#levels-mp-rules)
-    - [6.4.1 Overview Level](#levels-mp-rules-overview)
-    - [6.4.2 Demo Level](#levels-mp-rules-demo)
+  - [6.1 Không lỗi, không cảnh báo](#levels-no-errors-or-warnings)
+  - [6.2 Ánh sáng phải build](#levels-lighting-should-be-built)
+  - [6.3 Không Z Fighting đối với người chơi](#levels-no-visible-z-fighting)
+  - [6.4 Luật của Marketplace](#levels-mp-rules)
+    - [6.4.1 Bản đồ Tổng quát](#levels-mp-rules-overview)
+    - [6.4.2 Bản đồ demo](#levels-mp-rules-demo)
 - [7. Textures](#textures)
-  - [7.1 Dimensions Are Powers of 2](#textures-dimensions)
-  - [7.2 Texture Density Should Be Uniform](#textures-density)
-  - [7.3 Textures Should Be No Bigger than 8192](#textures-max-size)
-  - [7.4 Textures Should Be Grouped Correctly](#textures-group)
+  - [7.1 Độ phân giải phải là luỹ thừa của 2](#textures-dimensions)
+  - [7.2 Mật độ texture nên đồng nhất](#textures-density)
+  - [7.3 Texture không nên to hơn 8192](#textures-max-size)
+  - [7.4 Texture nên được nhóm đúng](#textures-group)
 
-## Important Terminology
+## Các thuật ngữ quan trọng
 
 <a name="terms-level-map"></a>
 ##### Levels/Maps
-
-The word 'map' generally refers to what the average person calls a 'level' and may be used interchangeably. See this term's history [here](https://en.wikipedia.org/wiki/Level_(video_gaming)).
+Map hoặc level: 2 từ này có thể dùng tráo đổi cho nhau, cùng chỉ về một không gian người chơi có thể tương tác, tiếp xúc.
+(https://en.wikipedia.org/wiki/Level_(video_gaming)).
 
 <a name="terms-identifiers"></a>
-##### Identifiers
-An `Identifier` is anything that resembles or serves as a "name". For example, the name of an asset, or the name of a material later, or a blueprint property, a variable, or a folder name, or for a data table row name, etc...
+##### Identifiers - Định danh
+Một `Identifier` là bất cứ gì đóng vai trò "tên gọi". Ví dụ, tên của một asset, or tên của một vật liệu, or a thuộc tính, biến của blueprint property, hay tên của một folder, hoặc tên một hàng trong bảng dữ liệu, v.v...
 
 <a name="terms-cases"></a>
-##### Cases
+##### Cases - Quy chuẩn đặt tên
 
-There are a few different ways you can `CaseWordsWhenNaming`. Here are some common casing types:
+Có một vài cách đặt tên thường dùng `CaseWordsWhenNaming`. Dưới đây là một số kiểu phổ biến:
 
 > ###### PascalCase
 >
-> Capitalize every word and remove all spaces, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+> Viết hoa tất cả các chữ cái đầu tiên của mỗi từ, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
 >
 > ###### camelCase
 >
-> The first letter is always lowercase but every following word starts with uppercase, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+> Chữ cái đầu tiên của từ đầu tiên luôn viết thường, tất cả chữ cái của các từ còn lại viết hoa, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
 >
 > ###### Snake_case
 >
-> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+> Mỗi từ có thể viết hoa hoặc không viết hoa chữ cái đầu tiên nhưng được phân cách bởi dấu gạch dưới e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
 
 <a name="terms-var-prop"></a>
-##### Variables / Properties
+##### Variables / Properties - Biến / Thuộc tính
 
-The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+Trong hầu hết trường hợp 2 từ 'variable' và 'property' có thể dùng tráo đổi cho nhau. Nếu 2 từ được dùng chung trong cùng một ngữ cảnh:
 
 <a name="terms-property"></a>
-###### Property
-Usually refers to a variable defined in a class. For example, if `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to as a property of `BP_Barrel`.
+###### Property - Thuộc tính
+Thường chỉ đến các biến được định nghĩa trong lớp (class). Ví dụ: nếu `BP_Barrel` có một biến `bExploded`, thì `bExploded` được nói là một thuộc tính của lớp `BP_Barrel`.
 
-When in the context of a class, it is often used to imply accessing previously defined data.
+Khi trong ngữ cảnh của lớp (class), nó thường ngầm định cho việc truy cập dữ liệu định nghĩa trước.
 
 <a name="terms-variable"></a>
-###### Variable
-Usually refers to a variable defined as a function argument or a local variable inside a function.
-
-When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
+###### Variable - Biến
+Thường được hiểu là biến trong tham số của hàm, hoặc biến địa phương bên trong một hàm. Trong ngữ cảnh khi sử dụng bên trong lớp (class) thì thường được hiểu là một định nghĩa và giá trị mà nó nắm giữ.
 
 <a name="0"></a>
-## 0. Principles
+## 0. Nguyên tắc
 
-These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+Những nguyên tắc này được sửa đổi dựa theo  [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it
+### 0.1 Nếu dự án của bạn đã có quy chuẩn, bạn nên tuân theo quy chuẩn của nó.
+Nếu bạn làm với một dự án của một team đã có quy chuẩn, bạn nên tôn trọng quy chuẩn đó. Ứu tiên quy chuẩn có sẵn trước quy chuẩn này.
 
-If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
+Quy chuẩn là chết, con người là sống. Bạn nên đề xuất thay đổi đối với những quy chuẩn có sẵn sao cho phù hợp với tình hình thực tế.
 
-Style guides should be living documents. You should propose style guide changes to an existing style guide as well as this guide if you feel the change benefits all usages.
-
-> #### "Arguments over style are pointless. There should be a style guide, and you should follow it."
+> #### "Tranh luận về quy chuẩn là vô nghĩa. Cần phải có một quy chuẩn và bạn nên tuân thủ nó."
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed
+### 0.2 Mọi cấu trúc, assets, và mã lệnh trong dự án nên thống nhất như một người phát triển cho dù số người tham gia dự án > 1.
 
-Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
-
-It also allows for more productive creation and maintenance as one does not need to think about style. Simply follow the instructions. This style guide is written with best practices in mind, meaning that by following this style guide you will also minimize hard to track issues.
+Chuyển từ dự án này sang dự án khác không để tình trạng học lại cấu trúc và quy chuẩn. Tuân thủ nghiêm khắc quy chuẩn sẽ triệt tiêu sự phán đoán mơ hồ không cần thiết.
+Điều này cho phép nâng cao hiệu suất làm việc, sáng tạo, duy trì bởi mỗi cá nhân không cần phải suy nghĩ nhiều về các quy chuẩn riêng. Đơn giản là làm theo quy chuẩn. Quy chuẩn này được viết với những nhu cầu thực tế nhất, tuân theo quy chuẩn này bạn sẽ tối thiểu hoá việc phải truy tìm những lỗi khó hiểu.
 
 <a name="0.3"></a>
-### 0.3 Friends do not let friends have bad style
+### 0.3 Anh em đồng nghiệp đừng để anh em đồng nghiệp phạm quy. Nếu thấy lỗi thì bảo nhau sửa nhé.
 
-If you see someone working either against a style guide or no style guide, try to correct them.
+Khi làm việc trong nhóm hoặc thảo luận với cộng đồng (discord/reddit/forum/stackOverFlow...). Sẽ dễ dàng hơn nếu muốn tìm kiếm sự trợ giúp cho những người làm việc có quy chuẩn. Không ai thích nhìn vào mớ bòng bong đồ hình Blueprint với những cái tên vô nghĩa, khó hiểu.
 
-When working within a team or discussing within a community such as [Unreal Slackers](http://join.unrealslackers.org/), it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets that have names they can't understand.
-
-If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+Khi giúp người nào đó nếu họ có quy chuẩn của họ, hay sử dụng nó, nếu họ không có quy chuẩn thì dắt vào đây.
 
 <a name="0.4"></a>
-### 0.4 A team without a style guide is no team of mine
-
-When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
+### 0.4 Một team không có quy chuẩn không phải là một team
 
 <a name="0.5"></a>
-### 0.5 Don't Break The Law
+### 0.5 Đừng phá luật
 
-Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
+Tôn trọng bản quyền, pháp luật:
 
-* Don't distribute content you don't have the rights to distribute
-* Don't infringe on someone else's copyrighted or trademark material
-* Don't steal content
-* Follow licensing restrictions on content, e.g. attribute when attributions are needed
+* Không xuất bản nội dung mà bạn không có quyền xuất bản.
+* Không vi phạm bản quyền hay thương hiệu của người khác.
+* Không ăn cắp nội dung
+* Tuân thủ các giới hạn bản quyền về nội dung.
 
 <a name="00"></a>
-## 00. Globally Enforced Opinions
+## 00. Những điểm bắt buộc toàn diện
 
 @TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
 
 <a name="00.1"></a>
-### 00.1 Forbidden Characters
+### 00.1 Ký tự bị cấm
 
 <a name="identifiers-1"></a>
-#### Identifiers
+#### Những định danh
 
-In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+Bất cứ `Identifier` của bất cứ loại nào, **không bao giờ** sử dụng trừ khi bắt buộc phải:
 
-* White space of any kind
-* Backward slashes `\`
-* Symbols i.e. `#!@$%`
-* Any Unicode character
+* Bất cứ kiểu ký tự khoảng trắng nào (space, tab, empty character ...)
+* Dấu gạch chéo ngược `\`
+* Biểu tượng vd: `#!@$%`
+* Các ký tự Unicode
 
-Any `Identifier` should strive to only have the following characters when possible (the RegEx `[A-Za-z0-9_]+`)
+Bất cứ `Identifier` chỉ nên có các ký tự sau đây(the RegEx `[A-Za-z0-9_]+`)
 
 * ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * abcdefghijklmnopqrstuvwxyz
 * 1234567890
-* _ (sparingly)
+* _ (hạn chế)
 
-The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent downtime due to potentially bad character handling for identifiers in code you don't control.
+Lý do cho việc này để đảm bảo tính tương thích cao nhất cho tất cả dữ liệu trên tất cả các nền tảng, công cụ, ngăn ngừa downtime do việc xử lý các ký tự xấu trong định danh ở các phần mã lệnh bạn không kiểm soát được
 
 <a name="anc"></a>
 <a name="1"></a>
-## 1. Asset Naming Conventions
+## 1. Quy tắc đặt tên Asset
 
-Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+Quy tắc đặt tên Asset phải được coi như luật. Một dự án tuân thủ quy tắc đặt tên các asset sẽ dễ dàng quản lý, tìm kiếm, phân loại, bảo trì, duy trì.
 
-Most things are prefixed with prefixes being generally an acronym of the asset type followed by an underscore.
+Hầu hết mọi thứ đều có tiền tố là từ viết tắt cho kiểu asset tiếp đến là dấu gạch nối.
 
 <a name="base-asset-name"></a>
 <a name="1.1"></a>
 ### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+Trong đó: 
+Prefix: Tiền tố
+Base Asset Name: Tên cơ sở
+Variant: Biến thể
+Suffix: Hậu tố
 
-All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group should follow the standard of  `Prefix_BaseAssetName_Variant_Suffix`.
+Tất cả assets phải có _BaseAssetName_. Base name là một nhóm các asset liên quan đến nhau một cách logic. Các asset cùng một nhóm phải tuân thủ quy tắc `Prefix_BaseAssetName_Variant_Suffix`.
 
-Keeping the pattern `Prefix_BaseAssetName_Variant_Suffix` and in mind and using common sense is generally enough to warrant good asset names. Here are some detailed rules regarding each element.
+Tên asset phải mang tính gợi ý đến chủ thể, chức năng, tính chất của asset. Sau đây là một số quy tắc chi tiết.
 
-`Prefix` and `Suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
+`Prefix` và `Suffix` được đặt bởi kiểu asset theo bảng bổ nghĩa [Asset Name Modifier](#asset-name-modifiers).
 
-`BaseAssetName` should be determined by a short and easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
+`BaseAssetName` nên được đặt một cách ngắn gọn, dễ nhận hiểu và liên quan tới bối cảnh của nhóm asset. Ví dụ: Nếu bạn có một nhân vật tên là Bob, tất cả asset liên quan tới Bob phải có tên cơ sở `BaseAssetName` == `Bob`.
 
-For unique and specific variations of assets, `Variant` is either a short and easily recognizable name that represents logical grouping of assets that are a subset of an asset's base name. For example, if Bob had multiple skins these skins should still use `Bob` as the `BaseAssetName` but include a recognizable `Variant`. An 'Evil' skin would be referred to as `Bob_Evil` and a 'Retro' skin would be referred to as `Bob_Retro`.
+Cho những biến thể đặc biệt của assets, `Variant` cần ngắn, dễ hiểu, thể hiện một cách logic về nhóm assets và tập hợp con của nhóm assets. Ví dụ: Nếu Bob có nhiều bề ngoài khác nhau, mỗi bề ngoài cần phải dùng `Bob` làm tên cơ sở nhưng có thêm phần biến thể `Variant`. Một Bob tàn ác sẽ được đặt tên là `Bob_TanAc` và Bob cổ điển sẽ được đặt tên là `Bob_CoDien`. Nên đặt tên bằng tiếng Anh sẽ ngắn gọn và xúc tích hơn. Ví dụ: `Bob_Evil`, `Bob_Retro`.
 
-For unique but generic variations of assets, `Variant` is a two digit number starting at `01`. For example, if you have an environment artist generating nondescript rocks, they would be named `Rock_01`, `Rock_02`, `Rock_03`, etc. Except for rare exceptions, you should never require a three digit variant number. If you have more than 100 assets, you should consider organizing them with different base names or using multiple variant names.
 
-Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+Cho những biến thể của các asset phổ thông. `Variant` dùng 2 chữ số bắt đầu từ `01`. Ví dụ cho những hòn đá không có gì đặc biệt `Rock_01`, `Rock_02`, `Rock_03`... Trừ những trường hợp vô cùng hiếm không nên để quá 3 chữ số. Nếu có hơn 100 assets đặt tên như vậy thì nên suy nghĩ về việc đặt lại tên cơ sở, hoặc nhiều tên biến thể hơn.
+
+Tuỳ thuộc vào tên biến thể, chúng ta có thể ghép nối các phần biến thể với nhau. Ví dụ:
+Các asset sàn nhà `Flooring` cho một dự án Arch Viz `Flooring` với các phần biến thể ghép như sau `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
 
 <a name="1.1-examples"></a>
-#### 1.1 Examples
+#### 1.1 Ví dụ
 
 ##### 1.1e1 Bob
 
-| Asset Type              | Asset Name                                                 |
+| Kiểu Asset              | Tên Asset                                                  |
 | ----------------------- | ---------------------------------------------------------- |
 | Skeletal Mesh           | SK_Bob                                                     |
 | Material                | M_Bob                                                      |
@@ -315,7 +289,7 @@ Depending on how your asset variants are made, you can chain together variant na
 
 ##### 1.1e2 Rocks
 
-| Asset Type              | Asset Name                                                 |
+| Kiểu Asset              | Asset                                                      |
 | ----------------------- | ---------------------------------------------------------- |
 | Static Mesh (01)        | S_Rock_01                                                  |
 | Static Mesh (02)        | S_Rock_02                                                  |
@@ -325,7 +299,7 @@ Depending on how your asset variants are made, you can chain together variant na
 
 <a name="asset-name-modifiers"></a>
 <a name="1.2"></a>
-### 1.2 Asset Name Modifiers
+### 1.2 Phần bổ nghĩa cho tên Asset
 
 When naming an asset, use these tables to determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
 
@@ -335,7 +309,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
+| Level / Map             |            |            | [Phải ở trong thư mục tên Map](#2.4) |
 | Level (Persistent)      |            | _P         |                                  |
 | Level (Audio)           |            | _Audio     |                                  |
 | Level (Lighting)        |            | _Lighting  |                                  |
@@ -343,10 +317,10 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Level (Gameplay)        |            | _Gameplay  |                                  |
 | Blueprint               | BP_        |            |                                  |
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
+| Static Mesh             | S_         |            | Nhiều nơi dùng SM_. Chúng ta dùng S_.         |
 | Skeletal Mesh           | SK_        |            |                                  |
-| Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
-| Particle System         | PS_        |            |                                  |
+| Texture                 | T_         | _?         | Xem [Textures](#anc-textures)    |
+| Niagara Particle System         | NS_        |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
 <a name="anc-animations"></a>
@@ -395,9 +369,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Blueprint Component     | BP_        | Component  | I.e. BP_InventoryComponent       |
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
-| Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
+| Blueprint Macro Library | BPML_      |            | Không dùng thư viện Macro nếu có thể. |
+| Enumeration             | E          |            | Không gạch dưới.                   |
+| Structure               | F or S     |            | Không gạch dưới.                   |
 | Tutorial Blueprint      | TBP_       |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
@@ -420,7 +394,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="1.2.6"></a>
 ### 1.2.6 Textures
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| Kiểu Asset              | Prefix - Tiền tố     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
 | Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
@@ -433,7 +407,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Texture (Mask)          | T_         | _M         |                                  |
 | Texture (Specular)      | T_         | _S         |                                  |
 | Texture (Metallic)      | T_         | _M         |                                  |
-| Texture (Packed)        | T_         | _*         | See notes below about [packing](#anc-textures-packing). |
+| Texture (Packed)        | T_         | _*         | Xem ghi chú phía dưới [packing](#anc-textures-packing). |
 | Texture Cube            | TC_        |            |                                  |
 | Media Texture           | MT_        |            |                                  |
 | Render Target           | RT_        |            |                                  |
@@ -443,15 +417,15 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="anc-textures-packing"></a>
 <a name="1.2.6.1"></a>
 #### 1.2.6.1 Texture Packing
-It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively. To determine the suffix, simply stack the given suffix letters from above together, e.g. `_ERO`.
+Thực hành đóng gói nhiều lớp texture vào một texture là một việc phổ biến. Ví dụ đóng gói `Emissive`, `Roughness`, `Ambient Occlusion` thành 3 kênh Red, Green, and Blue channels của vật liệu. Để xác định hậu tố, đơn giản là nối 3 hậu tố của 3 phần lại với nhau: `_ERO`.
 
-> It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel and as this is common practice, adding `A` to the `_D` suffix is optional.
+> Kênh Alpha/Opacity tồn tại trong Diffuse/Albedo texture là phổ biến nên có thể ngầm hiểu và bỏ qua hậu tố `A` sau `_D`
 
-Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel as a texture with an alpha channel incurs more overhead than one without.
+Đóng gói 4 kênh data vào một texture (RGBA) là ko nên ngoại trừ trường hợp texture Diffuse/Albedo. Bởi việc này phát sinh nhiều vấn đề hơn là không có.
 
 <a name="anc-misc"></a>
 <a name="1.2.7"></a>
-### 1.2.7 Miscellaneous
+### 1.2.7 Khác
 
 | Asset Type                 | Prefix     | Suffix     | Notes                            |
 | -------------------------- | ---------- | ---------- | -------------------------------- |
@@ -459,7 +433,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Camera Anim                | CA_        |            |                                  |
 | Color Curve                | Curve_     | _Color     |                                  |
 | Curve Table                | Curve_     | _Table     |                                  |
-| Data Asset                 | *_         |            | Prefix should be based on class. |
+| Data Asset                 | *_         |            | Tiền tố nên dựa trên lớp / class. |
 | Data Table                 | DT_        |            |                                  |
 | Float Curve                | Curve_     | _Float     |                                  |
 | Foliage Type               | FT_        |            |                                  |
@@ -511,15 +485,15 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 | Media Sound Wave        | MSW_       |            |                                  |
 | Reverb Effect           | Reverb_    |            |                                  |
 | Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
+| Sound Class             |            |            | Không tiền tố, hậu tố. Nên đặt trong folder tên SoundClasses |
+| Sound Concurrency       |            | _SC        | Đặt tên sau tên SoundClass |
 | Sound Cue               | A_         | _Cue       |                                  |
 | Sound Mix               | Mix_       |            |                                  |
 | Sound Wave              | A_         |            |                                  |
 
 <a name="anc-ui"></a>
 <a name="1.2.11"></a>
-### 1.2.11 User Interface
+### 1.2.11 Giao diện người dùng - UI
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -530,27 +504,25 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
-### 1.2.12 Effects
+### 1.2.12 Hiệu ứng
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Particle System         | PS_        |            |                                  |
+| Niagara Particle System         | NS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 <a name="2"></a>
 <a name="structure"></a>
-## 2. Content Directory Structure
+## 2. Cấu trúc thư mục
 
-Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
+Cấu trúc thư mục cần được tôn trọng tương tự như các quy tắc đặt tên. Có nhiều cách để đặt tên thư mục trong dự án UE. Trong quy chuẩn này chúng ta sẽ sử dụng cấu trúc thư mục phục vụ cho việc lọc, tìm kiếm của Content Browser.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
-
-> If you are using the prefix [naming convention](#1.2) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
+> Nếu đã sử dụng các tiền tố và hậu tố trong quy tắc đặt tên ở trên [Quy tắc đặt tên](#1.2), sử dụng thư mục để chứa các asset cùng loại là không cần thiết ví dụ các folder tên `Meshes`, `Textures`, and `Materials` bởi các asset này đã được phân loại bằng tiền tố và hậu tố cùng các bộ lọc của content browser.
 
 <a name="2e1"><a>
-### 2e1 Example Project Content Structure
+### 2e1 Ví dụ về cấu trúc thư mục
 <pre>
 |-- Content
     |-- <a href="#2.2">GenericShooter</a>
@@ -603,229 +575,231 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
             |-- Rifles
 </pre>
 
-The reasons for this structure are listed in the following sub-sections.
+Lý do cho cấu trúc này được liệt kê ở phần phụ sau
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
-### 2.1 Folder Names
+### 2.1 Tên thư mục
 
-These are common rules for naming any folder in the content structure.
+Có những quy tắc chung cho việc đặt tên các thư mục trong cấu trúc nội dung
 
 <a name="2.1.1"></a>
-#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases)
+#### 2.1.1 Luôn sử dụng cấu trúc PascalCase [<sup>*</sup>](#terms-cases)
 
-PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+Ví dụ: `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
 
-See [Cases](#terms-cases).
+Xem [Chữ cái viết hoa](#terms-cases).
 
 <a name="2.1.2"></a>
-#### 2.1.2 Never Use Spaces
+#### 2.1.2 Không bao giờ sử dụng ký tự khoảng trắng(space, tab...)
 
-Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally, your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+[2.1.1](#2.1.1), Các ký tự khoảng trắng làm cho các công cụ xử lý hàng loạt gặp khó khăn. Lý tưởng nhất nên đặt dự án của bạn ở thư mục gốc ví dụ như `D:\Project` thay vì `C:\Users\My Name\My Documents\Unreal Projects`.
 
 <a name="2.1.3"></a>
-#### 2.1.3 Never Use Unicode Characters And Other Symbols
+#### 2.1.3 Không sử dụng ký tự Unicode và các biểu tượng.
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+Nếu một trong các nhân vật của bạn tên 'Zoë', thư mục của nó nên tên là `Zoe`. Các ký tự Unicode còn tệ hơn [Khoảng trắng](#2.1.2) cho các công cụ engineering bởi một vài phần của UE không hỗ trợ ký tự Unicode.
 
-Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
+Một ví dụ: Nếu dự án của bạn gặp vấn đề [không thể giải thích](https://answers.unrealengine.com/questions/101207/undefined.html)  và tên username trên máy tính của bạn có chứa kí tự Unicode (vd: tên bạn là `Nguyễn`), bất cứ dự án nào năm dưới thư mục `My Documents` sẽ gặp vấn đề này. Thường chỉ cần di chuyển dự án của bạn vào thư mục gốc vd như `D:\Project` sẽ fix được vấn đề khó hiểu này.
 
-Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools.
+Sử dụng các ký tự ngoài `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, và `#` cũng có thể dẫn đến các lỗi khó hiểu trên các nền tảng khác nhau, source control và các công cụ engineering yếu.
 
 <a name="2.2"></a>
 <a name="structure-top-level"><a>
-### 2.2 Use A Top Level Folder For Project Specific Assets
+### 2.2 Sử dụng thư mục cấp cao nhất cho những assets chỉ định
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
+Tất cả assets của dự án cần tồn tại trong thử mục đặt tên sau dự án. Ví dụ dự án của chúng ta tên là 'Generic Shooter'. _tất cả_ content của nó phải ở trong thư mục `Content/GenericShooter`.
 
-> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
+> Thư mục `Developers` không dùng cho các asset mà dự án phụ thuộc vào. Xem [Thư mục Developer](#2.3) để biết thêm chi tiết.
 
-There are multiple reasons for this approach.
+Có nhiều lý do cho phương pháp tiếp cận này.
 
 <a name="2.2.1"></a>
-#### 2.2.1 No Global Assets
+#### 2.2.1 Không asset toàn cục (Global)
 
-Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder, it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
+Thông thường trong các quy chuẩn viết mã lệnh lập trình, chúng ta không nên làm ô nhiễm không gian biến toàn cục vì vậy cũng theo nguyên lý này nếu asset được cho phép tồn tại ngoài thư mục của dự án nó sẽ trở nên khó để áp đặt các quy chuẩn cấu trúc và vì thế sẽ phát sinh các thói quen xấu trong việc tổ chức sắp xếp assets.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
+Mỗi asset cần phải có mục đích của nó, nếu không nó sẽ không thuộc về dự án. Nếu asset là một thử nghiệm và không được sử dụng trong dự án nó nên đặt trong thư mục [`Developer`](#2.3).
 
 <a name="2.2.2"></a>
-#### 2.2.2 Reduce Migration Conflicts
+#### 2.2.2 Giảm thiểu xung đột trong migration
 
-When working on multiple projects it is common for a team to copy assets from one project to another if they have made something useful for both. When this occurs, the easiest way to perform the copy is to use the Content Browser's Migrate functionality as it will copy over not just the selected asset but all of its dependencies.
+Khi làm việc với nhiều dự án cùng lúc, việc sử dụng asset từ dự án này sang dự án khác là việc phổ biến. Khi việc này xảy ra, cách dễ dàng nhất là sử dụng chức năng Migrate của Content Browser để copy cả những phần phụ thuộc.
 
-These dependencies are what can easily get you into trouble. If two project's assets do not have a top level folder and they happen to have similarly named or already previously migrated assets, a new migration can accidentally wipe any changes to the existing assets.
+Những phụ thuộc này là nguồn gốc của rắc rối. Nếu assets của 2 dự án đều không có thư mục cấp cao nhất (top level folder) và nếu như cả 2 đều có tên asset giống nhau hoặc asset đã migrate từ trước, đợt migration mới này sẽ ghi đè và xoá sạch những thay đổi ở asset đã có 
 
-This is also the primary reason why Epic's Marketplace staff enforces the same policy for submitted assets.
+Đây cũng là lý do chính mà đội ngũ Marketplace của Epic áp đặt chính sách và tiêu chuẩn này cho các asset được xuất bản lên Marketplace
 
-After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+Sau khi migration, hợp nhất an toàn các assets bằng công cụ 'Replace References' trong Content Browser. Sự xuất hiện của một thư mục không thuộc top level dự án xác định rõ ràng đây là thư mục cần được hợp nhất vào dự án. Một khi các asset(tài nguyên game) đã được hợp nhất hoàn toàn với dự án sẽ không còn một folder nào khác ngoài folder project. Phương pháp này _100%_ đảm bảo bất cứ sự hợp nhất nào cũng diễn ra một cách an toàn.
 
 <a name="2.2.2e1"></a>
-##### 2.2.2e1 Master Material Example
+##### 2.2.2e1 Ví dụ vật liệu chủ
 
-For example, say you created a master material in one project that you would like to use in another project so you migrated that asset over. If this asset is not in a top level folder, it may have a name like `Content/MaterialLibrary/M_Master`. If the target project doesn't have a master material already, this should work without issue.
+Ví dụ, nếu bạn tạo một vật liệu chủ ở dự án A này và muốn sử dụng nó trong dự án B, vì thế bạn migrate vật liệu chủ từ A sang B. Nếu vật liệu này không ở trong thư mục dự án bậc 1, ví dụ `Content/MaterialLibrary/M_Master`. Nếu dự án B không có vật liệu `M_Master`, mọi việc sẽ diễn ra suôn sẻ.
 
-As work on one or both projects progress, their respective master materials may change to be tailored for their specific projects due to the course of normal development.
+Theo tiến trình phát triển của dự án, vật liệu chủ của từng dự án sẽ có sự biến đổi phù hợp với mục đích của dự án.
 
-The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Content/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset.
+Vấn để nảy sinh khi, một artist của dự án A tạo ra một nhóm các static mesh hữu ích và một vài artist khác muốn sử dụng nó trong dự án của họ. Nếu artist của dự án A sử dụng bản sao vật liệu trong `Content/MaterialLibrary/M_Master` vì họ được hướng dẫn như thế, khi tiến hành migrate sẽ rất có khả năng xung đột với lần migrate trước của `Content/MaterialLibrary/M_Master`.
 
-This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar with the development of both project's master material, and they may not be even aware that the static meshes in question rely on material instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will be forced to grab `Content/MaterialLibrary/M_Master` when it copies these assets to the other project and it will overwrite the existing asset.
+Sự cố này khó đoán trước được bởi người migrate những static mesh này không cùng một người đã quen thuộc với master material của cả 2 dự án. Họ thậm chí còn không biết những static mesh này phụ thuộc vào Material Instances cái phụ thuộc vào Master Material. Công cụ migrate sẽ di chuyển cả chuỗi phụ thuộc cùng với asset cần migrate vì vậy nó sẽ mang theo cả `Content/MaterialLibrary/M_Master` khi nó sao chép asset từ dự án nguồn sang dự án mục tiêu và vô hình chung ghi đè lên asset đã có của dự án mục tiêu
 
-It is at this point where if the master materials for both projects are incompatible in _any way_, you risk breaking possibly the entire material library for a project as well as any other dependencies that may have already been migrated, simply because assets were not stored in a top level folder. The simple migration of static meshes now becomes a very ugly task.
+Nếu ở thời điểm này Vật liệu chủ cho cả 2 dự án không tương thích với nhau, chúng ta đã mạo hiểm khả năng làm hỏng cả chuỗi thư viện vật liệu của dự án và các asset khác phụ thuộc vào nó bởi đơn giản là chúng ta đã không đặt các asset vào thư mục bậc 1 của dự án.
 
 <a name="2.2.3"></a>
-#### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+#### 2.2.3 Thêm tài nguyên thư viện, Templates và Marketplace Samples được đảm bảo an toàn.
 
-An extension to [2.2.2](#2.2.2), if a team member decides to add sample content, template files, or assets they bought from the marketplace, it is guaranteed, as long your project's top-level folder is uniquely named,that these new assets will not interfere with your project.
+Mở rọng cho [2.2.2](#2.2.2), nếu một thành viên quyết định thêm tài nguyên mẫu, template hoặc tài nguyên mua từ Marketplace, tiến trình này được đảm bảo an toàn nếu dự án của chúng ta nằm trong cấu trúc thư mục bậc 1, những tài nguyên mới này sẽ không xung đột với tài nguyên trong dự án của chúng ta.
 
-You can not trust marketplace content to fully conform to the [top level folder rule](#2.2). There exists many assets that have the majority of their content in a top level folder but also have possibly modified Epic sample content as well as level files polluting the global `Content` folder.
+Chúng ta không thể hoàn toàn tin tưởng các tài nguyên từ Marketplace luôn luôn tuân thủ quy tắc [Thư mục bậc 1](#2.2). Có những tài nguyên mà phần lớn nội dung của nó ở thư mục bậc 1 và cũng có vài tài nguyên chỉnh sửa nội dung của Epic sample cùng với nhiều files làm ô nhiễm không gian thư mục toàn cục (global) `Content`
 
-When adhering to [2.2](#2.2), the worst marketplace conflict you can have is if two marketplace assets both have the same Epic sample content. If all your assets are in a project specific folder, including sample content you may have moved into your folder, your project will never break.
+Khi tuân thử theo [2.2](#2.2), sự xung đột tồi tệ nhất mà bạn có thể gặp phải là 2 tài nguyên từ marketplace có cùng nội dung từ Epic sample. Nếu tất cả tài nguyên của chúng ta nằm trong một thư mục cụ thể, bao gồm cả sample content mà chúng ta đã di rời vào thư mục bậc 1 của dự án, dự án của chúng ta sẽ không bao giờ đổ vỡ.
 
 <a name="2.2.4"></a>
-#### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+#### 2.2.4 DLC, Bản vá, Dự án con sẽ dễ dàng duy trì, bảo trì hơn.
 
-If your project plans to release DLC or has multiple sub-projects associated with it that may either be migrated out or simply not cooked in a build, assets relating to these projects should have their own separate top level content folder. This make cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort. If you need to change a material of an asset or add some very specific asset override behavior in a patch, you can easily put these changes in a patch folder and work safely without the chance of breaking the core project.
+Nếu dự án của bạn có kế hoạch xuất bản DLC hoặc có nhiều dự án con liên quan tới có khả năng sẽ migrate ra ngoài, hoặc không cooked khi build, tài nguyên của những dự án như thế phải có riêng thư mục bậc 1. Việc này cho phép cook DLC từ dự án chủ dễ dàng hơn. Những dự án con cũng có thể migrate ra vào dễ dàng. Nếu chúng ta cần thay đổi vật liệu cảu một tài nguyên hoặc thêm một số tính năng riêng biệt ghi đè trong một bản vá, chúng ta có thể dễ dàng đặt những thay đổi đó trong thư mục vá và làm việc một cách an tâm là nó sẽ không gây hỏng dự án gốc.
 
 <a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing
+### 2.3 Sử dụng thư mục `Developers` cho những thử nghiệm cục bộ
 
-During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
+Trong quá trình phát triển dự án, các thành viên sẽ có thử nghiệm rất nhiều vì vậy cần một không gian an toàn để họ có thể thực hiện các thử nghiệm của mình mà không gây ảnh hưởng tới dự án. Đây là một công việc liên tục nên chúng ta sẽ muốn cho nó vào server quản lý phiên bản. Không phải tất cả các team đều có nhu cầu sử dụng thư mục Developer, nhưng một khi đã sử dụng thì thường gặp các vấn đề khi subbmit tài nguyên lên source control.
 
-It is very easy for a team member to accidentally use assets that are not ready for use, which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working for everyone on the team to resolve.
+Một sự cố phổ biến khác là các thành viên chẳng may sử dụng những tài nguyên chưa hoàn thiện, các sự cố nảy sinh tiếp theo do các tài nguyên này bị xoá đi. 
 
-If these modular assets were placed in a Developer folder, the world builder should never have had a reason to use them and the whole issue would never happen. The Content Browser has specific View Options that will hide Developer folders (they are hidden by default) making it impossible to accidentally use Developer assets under normal use.
+Ví dụ: Một artist đang cải tiến các modul các static meshes và vẫn đang liên tục cải tiến về mặt kích thước, đường dóng cho thật đúng. Các artist thiết kế bối cảnh nếu thấy những tài nguyên này trong thư mục chính của dự án và sử dụng nó để thiết kế bối cảnh mà không biết rằng nó có thể bị bỏ đi sẽ dẫn đến lãng phí công sức thời gian của nhiều người.
 
-Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
+The Content Browser mặc định sẽ ẩn thư mục Developer tránh những sự cố kiểu này xảy ra.
+
+Khi những tài nguyên này sẵn sàng được sử dụng, artist di dời những tài nguyên này vào thư mục cụ thể trong dự án và sử dụng công cụ *fix up redirectors* 'thăng cấp' tài nguyên từ cấp độ thử nghiệm lên cấp độ production.
 
 <a name="2.4"></a>
 <a name="structure-maps"></a>
-### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps
+### 2.4 Tất cả Map[<sup>*</sup>](#terms-level-map) Files phải nằm trong folder Maps.
 
-Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+File map có những quy tắc đặc biệt riêng và tuỳ thuộc mỗi dự án, đặc biệt là sử dụng sub-levels hoặc level streaming. Dù tuân thủ theo hệ thống nào thì tất cả map đều thuộc về `/Content/Project/Maps`.
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+Để có thể truyền đạt tới bất cứ ai để mở một map mà không cần phải giải thích tiết kiệm rất nhiều thời gian. Sử dụng thư mục con trong `Maps` cũng phổ biến ví dụ `Maps/Campaign1/` or `Maps/Arenas`, nhưng quan trọng nhất là chúng đều nằm trong `/Content/Project/Maps`.
 
-This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
+Đơn giản hoá quá trình cook. Tập hợp các level cho quá trình build. Nếu các Level ở cùng một thư mục hạn chế khả năng cook bị sót.
 
 <a name="2.5"></a>
 <a name="structure-core"></a>
-### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets
+### 2.5 Sử dụng thư mục `Core` cho các Blueprint và Assets cốt lõi
 
-Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+Sử dụng thư mục `/Content/Project/Core` cho những tài nguyên cốt yếu. Ví dụ: base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState` ...
 
-This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+Những thành viên không thuộc team dev gần như không có lý do để vào khu vực thư mục `Core` này. Tuân thủ quy tắc cấu trúc, designer nên thêm những thay đổi tính năng của họ ở trong lớp con. Những người thiết kế môi trường nên sử dụng Blueprints có sẵn trong những folder chỉ định thay vì chỉnh sửa base class.
 
-For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+Ví dụ: Nếu dự án có những vật phẩm nhặt được (Pickups) cần được đặt trong level, cần có một lớp vật phẩm gốc (base class) trong thư mục `Core/Pickups` định nghĩa những thuộc tính, hành vi cơ bản của lớp Pickup. Những vật phẩm cụ thể ví dụ như Health hoặc Ammo nên ở trong thư mục `/Content/Project/Placeables/Pickups/`. Người thiết kế game có thể định nghĩa và tinh chỉnh những vật phẩm trong thư mục này nhưng họ không nên động chạm đến `Core/Pickups` vì có khả năng họ sẽ làm hỏng những vật phẩm khác trên toàn dự án.
 
 <a name="2.6"></a>
 <a name="structure-assettypes"></a>
-### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
+### 2.6 Không tạo thư mục `Assets` hoặc kiểu `AssetTypes`
 
 <a name="2.6.1"></a>
-#### 2.6.1 Creating a folder named `Assets` is redundant
-
-All assets are assets.
+#### 2.6.1 Tạo thư mục `Assets` là dư thừa.
+Mọi Assets đều là Assets.
 
 <a name="2.6.2"></a>
-#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
+#### 2.6.2 Thư mục tên `Meshes`, `Textures`, hoặc `Materials` cũng là dư thừa.
 
-All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+Tất cả tên của asset phải được đặt tên với chủ ý phân loại kiểu asset trong tư tưởng. Sử dụng tên thư mục để phân loại là không cần thiết bởi Content Browser đã có công cụ phân loại mạnh mẽ và ưu thế hơn.
 
-Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+Để xem các static mesh trong `Environment/Rocks/`? Đơn giản là bật filter Static Mesh. Nếu tất cả asset đều được đặt tên đúng, chúng cũng sẽ được sắp xếp theo thứ tự alphabe cho dù có các thành phần tiền tố. Điều này cũng triệt tiêu khả năng phải `Control-Click` để chọn nhiều thư mục trong `Content Browser`.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> Không những thế full path name của một asset cũng trở nên gọn gàng hơn. Tiền tố `S_` chỉ có 2 chữ cái trong khi `Meshes/` là 7 chữ cái.
 
-Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
+Loại trừ các trường hợp bất khả kháng như có ai đó đặt nhầm static mesh hoặc texture vào thư mục `Materials`.
 
 <a name="2.7"></a>
 <a name="structure-large-sets"></a>
-### 2.7 Very Large Asset Sets Get Their Own Folder Layout
+### 2.7 Những Asset đồ sộ cần có cấu trúc thư mục riêng của nó.
 
-This can be seen as a pseudo-exception to [2.6](#2.6).
+Đây có thể coi là một "ngoại lệ giả" pseudo-exception đối với [2.6](#2.6).
 
-There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
+Có những kiểu asset có rất nhiều file liên quan, phụ thuộc mà trong đó mỗi asset lại có một mục đích đặc biệt riêng. Hai kiểu phổ biến là Animation và Audio. Nếu chúng ta thấy rằng có hơn 15 asset kiểu đó thuộc về nhau, chúng nên ở cùng nhau.
 
-For example, animations that are shared across multiple characters should lay in `Characters/Common/Animations` and may have sub-folders such as `Locomotion` or `Cinematic`.
+Ví dụ: Đoạn animation được nhiều nhân vật dùng nên nằm trong thư mục `Characters/Common/Animations` và có thể có những thư mục con như `Locomotion` hoặc `Cinematic`.
 
-> This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> Những điều này không áp dụng cho nhưng asset kiểu texture hoặc material. Rất phổ biến cho việc thư mục `Rocks` có một lượng lớn texture nếu có một lượng lớn rocks, tuy nhiên những texture này chỉ liên quan tới một vài hòn đá cụ thể và cần phải được đặt tên phù hợp. Mặc dù những texture này là một phần của [Material Library](#2.8).
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
 ### 2.8 `MaterialLibrary`
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+Những vật liệu chủ, vật liệu lớp (layered materials), hoặc bất cứ dạng nào không thuộc về một asset cụ thể. Những asset này phải được đặt trong `Content/Project/MaterialLibrary`.
 
-This way all 'global' materials have a place to live and are easily located.
+Bằng cách này toàn bộ các vật liệu 'toàn cục' phải ở cùng một chỗ và dễ dàng truy cập.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> Điều này cũng tuân thủ quy tắc 'chỉ sử dụng vật liệu nhân bản'. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+Thư mục `MaterialLibrary` không nhất thiết chỉ chứa mỗi vật liệu. Những texture phụ trợ, hàm material, và những thứ tự nhiên thuộc về thư mục này như texture noise chung chung nên ở thư mục `MaterialLibrary/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Bất cứ thử nghiệm hoặc tìm lỗi về vật liệu nào nên nằm trong `MaterialLibrary/Debug`. Điều này làm cho những vật liệu lỗi dễ đàng được loại bỏ trước khi đóng gói và xuất bản.
 
 <a name="2.9"></a>
 <a name="structure-no-empty-folders"></a>
-### 2.9 No Empty Folders
+### 2.9 Không để thư mục nào bị trống
 
-There simply shouldn't be any empty folders. They clutter the content browser.
+Tránh làm phân mảnh thư mục content browser bởi các thư mục trống.
 
-If you find that the content browser has an empty folder you can't delete, you should perform the following:
-1. Be sure you're using source control.
-1. Immediately run Fix Up Redirectors on your project.
-1. Navigate to the folder on-disk and delete the assets inside.
-1. Close the editor.
-1. Make sure your source control state is in sync (i.e. if using Perforce, run a Reconcile Offline Work on your content directory)
-1. Open the editor. Confirm everything still works as expected. If it doesn't, revert, figure out what went wrong, and try again.
-1. Ensure the folder is now gone.
-1. Submit changes to source control.
+Nếu có thư mục trống không xoá được:
+1. Đảm bảo là bạn sử dụng source control. (trong tương lai)
+1. Dùng lệnh Fix Up Redirectors.
+1. Mở thư mục trên ổ đĩa và xoá những assets bên trong.
+1. Đóng editor.
+1. Đồng bộ hoá với source control (i.e. Perforce, gitCentral)
+1. Mở Unreal Editor. Xác nhận mọi thứ vẫn hoạt động. Nếu không thì đảo ngược quá trình, xem xét mọi thứ sai ở đâu và thử lại.
+1. Đảm bảo thư mục đã bị loại.
+1. Xác nhận thay đổi đến source control.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="3"></a>
 <a name="bp"></a>
 ## 3. Blueprints
 
-This section will focus on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+Phân này tập chung vào các lớp Blueprint. Bất cứ khi nào có thể, nên sử dụng theo tiêu chuẩn của [Quy chuẩn Coding của Epic](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
 
 Remember: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
-### 3.1 Compiling
+### 3.1 Compiling - Biên dịch
 
-All blueprints should compile with zero warnings and zero errors. You should fix blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+Tất cả blueprint cần được biên dịch sạch lỗi và cảnh báo. Chúng ta nên sửa những cảnh bảo và lỗi của blueprint ngay lập tức vì chúng có thể nhanh chóng chồng chéo lên nhau và tạo nên những lỗi không ngờ được.
 
-Do *not* submit broken blueprints to source control. If you must store them on source control, shelve them instead.
+Không submit blueprints lỗi lên source control. Nếu phải lưu chúng lên source control hãy shelve. 
+Shelve : Lưu thay đổi mà không đăng ký vào Source Control.
 
-Broken blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken blueprint has the power to break your entire game.
+Blueprint lỗi có thể tạo ra nhiều kiểu lỗi như mất liên kết tham chiếu, hành vi không dự đoán trước, lỗi cooking, thường xuyên phải biên dịch lại không cần thiết. Một blueprint bị lỗi có đủ sức mạnh để phá hỏng hoàn toàn game.
 
 <a name="3.2"></a>
 <a name="bp-vars"></a>
-### 3.2 Variables
+### 3.2 Variables - Biến
 
-The words `variable` and `property` may be used interchangeably.
+Hai từ `variable` và `property` có thể dùng thay thế cho nhau.
 
 <a name="3.2.1"></a>
 <a name="bp-var-naming"></a>
-#### 3.2.1 Naming
+#### 3.2.1 Naming - Đặt tên
 
 <a name="3.2.1.1"></a>
 <a name="bp-var-naming-nouns"></a>
-##### 3.2.1.1 Nouns
+##### 3.2.1.1 Nouns - Danh từ
 
-All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
+Tất cả các biến non-boolean cần có tên rõ ràng, không mơ hồ, gợi nhớ.
 
 <a name="3.2.1.2"></a>
 <a name="bp-var-naming-case"></a>
 ##### 3.2.1.2 PascalCase
 
-All non-boolean variables should be in the form of [PascalCase](#terms-cases).
+Biến non-boolean cần phải ở dạng [PascalCase](#terms-cases).
 
 <a name="3.2.1.2e"></a>
-###### 3.2.1.2e Examples
+###### 3.2.1.2e Ví dụ:
 
 * `Score`
 * `Kills`
@@ -836,46 +810,46 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix
+##### 3.2.1.3 Biến Boolean tiền tố `b`
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+Tất cả biến boolean phải đặt tên ở dạng PascalCase với tiền tố `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
+Ví dụ: Sử dụng `bDead` và `bEvil`, **không dùng** `Dead` and `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Trình sửa đổi Blueprint tự biết cách không thêm tiền tố `b` để hiển thị một cách thân thiện.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
-##### 3.2.1.4 Boolean Names
+##### 3.2.1.4 Tên Boolean
 
 <a name="3.2.1.4.1"></a>
-###### 3.2.1.4.1 General And Independent State Information
+###### 3.2.1.4.1  Thông tin chung và thông tin độc lập
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Tất cả biến Booleans cần đặt tên gợi mở thông tin nhất một cách có thể khi có khả năng. Không thêm những từ dạng câu hỏi như `Is`. Trường hợp này để dành cho tên function
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Ví dụ: Dùng `bDead` và `bHostile` **không dùng** `bIsDead` và `bIsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Không sử dụng những động từ như `bRunning`. Động từ thường dẫn đến những trạng thái phức hợp.
 
 <a name="3.2.1.4.2"></a>
-###### 3.2.1.4.2 Complex States
+###### 3.2.1.4.2 Trạng thái phức hợp - Complex States
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+Không dùng booleans để diễn tả các trạng thái phức hợp/hoặc phụ thuộc. Làm cho việc thêm và bớt các trạng thái trở nên phức tạp, khó đọc. Dùng biến enumeration thay cho việc đó.
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Ví dụ: Khi định nghĩa một vũ khí, **không dùng** `bReloading` và `bEquipping` nếu một vũ khí không thể cùng nạp và trang bị. Thay vì thế hãy định nghĩa biến enumeration tên `EWeaponState` và sử dụng biến với cái tên này `WeaponState`. Điều này làm cho việc thêm các trạng thái khác của vũ khí dễ dàng hơn nhiều.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Ví dụ: **Không dùng** `bRunning` nếu như chúng ta cũng cần các trạng thái khác như `bWalking` hoặc `bSprinting`. Những biến này cần được định nghĩa thuộc dạng enumeration với các trạng thái được đặt tên rõ ràng.
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
-##### 3.2.1.5 Considered Context
+##### 3.2.1.5 Lưu ý đến ngữ cảnh
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+Tất cả các tên biến phải không bị thừa thãi đối với ngữ cảnh bởi tất cả các biến tham chiếu trong Blueprint sẽ luôn phải có ngữ cảnh.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples
+###### 3.2.1.5e Ví dụ:
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Xem xét biến Bluerprint trong `BP_PlayerCharacter`.
 
 **Bad**
 
@@ -886,7 +860,7 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+Tất cả cá biến trên đều có tên thừa thãi. Ngầm định rằng tất cả biến của `BP_PlayerCharacter` là thuộc về chính nó bởi `BP_PlayerCharacter` là thứ định nghĩa những biến này.
 
 **Good**
 
@@ -899,93 +873,91 @@ All of these variables are named redundantly. It is implied that the variable is
 
 <a name="3.2.1.6"></a>
 <a name="bp-vars-naming-atomic"></a>
-##### 3.2.1.6 Do _Not_ Include Atomic Type Names
+##### 3.2.1.6 Không thêm kiểu dữ liệu cơ bản.
 
-Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations.
+Booleans, integers, floats, and enumerations là kiểu dữ liệu cơ bản.
+Strings và vectors trong Blueprint được coi là dữ liệu cơ bản. Tuy nhiên về mặt kỹ thuật thì chúng không phải là dữ liệu cơ bản.
 
-Strings and vectors are considered atomic in terms of style when working with Blueprints, however they are technically not atomic.
+> Trong khi vector cấu thành từ 3 số thực giống như rotators.
 
-> While vectors consist of three floats, vectors are often able to be manipulated as a whole, same with rotators.
+> _không_ được coi dữ liệu dạng Text là kiểu dữ liệu cơ bản, Text là một đối tượng có nhiều hàm ẩn trong nó. Kiểu dữ liệu cơ bản của chuỗi ký tự là `String`, không phải `Text`.
 
-> Do _not_ consider Text variables as atomic, they are secretly hiding localization functionality. The atomic type of a string of characters is `String`, not `Text`.
+Kiểu dữ liệu cơ bản không được có tên kiểu dữ liệu của nó trong tên biến.
 
-Atomic variables should not have their type name in their name.
+Ví dụ: Sử dụng `Score`, `Kills`, và `Description` **không dùng** `ScoreFloat`, `FloatKills`, `DescriptionString`.
 
-Example: Use `Score`, `Kills`, and `Description` **not** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+Điều này chỉ ngoại lệ khi biến đó thể hiện 'số lượng của' cái gì đó để đếm _và_ khi không có nó thì sẽ khó đọc.
 
-The only exception to this rule is when a variable represents 'a number of' something to be counted _and_ when using a name without a variable type is not easy to read.
-
-Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
+Ví dụ: Một Actor tạo hàng rào cần số X các cột. Lưu trữ số X trong `NumPosts` hoặc `PostCount` thay vì `Posts` bởi `Posts` có thể bị nhầm lẫn với mảng các biến kiểu `Post`.
 
 <a name="3.2.1.7"></a>
 <a name="bp-vars-naming-complex"></a>
-##### 3.2.1.7 Do Include Non-Atomic Type Names
+##### 3.2.1.7 Nên thêm tên cho các kiểu dữ liệu phức hợp.
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Những kiểu dữ liệu phức hợp là biến cấu tạo từ tập hợp các biến cơ bản. Struct, Classes, Interface, và các biến có các hành vi ẩn như `Text` và `Name` là những biến phức hợp.
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+>Trong khi một Mảng các biến cơ bản là danh sách các biến, tuy nhiên Mảng không làm thay đổi tính chất 'atomicness' của kiểu biến.
 
-These variables should include their type name while still considering their context.
+Những biến này nên thêm tên kiểu biến tuy nhiên vẫn phải xem xét các tới yếu tố ngữ cảnh.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+Nếu một class sở hữu một bản sao của một biến phức hợp, ví dụ: `BP_PlayerCharacter` sở hữu một `BP_Hat`, nó nên được lưu với tên kiểu biến mà không nên có sự thay đổi thêm nào.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Ví dụ: Sử dụng `Hat`, `Flag`, và `Ability` **không dùng** `MyHat`, `MyFlag`, và `PlayerAbility`.
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+Nếu một lớp không sở hữu giá trị mà một biến phức hợp thể hiện, chúng ta nên dùng danh từ cùng với kiểu biến.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Ví dụ: Nếu `BP_Turret` có khả năng target một `BP_PlayerCharacter`, Nó nên lưu target của nó là `TargetPlayer` khi ở trong ngữ cảnh của `BP_Turret`, nó nên rõ ràng rằng đây là một tham chiếu đến một kiểu biến phức hợp khác mà nó không sở hữu.
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
-##### 3.2.1.8 Arrays
+##### 3.2.1.8 Mảng
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+Mảng nên tuân theo các quy tắc đặt tên như trên, nhưng nên được đặt tên là danh từ số nhiều
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Ví dụ: Sử dụng `Targets`, `Hats`, và `EnemyPlayers`, **không dùng** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
-#### 3.2.2 Editable Variables
+#### 3.2.2 Biến có khả năng chỉnh sửa
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Tất cả các biến có thể chỉnh sửa giá trị cho việc thiết lập hành vi của blueprint nên được đánh dấu là `Editable`.
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Ngược lại, tất cả các biến không an toàn khi thay đổi giá trị thì không nên bày ra và _không_ đánh dấu là `Editable`, trừ trường hợp cho các lý do kỹ thuật, các biến được đánh dâu là `Expose On Spawn`.
 
-Do not arbitrarily mark variables as `Editable`.
+Không đánh dấu `Editable` tuỳ tiện.
 
 <a name="3.2.2.1"></a>
 <a name="bp-vars-editable-tooltips"></a>
 ##### 3.2.2.1 Tooltips
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Tất cả biến `Editable`, `Expose On Spawn`, Phải có mô tả trong phần `Tooltip` về hiệu quả, ảnh hưởng của biến này tới hành vi của blueprint.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges
+##### 3.2.2.2 Slider và khoảng giá trị
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+Tất cả biến `Editable` nên sử dụng slider và khoảng giá trị nếu có những giá trị có thể gây _lỗi_ hoặc vô nghĩa
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Ví dụ: Một blueprint tạo cọc hàng rào có biến tên là `PostsCount` thì những giá trị < 0 sẽ trở nên vô nghĩa. Sử dụng khoảng giá trị để thiết lập 0 là giá trị nhỏ nhất.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
-
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+Nếu một biến tuỳ chỉnh được sử dụng trong phần Construction Script, cần phải có Slider Range để không vô tình gán những giá trị quá lớn hoặc quá nhỏ có thể làm crash chương trình.
+Khoảng giá trị chỉ cần thiết nếu được xác định. Trong khi Slider Range ngăn ngừa nguy cơ gán những giá trị quá lớn hoặc quá nhỏ. Khoảng giá không xác định cho phép gán những giá trị nằm ngoài Slider Range được coi là "nguy hiểm" tuy nhiên vẫn là giá trị đúng.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
-#### 3.2.3 Categories
+#### 3.2.3 Categories - Danh mục
 
-If a class has only a small number of variables, categories are not required.
+Nếu một lớp chỉ có một số lượng nhỏ các biến thì danh mục không cần thiết.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+Nếu một lớp có từ (5-10) tuỳ biến, tất cả `Editable` biến nên có danh mục không thuộc default. Một cái tên phổ biến có thể là `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
+Những biến không tuỳ chỉnh được nên ở trong danh mục được chú giải rõ ràng về cách thức sử dụng chúng.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> Chúng ta có thể định dạng danh mục con bằng cách sử dụng ký tự `|`, Ví dụ: `Config | Animations`.
 
-Example: A weapon class set of variables might be organized as:
+Ví dụ:  Một lớp vũ khí có thể được tổ chức như sau:
 
     |-- Config
     |    |-- Animations
@@ -999,74 +971,74 @@ Example: A weapon class set of variables might be organized as:
 
 <a name="3.2.4"></a>
 <a name="bp-vars-access"></a>
-#### 3.2.4 Variable Access Level
+#### 3.2.4 phạm vi truy cập biến
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+Trong C++, các biến đều có khái niệm về phạm vi truy cập. Public có nghĩa là các đoạn code ở ngoài class cũng có thể truy cập. Protected có nghĩa là chỉ trong class và class con có thể truy cập. Private nghĩa là chỉ trong class mới được truy cập, class con cũng không thể truy cập.
 
-Blueprints do not have a defined concept of protected access currently.
+Blueprints hiện tại không có khái niệm biến Protected.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Coi như `Editable` biến là biến public. Biến non-editable là biến protected.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
-##### 3.2.4.1 Private Variables
+##### 3.2.4.1 Biến Private
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+Chỉ dùng nếu biết rằng biến này chỉ nên được dùng trong class hiện tại
 
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
-#### 3.2.5 Advanced Display
+#### 3.2.5 Hiển thị nâng cao
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+Nếu một biến có thể tuỳ biến nhưng thường không nên động vào thì nên đánh dấu là `Advanced Display` để ẩn biến này đi trừ khi advanced display được tick sổ ra.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+Để tìm `Advanced Display` nó nằm trong detail panel.
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
-#### 3.2.6 Transient Variables
+#### 3.2.6 Các biến tạm thời (Transient)
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Các biến tạm thời là các biến không cần lưu các giá trị, không cần nạp, cần có giá trị khởi tạo là zero hoặc null. Đây là một cách thức hữu ích cho việc tham chiếu tới các đối tượng và actors mà giá trị của nó là không biết được cho tới khi hoạt động (run-time). Điều này ngăn ngừa trình biên tập (editor) lưu trữ một phiên bản tham chiếu tới nó, tăng tốc sự lưu trữ và nạp của blueprin class.
 
-Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
+Bởi vì vậy, tất cả các biến tạm thời nên luôn được khởi tạo là zero hoặc null. Không thì sẽ dẫn đến khó khăn trong quá trình debug lỗi.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-config"></a>
-#### 3.2.8 Config Variables
+#### 3.2.8 Biến thiết lập (Config Variables)
 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+Đừng dùng flag `Config Variable`. Điều này sẽ làm cho designers khó điều chỉnh hành vi của blueprint. Các biến thiết lập chỉ nên sử dụng trong C++ vì lí do hiếm khi thay đổi những thông số thiết lập ấy (ví dụ: PI = 3.141592654...) Nghĩ tới chúng như những biến `Advanced Advanced Display`.
 
 <a name="3.3"></a>
 <a name="bp-functions"></a>
-### 3.3 Functions, Events, and Event Dispatchers
+### 3.3 Hàm, Sự kiện, Phát sự kiện
 
-This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
+Phần này bàn về cách chúng ta nên tạo ra các hàm, sự kiện, và phát sự kiện. Mọi thứ áp dụng vào hàm cần được áp dụng vào event, trừ khi có ghi chú.
 
 <a name="3.3.1"></a>
 <a name="bp-funcs-naming"></a>
-#### 3.3.1 Function Naming
+#### 3.3.1 Đặt tên hàm
 
-The naming of functions, events, and event dispatchers is critically important. Based on the name alone, certain assumptions can be made about functions. For example:
+Đặt tên hàm, sự kiện, phát sự kiện là một việc tối quan trọng. Chỉ cần dựa vào cái tên có thể đưa ra một vài dữ kiện về hàm đấy. Ví dụ:
 
-* Is it a pure function?
-* Is it fetching state information?
-* Is it a handler?
-* Is it an RPC?
-* What is its purpose?
+* Đây có phải là một hàm thuần khiết? / Is it a pure function? 
+* Đây có phải là một hàm lấy thông tin trạng thái? / Is it fetching state information?
+* Đây là một hàm xử lý? / Is it a handler?
+* Đây là một RPC? / Is it an RPC?
+* Mục đích của nó là gì? / What is its purpose?
 
-These questions and more can all be answered when functions are named appropriately.
+Những câu hỏi trên hoặc nhiều hơn đều có thể được trả lời nếu tên hàm được đặt tên một cách xác đáng. 
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
-#### 3.3.1.1 All Functions Should Be Verbs
+#### 3.3.1.1 Tất cả các hàm nên là động từ.
 
-All functions and events perform some form of action, whether its getting info, calculating data, or causing something to explode. Therefore, all functions should all start with verbs. They should be worded in the present tense whenever possible. They should also have some context as to what they are doing.
+Tất cả các hàm và sự kiện đều thực hiện các dạng hành động, có thể là lấy thông tin, tính toán dữ liệu, kích nổ cái gì đó. Vì vậy tất cả các hàm phải nên lấy động từ làm khởi điểm và đặt trong thì hiện tại khi có thể. Chúng cũng nên có một vài ngữ cảnh về việc chúng làm gì.
 
-`OnRep` functions, event handlers, and event dispatchers are an exception to this rule.
+Hàm `OnRep`, xử lý sự kiện, phát sự kiện, là những ngoại lệ trong trường hợp này.
 
-Good examples:
+Những ví dụ tốt:
 
-* `Fire` - Good example if in a Character / Weapon class, as it has context. Bad if in a Barrel / Grass / any ambiguous class.
-* `Jump` - Good example if in a Character class, otherwise, needs context.
+* `Fire` - 1 ví dụ tốt nếu nó trong lớp Character / Weapon, vì nó có ngữ cảnh. Không tốt nếu trong lớp Barrel / Grass / hay lớp ngẫu nhiên nào khác.
+* `Jump` - Tốt nếu nằm trong lớp Character không thì phải cần ngữ cảnh.
 * `Explode`
 * `ReceiveMessage`
 * `SortPlayerArray`
@@ -1074,31 +1046,29 @@ Good examples:
 * `GetCoordinates`
 * `UpdateTransforms`
 * `EnableBigHeadMode`
-* `IsEnemy` - ["Is" is a verb.](http://writingexplained.org/is-is-a-verb)
+* `IsEnemy` - ["Is" là động từ tobe.](http://writingexplained.org/is-is-a-verb)
 
-Bad examples:
+Ví dụ tệ:
 
-* `Dead` - Is Dead? Will deaden?
+* `Dead` - là chết? Sẽ chết?
 * `Rock`
-* `ProcessData` - Ambiguous, these words mean nothing.
-* `PlayerState` - Nouns are ambiguous.
-* `Color` - Verb with no context, or ambiguous noun.
+* `ProcessData` - Mơ hồ, những từ này không có ý nghĩa cụ thể về công việc nó đang làm.
+* `PlayerState` - Danh từ mơ hồ.
+* `Color` - Động từ thiếu ngữ cảnh hay là danh từ mơ hồ.
 
 <a name="3.3.1.2"></a>
 <a name="bp-funcs-naming-onrep"></a>
-#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
-
-All functions for replicated with notification variables should have the form `OnRep_Variable`. This is forced by the Blueprint editor. If you are writing a C++ `OnRep` function however, it should also follow this convention when exposing it to Blueprints.
+#### 3.3.1.2 Hàm Property RepNotify luôn đặt là `OnRep_Variable`. Đây là quy tắc bắt buộc bởi trình biên tập Blueprint. Nếu chúng ta viết hàm `OnRep` trong C++, nó cũng nên tuân theo quy tắc này khi exposing nó cho Blueprints.
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions
+#### 3.3.1.3 Hàm thông tin trả về giá trị Boolean nên là câu hỏi ?
 
-When writing a function that does not change the state of or modify any object and is purely for getting information, state, or computing a yes/no value, it should ask a question. This should also follow [the verb rule](#bp-funcs-naming-verbs).
+Khi tạo một hàm không làm thay đổi trạng thái hoặc thay đổi đối tượng mà chỉ đơn thuần là lấy thông tin, trạng thái, hoặc tính toán giá trị đúng/sai, nó nên hỏi câu hỏi. Điều này cũng nên tuân theo quy tắc động từ [the verb rule](#bp-funcs-naming-verbs).
 
-This is extremely important as if a question is not asked, it may be assumed that the function performs an action and is returning whether that action succeeded.
+Đây là một điều cực kỳ quan trọng bởi nếu không phải là câu hỏi thì sẽ được ngầm hiểu là hàm này thực hiện một số hành động, tác vụ và giá trị trả về là kết quả thành công của chuỗi hành động đó.
 
-Good examples:
+Một số ví dụ tốt:
 
 * `IsDead`
 * `IsOnFire`
@@ -1106,30 +1076,30 @@ Good examples:
 * `IsSpeaking`
 * `IsHavingAnExistentialCrisis`
 * `IsVisible`
-* `HasWeapon` - ["Has" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
-* `WasCharging` - ["Was" is past-tense of "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Use "was" when referring to 'previous frame' or 'previous state'.
-* `CanReload` - ["Can" is a verb.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `HasWeapon` - ["Has" là một động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" là thời quá khứ của "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Sử dụng "was" khi có ý là 'previous frame' hoặc 'previous state'.
+* `CanReload` - ["Can" là động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
 
-Bad examples:
+Ví dụ tệ:
 
-* `Fire` - Is on fire? Will fire? Do fire?
-* `OnFire` - Can be confused with event dispatcher for firing.
-* `Dead` - Is dead? Will deaden?
-* `Visibility` - Is visible? Set visibility? A description of flying conditions?
+* `Fire` - Đang cháy? Sẽ cháy? Bắn?
+* `OnFire` - Có thể bị nhẫm lẫn với phát sự kiện cho việc bắn.
+* `Dead` - Chết chưa? sẽ chết?
+* `Visibility` - Có nhìn thấy? Thiết lập nhìn thấy? Một điều kiện?
 
 <a name="3.3.1.4"></a>
 <a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
+#### 3.3.1.4 Xử lý sự kiện và Phát sự kiện nên bắt đầu với `On`
 
-Any function that handles an event or dispatches an event should start with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+Bất kỳ hàm nào xử lý sự kiện hoặc phát sự kiện phải bắt đầu với `On` và tuân thủ theo quy tắc động từ [the verb rule](#bp-funcs-naming-verbs). Động từ có thể chuyển xuống cuối và dùng thời quá khứ nếu dễ hiểu hơn.
 
-[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+Từ `On` trong [Cụm từ](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) được miễn theo quy tắc động từ.
 
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+`Handle` Không được phép sử dụng. Trong 'Unreal' sử dụng `On` thay vì `Handle`, trong khi các frameworks khác sẽ dùng `Handle` thay vì `On`.
 
-Good examples:
+Ví dụ tốt:
 
-* `OnDeath` - Common collocation in games
+* `OnDeath` - Cụm từ phổ biến trong game dev
 * `OnPickup`
 * `OnReceiveMessage`
 * `OnMessageRecieved`
@@ -1137,7 +1107,7 @@ Good examples:
 * `OnClick`
 * `OnLeave`
 
-Bad examples:
+Ví dụ tệ:
 
 * `OnData`
 * `OnTarget`
@@ -1146,45 +1116,46 @@ Bad examples:
 
 <a name="3.3.1.5"></a>
 <a name="bp-funcs-naming-rpcs"></a>
-#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
+#### 3.3.1.5 Các thủ tục gọi từ xa cần đi kèm với tiền tố là mục tiêu / Remote Procedure Calls (RPC) Should Be Prefixed With Target
+RPC: Các hàm được gọi local nhưng thực thi trên máy khác (riêng biệt với máy gọi hàm)
 
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+Bất cứ khi nào một hàm RPC được tạo, nó phải được đi kèm với tiền tố `Server`, `Client`, hoặc `Multicast`. Không có ngoại lệ.
 
-After the prefix, follow all other rules regarding function naming.
+Sau các tiền tố, tuân theo các luật khác trong việc đặt tên.
 
-Good examples:
+Ví dụ:
 
 * `ServerFireWeapon`
 * `ClientNotifyDeath`
 * `MulticastSpawnTracerEffect`
 
-Bad examples:
+Ví dụ tệ:
 
-* `FireWeapon` - Does not indicate its an RPC of some kind.
-* `ServerClientBroadcast` - Confusing.
-* `AllNotifyDeath` - Use `Multicast`, never `All`.
-* `ClientWeapon` - No verb, ambiguous.
+* `FireWeapon` - Không cho biết nó là một hàm RPC.
+* `ServerClientBroadcast` - Nhầm lẫn.
+* `AllNotifyDeath` - Sử dụng `Multicast`, Đừng bao giờ dùng `All`.
+* `ClientWeapon` - Không động từ, không hiểu làm gì, mơ hồ.
 
 
 <a name="3.3.2"></a>
 <a name="bp-funcs-return"></a>
-#### 3.3.2 All Functions Must Have Return Nodes
+#### 3.3.2 Tất cả các hàm phải có node return
 
-All functions must have return nodes, no exceptions.
+Tất cả các hàm phải có node return, không ngoại lệ.
 
-Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+Return nodes thể hiện rõ ràng nó là điểm cuối cùng của chuỗi lệnh. Trong Blueprint có thể sử dụng các node như `Sequence`, `ForLoopWithBreak`, dây nối ngược nodes, minh bạch về dòng thực thi của các chuỗi lệnh là điều quan trọng cho sự dễ hiểu, bảo trì, gỡ lỗi.
 
-The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+Trình biên dịch Blueprint có khả năng đi theo dòng thực thi lệnh và cảnh bảo nếu có một nhánh lệnh có những thứ chưa xử lý hoặc lỗi nếu chúng ta sử dụng node return.
 
-In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+Trong trường hợp một lập trình viên thêm một pin vào node Sequence hoặc thêm logic vào sau vòng lặp, nhưng vòng lặp lại trả về sớm hơn. Kết quả này có thể gây ra một lỗi trong dòng thực thi sau này. Cảnh bảo từ trình biên dịch Blueprint có thể cho thấy vấn đề ngay tức khắc.
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
-#### 3.3.3 No Function Should Have More Than 50 Nodes
+#### 3.3.3 Không hàm nào nên có hơn 50 Nodes
 
-Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+Đơn giản, nếu có hàm nào nhiều node hơn như vậy thì nên phá vỡ ra thành những hàm nhỏ hơn để đảm bảo tính dễ đọc và dễ bảo trì.
 
-The following nodes are not counted as they are deemed to not increase function complexity:
+Những node sau không tính vào con số 50 vì nó không làm tăng sự phức tạp của hàm:
 
 * Comment
 * Route
@@ -1196,128 +1167,126 @@ The following nodes are not counted as they are deemed to not increase function 
 
 <a name="3.3.4"></a>
 <a name="bp-graphs-funcs-description"></a>
-#### 3.3.4 All Public Functions Should Have A Description
+#### 3.3.4 Tất cả hàm công khai phải có mô tả
 
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
-
-Simply, any function that has an access specificer of Public should have its description filled out.
+Quy tắc này cũng áp dụng nhiều đối với marketplace blueprints để cho người khác dễ sử dụng và hiểu về blueprint API của chúng ta. Không nên lãng phí thời gian của đồng nghiệp cho việc họ phải mất thời gian dò xem công dụng và cách dùng của Blueprint này là gì cũng như lãng phí thời gian phải giải thích cho người khác mỗi khi có người khác sử dụng
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
-#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name
+#### 3.3.5  Tất cả các hàm Plugin phải được cho vào danh mục của tên Plugin
 
-If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+Nếu dự án của chúng ta bao gồm một plugin định nghĩa hàm `static` `BlueprintCallable`
+, chúng phải được cho vào danh mục tên plugin hoặc danh mục con của plugin.
 
-For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+Ví dụ, `Zed Camera Interface` hoặc `Zed Camera Interface | Image Capturing`.
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
 ### 3.4 Blueprint Graphs
 
-This section covers things that apply to all Blueprint graphs.
+Phần này nói về những quy tắc áp dụng tới tất cả Blueprint graphps.
 
 <a name="3.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
-#### 3.4.1 No Spaghetti
+#### 3.4.1 Không rối như mớ bòng bong.
 
-Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
+Những đường nối phải rõ ràng điểm bắt đầu và kết thúc. Đừng nên mất thời gian để người khác phải sắp xếp lại các node, đường dây mới có thể hiểu chuyện gì đang xảy ra, tốn thời gian của nhau.
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
-#### 3.4.2 Align Wires Not Nodes
+#### 3.4.2 Căn dóng theo đường dây không phải node
 
-Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straighten Connections command with BP nodes selected. Hotkey: Q
+Chúng ta không thể luôn tuỳ chỉnh kích thước của node, pin nhưng luôn có thể căn chỉnh vị trí của nó qua đó điều chỉnh vị trí của dây nối. Đường dây thẳng rõ ràng dòng chảy của mạch sự kiện. Sử dụng lệnh làm thẳng (chọn BP nodes). Hotkey: Q
 
-Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
+Trường hợp tốt: Những node được căn dóng để tạo đường thẳng cho dòng thực thi.
 ![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
 
-Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
+Trường hợp xấu: Dòng thực thi không thẳng vì căn dóng theo node.
 ![Bad](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
 
-Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
+Trường hợp chấp nhận được: Có một vài node cứng đầu không chịu hợp tác dù chúng ta cố gắng căn dóng như thế nào đi nữa. Trong trường hợp này hạn chế tối đa đường lắt léo bằng cách đưa các node lại gần nhau.
 ![Acceptable](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
 
 <a name="3.4.3"></a>
 <a name="bp-graphs-exec-first-class"></a>
-#### 3.4.3 White Exec Lines Are Top Priority
+#### 3.4.3 Các đường thực thi (màu trắng) là ưu tiên cao nhất.
 
-If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+Nếu chúng ta phải quyết định giữa việc làm thẳng đường thực thi hay làm thẳng đường dữ liệu thì luôn chọn làm thẳng đường thực thi.
 
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
-#### 3.4.4 Graphs Should Be Reasonably Commented
+#### 3.4.4 Graphs phải được comment có ý thức, hiệu quả
 
-Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+Khối các node phải được bao bởi comment mô tả hành vi của nó. Trong khi mỗi hàm phải được đặt tên sao cho mỗi node đều dễ hiểu, nhóm các node phục vụ một mục đích thì phải có block comment cho mục đích đó. Nếu tên hàm đã đủ cho mục đích đó thì không cần comment
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-cast-error-handling"></a>
-#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
+#### 3.4.5 Graphs phải xử lý ngoại lệ Casting hợp lý
 
-If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that the reference being casted could ever fail to be casted.
+Nếu một hàm hoặc sự kiện được coi như luôn cast thành công thì phải có cảnh báo khi cast fail để có thể biết sự cố xuất hiện ở đâu
 
-This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+Điều này không có nghĩa là tất cả các cast node luôn phải có xử lý fail. Trong nhiều trường hợp ví dụ như collisions thì cast fail không cần phải xử lý ngoại lệ mà chỉ cần cho dòng thực thi ngừng lại.
 
 <a name="3.4.6"></a>
 <a name="bp-graphs-dangling-nodes"></a>
-#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+#### 3.4.6 Graphs không nên có node treo, node không sử dụng.
 
-All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
+Tất cả các nodes trong blueprin phải có mục đích của nó. Không nên để những node trống, treo, không có trong dòng thực thi.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="4"></a>
 <a name="Static Meshes"></a>
 <a name="s"></a>
-## 4. Static Meshes
+## 4. Lưới tĩnh / Static Meshes
 
-This section will focus on Static Mesh assets and their internals.
+Phần này sẽ nói về Static Meshes và những thứ liên quan.
 
 <a name="4.1"></a>
 <a name="s-uvs"></a>
 ### 4.1 Static Mesh UVs
 
-If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why it's failing. I am hoping to include these messages in the Lint report in the future.
+Linter: Là một phần mềm tự động kiểm tra dự án xem có tuân thủ các quy tắc được đặt ra trong guideline không. Hiện tại chúng ta chưa có
 
 <a name="4.1.1"></a>
 <a name="s-uvs-no-missing"></a>
-#### 4.1.1 All Meshes Must Have UVs
+#### 4.1.1 Tất cả meshes phải có UVs
 
-Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+Đơn giản. Tất cả meshes, ko kể nó được sẽ được sử dụng như thế nào, đều không được thiếu UVs.
 
 <a name="4.1.2"></a>
 <a name="s-uvs-no-overlapping"></a>
-#### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
+#### 4.1.2 Tất cả Meshes phải có UVs cho Lightmaps (non overlap)
 
-Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+Phục vụ cho việc bake lighting
 
 <a name="4.2"></a>
 <a name="s-lods"></a>
-### 4.2 LODs Should Be Set Up Correctly
+### 4.2 LODs phải được setup chính xác.
 
-This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+Mỗi mesh đều phải có LODs cho các khoảng cách nhìn khác nhau. Điều này sẽ tiếp tục được xem xét với phương pháp làm việc mới khi có sự xuất hiện của Nanite.
 
 <a name="4.3"></a>
 <a name="s-modular-snapping"></a>
-### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly
+### 4.3 Các module không có socket phải snap vào lưới đơn vị (grid) chuẩn xác
 
-This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
-
-It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+Để các module ghép vào nhau như những mảnh lego và tạo nên những thứ lớn hơn.
+Dựa trên tiêu chuẩn của Epic Marketplace Module phải snap khi grid đặt là 10 units hoặc lớn hơn.
 
 <a name="4.4"></a>
 <a name="s-collision"></a>
-### 4.4 All Meshes Must Have Collision
+### 4.4 Tất cả mesh phải có Collision
 
-Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
+Dù cho có thể không dùng đến Collision cho tính toán va chạm nhưng nhiều tác vụ tính toán khác engine có thể dùng đến Collision có thể kể đến như bounds calculations, occlusion, and lighting.
 
 <a name="4.5"></a>
 <a name="s-scaled"></a>
-### 4.5 All Meshes Should Be Scaled Correctly
+### 4.5 Tất cả các lưới phải được Scaled 1:1 đúng kích thước vật lý mong muốn.
 
-This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+Nếu có sử dụng đến scale thì việc scale đấy phải là việc bắt buộc có chủ đích chứ không phải là scale sửa lỗi kích thước ko đúng.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="5"></a>
@@ -1325,18 +1294,16 @@ This is a subjective check on a per-project basis, however all assets should be 
 <a name="ng"></a>
 ## 5. Niagara
 
-This section will focus on Niagara assets and their internals.
-
 <a name="5.1"></a>
 <a name="ng-rules"></a>
-### 5.1 No Spaces, Ever
+### 5.1 Không bao giờ dùng dấu cách, khoảng trắng.
 
-As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space characters are forbidden in identifiers. This is especially true for Niagara systems as it makes working with things significantly harder if not impossible when working with HLSL or other means of scripting within Niagara and trying to reference an identifier.
+Như đã nhắc đến trong [00.1 Định danh bị cấm](#00), tất cả khoảng trắng và dấu cách là bị cấm. Điều này đặc biệt phải tuân thủ khi làm việc với Niagara khi mà một số script hoặc HLSL trong Niagara sẽ rất khó hay gần như không tham chiếu được tới các định danh có dấu cách, khoảng trắng.
 
 (Original Contribution by [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
 
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="6"></a>
@@ -1344,116 +1311,111 @@ As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space ch
 <a name="levels"></a>
 ## 6. Levels / Maps
 
-[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
-
-This section will focus on Level assets and their internals.
+[Xem thuật ngữ](#terms-level-map) "levels" và "maps".
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
-### 6.1 No Errors Or Warnings
+### 6.1 Không lỗi hoặc cảnh báo
 
-All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+Sử dụng map check để kiểm tra và xử lý tất cả các lỗi, cảnh báo, tránh để các lỗi chồng chất lên nhau
 
-You can run a map check on an open level in the editor by using the console command "map check".
-
-Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+Ghi chú: Linter thậm chí còn khắt khe hơn trong việc kiểm tra lỗi và bắt cả những lỗi khi load level mà trình biên tập sẽ bỏ qua. (Hiện tại chưa có Linter cho UE5)
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
-### 6.2 Lighting Should Be Built
+### 6.2 Ánh sáng phải Built
 
-It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+Trong quá trình phát triển có thể không built nhưng nếu thửu nghiệm test/internal/shipping thì phải build ánh sáng.
 
 <a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
-### 6.3 No Player Visible Z Fighting
+### 6.3 Không Z Fighting (trùng mặt)
 
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
+Level không được có hiện tượng trùng mặt ở những nơi mà player có thể tiếp cận và có tầm nhìn
+[z-fighting](https://en.wikipedia.org/wiki/Z-fighting)
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules
+### 6.4 Quy chuẩn của Marketplace
 
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+Nếu dự án của chúng ta được bán trên Marketplace, nó cần tuân thủ quy tắc của Marketplace.
 
 <a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
-#### 6.4.1 Overview Level
+#### 6.4.1 Level Tổng quan
 
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+Nếu dự án có chứa các asset cần minh hoạ hoặc demo cần phải có map tên là "Overview".
 
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+Bản đồ này nếu để minh hoạ asset thì phải setup tuân thủ [Quy chuẩn của Epic](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
 
-For example, `InteractionComponent_Overview`.
+Ví dụ, `InteractionComponent_Overview`.
 
 <a name="6.4.2"></a>
 <a name="levels-mp-rules-demo"></a>
 #### 6.4.2 Demo Level
 
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+Nếu dự án của chúng ta có những asset cần demo thì phải có map tên là "Demo". Map này phải có dạng tài liệu giới thiệu hướng dẫn sử dụng trọng điểm trong đó. Xem ví dụ của Epic
 
-If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+Nếu dự án là một cơ chế chơi game hoặc dạng hệ thống chứ không phải là tập hợp các art asset có thể đặt tên ví dụ như: 
 
-For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+Ví dụ, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
 <a name="7"></a>
 <a name="textures"></a>
 ## 7. Textures
 
-This section will focus on Texture assets and their internals.
-
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
-### 7.1 Dimensions Are Powers of 2
+### 7.1 Độ phân giải phải là luỹ thừa của 2
 
-All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+Có thể không phải là hình vuông nhưng các cạnh phải là luỹ thừa của 2.
 
-For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+Ví dụ: `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
 <a name="7.2"></a>
 <a name="textures-density"></a>
-### 7.2 Texture Density Should Be Uniform
+### 7.2 Mật độ texture phải đồng nhất.
 
-All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+Tất cả texture phải có kích thước phù hợp với mục đích sử dụng. Mỗi một dự án lại có một mật độ phù hợp khác nhau, nhưng các texture trong cùng dự án phải có mật độ đồng nhất.
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+Ví dụ, nếu một dự án yêu cầu mật độ là 8 pixel/unit thì cho hình hộp 100x100 unit cần texture độ phân giải là 1024x1024, vì đó là con số gần nhất mà vẫn thoả mãn điều kiện luỹ thừa của 2 và mật độ yêu cầu của dự án
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
-### 7.3 Textures Should Be No Bigger than 8192
+### 7.3 Textures không lớn hơn 8192
 
-No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+Lãng phí tài nguyên hệ thống, trừ khi có lý do rõ ràng bắt buộc phải dùng.
 
 <a name="7.4"></a>
 <a name="textures-group"></a>
-### 7.4 Textures Should Be Grouped Correctly
+### 7.4 Textures phải nhóm đúng
 
-Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
+Mỗi texture phải có thuộc tính Texture Group cho LOD và phải được thiết lập đúng dựa trên cách sử dụng. Ví dụ, tất cả UI texture phải thuộc nhóm UI Texture Group.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
-## Major Contributors
+## Những người đóng góp chính
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
 * [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
 * [billymcguffin](https://github.com/billymcguffin)
 * [akenatsu](https://github.com/akenatsu)
 
-## License
+## Bản quyền
 
-Copyright (c) 2016 Gamemakin LLC
+Bản quyền (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+Xm [Bản quyền](/LICENSE)
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ Trở lên trên](#Mục lục)**
 
 
-## Amendments
+## Sửa đổi bổ sung
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+Khuyến khích sử dụng và chỉnh sửa cho phù hợp team của mình. Dưới đây, chúng ta có thể liệt kê một số sửa đổi đối với quy chuẩn. Điều này cho phép chúng ta cập nhật định kỳ quy chuẩn mà không bị xung đột với quy chuẩn gốc.
 
 # };
