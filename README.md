@@ -172,9 +172,7 @@ Khi trong ngữ cảnh của lớp (class), nó thường ngầm định cho vi�
 
 <a name="terms-variable"></a>
 ###### Variable - Biến
-Usually refers to a variable defined as a function argument or a local variable inside a function.
-
-When in the context of a class, it is often used to convey discussion about its definition and what it will hold.
+Thường được hiểu là biến trong tham số của hàm, hoặc biến địa phương bên trong một hàm. Trong ngữ cảnh khi sử dụng bên trong lớp (class) thì thường được hiểu là một định nghĩa và giá trị mà nó nắm giữ.
 
 <a name="0"></a>
 ## 0. Nguyên tắc
