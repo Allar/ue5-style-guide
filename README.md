@@ -33,7 +33,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
     - [Variable](#terms-variable)
 - [0. Principles](#0)
   - [0.1 If your UE5 project already has a style guide, you should follow it](#0.1)
-  - [0.2 All structure, assets, and code in any Unreal Engine 5 project should look like a single person created it, no matter how many people contributed](#0.2)
+  - [0.2 All structure, assets, and code in any project should look like a single person created it, no matter how many people contributed](#0.2)
   - [0.3 Friends do not let friends have bad style](#0.3)
   - [0.4 A team without a style guide is no team of mine](#0.4)
   - [0.5 Don't Break The Law](#0.5)
