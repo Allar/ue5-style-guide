@@ -824,13 +824,11 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix
+##### 3.2.1.3 Boolean Prefix
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+All booleans should be named in PascalCase. Do not prefix with a lowercase `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
-
-UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Example: Use `Dead` and `Hostile`, **not** `bDead` and `bHostile`.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
@@ -839,11 +837,15 @@ UE5 Blueprint editors know not to include the `b` in user-friendly displays of t
 <a name="3.2.1.4.1"></a>
 ###### 3.2.1.4.1 General And Independent State Information
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Naming things is hard. That being said, here are some guidelines:
+* All booleans should be named as descriptive adjectives when possible.
+* Use variables that read like a statement. Avoid `IsEveryUserOnline`, which reads like a question. Instead, try `EveryUserIsOnline` or `AllUsersAreOnline`. [Source (see linked comment)](https://dev.to/michi/tips-on-naming-boolean-variables-cleaner-code-35ig#comment-j4fl)
+* Avoid negative names like `ArrayHasNoValues`. Instead, try `ArrayHasValues` or `ArrayIsEmpty`.
+* Choose names that enable setting `false` as default. [Source](https://www.serendipidata.com/posts/naming-guidelines-for-boolean-variables)
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Example: Use `Dead` and `Hostile` **not** `IsDead` and `IsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Try to not use verbs such as `Running`. Verbs tend to lead to complex states.
 
 <a name="3.2.1.4.2"></a>
 ###### 3.2.1.4.2 Complex States
