@@ -2,7 +2,7 @@
 
 *A mostly reasonable approach to Unreal Engine 5*
 
-Forked from [Allar's UE4 style guide](http://ue5.style/).
+Forked from [Allar's UE5 style guide](http://ue5.style/).
 
 ## Linter and Style Guide Documentation
 
@@ -32,8 +32,8 @@ If you have made a notable fork or translation that is not suitable for a pull r
     - [Property](#terms-property)
     - [Variable](#terms-variable)
 - [0. Principles](#0)
-  - [0.1 If your UE4 project already has a style guide, you should follow it](#0.1)
-  - [0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed](#0.2)
+  - [0.1 If your UE5 project already has a style guide, you should follow it](#0.1)
+  - [0.2 All structure, assets, and code in any project should look like a single person created it, no matter how many people contributed](#0.2)
   - [0.3 Friends do not let friends have bad style](#0.3)
   - [0.4 A team without a style guide is no team of mine](#0.4)
   - [0.5 Don't Break The Law](#0.5)
@@ -70,7 +70,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
     - [2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#2.2.3)
     - [2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#2.2.4)
   - [2.3 Use Developers Folder For Local Testing](#structure-developers)
-  - [2.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps)
+  - [2.4 All Level<sup>*</sup> Files Belong In A Folder Called Levels](#structure-levels)
   - [2.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core)
   - [2.6 Do Not Create Folders Called `Assets` or `AssetTypes`](#structure-assettypes)
     - [2.6.1 Creating a folder named `Assets` is redundant](#2.6.1)
@@ -195,7 +195,7 @@ When in the context of a class, it is often used to convey discussion about its 
 These principles have been adapted from [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
 
 <a name="0.1"></a>
-### 0.1 If your UE4 project already has a style guide, you should follow it
+### 0.1 If your project already has a style guide, you should follow it
 
 If you are working on a project or with a team that has a pre-existing style guide, it should be respected.  Any inconsistency between an existing style guide and this guide should defer to the existing.
 
@@ -205,7 +205,7 @@ Style guides should be living documents. You should propose style guide changes 
 > [_Rebecca Murphey_](https://rmurphey.com)
 
 <a name="0.2"></a>
-### 0.2 All structure, assets, and code in any Unreal Engine 4 project should look like a single person created it, no matter how many people contributed
+### 0.2 All structure, assets, and code in any project should look like a single person created it, no matter how many people contributed
 
 Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
 
@@ -223,7 +223,7 @@ If you are helping someone whose work conforms to a different but consistent and
 <a name="0.4"></a>
 ### 0.4 A team without a style guide is no team of mine
 
-When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
+When joining a development team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
 
 <a name="0.5"></a>
 ### 0.5 Don't Break The Law
@@ -323,7 +323,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
+| Level                   |            |            | [Should be in a folder called Levels.](#2.4) |
 | Level (Persistent)      |            | _P         |                                  |
 | Level (Audio)           |            | _Audio     |                                  |
 | Level (Lighting)        |            | _Lighting  |                                  |
@@ -331,7 +331,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Level (Gameplay)        |            | _Gameplay  |                                  |
 | Blueprint               | BP_        |            |                                  |
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
+| Static Mesh             | SM_        |            |                                  |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
 | Particle System         | PS_        |            |                                  |
@@ -533,7 +533,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
-There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
+There are multiple ways to lay out the content of a UE5 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
 
 > If you are using the prefix [naming convention](#1.2) above, using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is a redundant practice as asset types are already both sorted by prefix as well as able to be filtered in the content browser.
 
@@ -572,7 +572,7 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
         |   |-- Electrical
         |   |-- Fire
         |   |-- Weather
-        |-- <a href="#2.4">Maps</a>
+        |-- <a href="#2.4">Levels</a>
         |   |-- Campaign1
         |   |-- Campaign2
         |-- <a href="#2.8">MaterialLibrary</a>
@@ -614,7 +614,7 @@ Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various enginee
 <a name="2.1.3"></a>
 #### 2.1.3 Never Use Unicode Characters And Other Symbols
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE5 don't support Unicode characters in paths either.
 
 Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
 
@@ -688,14 +688,14 @@ If these modular assets were placed in a Developer folder, the world builder sho
 Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
 
 <a name="2.4"></a>
-<a name="structure-maps"></a>
-### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps
+<a name="structure-levels"></a>
+### 2.4 All Level[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Levels
 
-Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+Level files are incredibly special and it is common for every project to have its own level naming system, especially if they work with sub-levels or streaming levels. No matter what system of level organization is in place for the specific project, all levels should belong in `/Content/Project/Levels`.
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Levels`, such as `Levels/Campaign1/` or `Levels/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Levels`.
 
-This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
+This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's levels are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
 
 <a name="2.5"></a>
 <a name="structure-core"></a>
@@ -830,7 +830,7 @@ All booleans should be named in PascalCase but prefixed with a lowercase `b`.
 
 Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
 
-UE4 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
@@ -1362,7 +1362,7 @@ Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting
 <a name="levels-mp-rules"></a>
 ### 6.4 Marketplace Specific Rules
 
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+If a project is to be sold on the Unreal Engine Marketplace, it must follow these rules.
 
 <a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
