@@ -10,8 +10,7 @@ More technical documentation regarding Linter and the Style Guide can be found a
 
 ## Linking To This Document
 
-Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
-For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
+Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of https://github.com/ZeroSpace-Studios/UnrealStyleGuide For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in https://github.com/ZeroSpace-Studios/UnrealStyleGuide#0.1.
 
 ## Forks And Translations
 
