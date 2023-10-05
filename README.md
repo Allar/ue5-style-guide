@@ -12,17 +12,6 @@ More technical documentation regarding Linter and the Style Guide can be found a
 
 Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of https://github.com/ZeroSpace-Studios/UnrealStyleGuide For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in https://github.com/ZeroSpace-Studios/UnrealStyleGuide#0.1.
 
-## Forks And Translations
-
-If you have made a notable fork or translation that is not suitable for a pull request into this repo, please submit a pull request to add the fork or translation here.
-
-* [Korean Translation](https://github.com/ymkim50/ue4-style-guide/blob/master/README_Kor.md) by ymkim50
-* [Russian Translation](https://github.com/CosmoMyzrailGorynych/ue4-style-guide-rus/blob/master/README.md) by CosmoMyzrailGorynych
-* [Japanese Translation](https://github.com/akenatsu/ue4-style-guide/blob/master/README.jp.md) by akenatsu
-* [Chinese Translation](https://github.com/skylens-inc/ue4-style-guide/blob/master/README.md) by Beijing Skylens Tech.
-* [Brazilian Portuguese Translation](https://github.com/danlvr/ue5-style-guide/blob/main/README_PTBR.md) by danlvr.
-* [French Translation](https://github.com/Arnaud58/ue5-style-guide/blob/main/README.md) by Arnaud58
-
 ## Table of contents
 - [Important Terminology](#important-terminology)
   - [Levels/Maps](#terms-level-map)
@@ -85,7 +74,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
       - [3.2.1.1 Nouns](#bp-var-naming-nouns)
       - [3.2.1.2 PascalCase](#bp-var-naming-case)
         - [3.2.1.2e Examples](#3.2.1.2e)
-      - [3.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
+      - [3.2.1.3 Boolean No Prefix](#bp-var-bool-prefix)
       - [3.2.1.4 Boolean Names](#bp-var-bool-names)
         - [3.2.1.4.1 General And Independent State Information](#3.2.1.4.1)
         - [3.2.1.4.2 Complex States](#3.2.1.4.2)
@@ -824,13 +813,11 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean `b` Prefix
+##### 3.2.1.3 Boolean No Prefix
 
-All booleans should be named in PascalCase but prefixed with a lowercase `b`.
+All booleans should be named in PascalCase. Do not prefix with a lowercase `b`.
 
-Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
-
-UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
+Example: Use `Dead` and `Hostile`, **not** `bDead` and `bHostile`.
 
 <a name="3.2.1.4"></a>
 <a name="bp-var-bool-names"></a>
@@ -839,11 +826,15 @@ UE5 Blueprint editors know not to include the `b` in user-friendly displays of t
 <a name="3.2.1.4.1"></a>
 ###### 3.2.1.4.1 General And Independent State Information
 
-All booleans should be named as descriptive adjectives when possible if representing general information. Do not include words that phrase the variable as a question, such as `Is`. This is reserved for functions.
+Naming things is hard. That being said, here are some guidelines:
+* All booleans should be named as descriptive adjectives when possible.
+* Use variables that read like a statement. Avoid `IsEveryUserOnline`, which reads like a question. Instead, try `EveryUserIsOnline` or `AllUsersAreOnline`. [Source (see linked comment)](https://dev.to/michi/tips-on-naming-boolean-variables-cleaner-code-35ig#comment-j4fl)
+* Avoid negative names like `ArrayHasNoValues`. Instead, try `ArrayHasValues` or `ArrayIsEmpty`.
+* Choose names that enable setting `false` as default. [Source](https://www.serendipidata.com/posts/naming-guidelines-for-boolean-variables)
 
-Example: Use `bDead` and `bHostile` **not** `bIsDead` and `bIsHostile`.
+Example: Use `Dead` and `Hostile` **not** `IsDead` and `IsHostile`.
 
-Try to not use verbs such as `bRunning`. Verbs tend to lead to complex states.
+Try to not use verbs such as `Running`. Verbs tend to lead to complex states.
 
 <a name="3.2.1.4.2"></a>
 ###### 3.2.1.4.2 Complex States
