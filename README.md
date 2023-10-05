@@ -85,7 +85,7 @@ If you have made a notable fork or translation that is not suitable for a pull r
       - [3.2.1.1 Nouns](#bp-var-naming-nouns)
       - [3.2.1.2 PascalCase](#bp-var-naming-case)
         - [3.2.1.2e Examples](#3.2.1.2e)
-      - [3.2.1.3 Boolean `b` Prefix](#bp-var-bool-prefix)
+      - [3.2.1.3 Boolean No Prefix](#bp-var-bool-prefix)
       - [3.2.1.4 Boolean Names](#bp-var-bool-names)
         - [3.2.1.4.1 General And Independent State Information](#3.2.1.4.1)
         - [3.2.1.4.2 Complex States](#3.2.1.4.2)
@@ -824,7 +824,7 @@ All non-boolean variables should be in the form of [PascalCase](#terms-cases).
 
 <a name="3.2.1.3"></a>
 <a name="bp-var-bool-prefix"></a>
-##### 3.2.1.3 Boolean Prefix
+##### 3.2.1.3 Boolean No Prefix
 
 All booleans should be named in PascalCase. Do not prefix with a lowercase `b`.
 
