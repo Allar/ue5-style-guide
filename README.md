@@ -25,7 +25,6 @@ Every section of this style guide is numbered for both easy reference and easy l
   - [0.2 All structure, assets, and code in any project should look like a single person created it, no matter how many people contributed](#0.2)
   - [0.3 Friends do not let friends have bad style](#0.3)
   - [0.4 A team without a style guide is no team of mine](#0.4)
-  - [0.5 Don't Break The Law](#0.5)
 - [00. Globally Enforced Opinions](#00)
   - [00.1 Forbidden Characters](#00.1)
     - [Identifiers](#identifiers)
@@ -213,16 +212,6 @@ If you are helping someone whose work conforms to a different but consistent and
 ### 0.4 A team without a style guide is no team of mine
 
 When joining a development team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
-
-<a name="0.5"></a>
-### 0.5 Don't Break The Law
-
-Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and behavior to a project, including but not limited to:
-
-* Don't distribute content you don't have the rights to distribute
-* Don't infringe on someone else's copyrighted or trademark material
-* Don't steal content
-* Follow licensing restrictions on content, e.g. attribute when attributions are needed
 
 <a name="00"></a>
 ## 00. Globally Enforced Opinions
@@ -530,20 +519,25 @@ There are multiple ways to lay out the content of a UE5 project. In this style, 
 ### 2e1 Example Project Content Structure
 <pre>
 |-- Content
-    |-- <a href="#2.2">GenericShooter</a>
-        |-- Art
-        |   |-- Industrial
+    |-- <a href="#2.2">00_AwesomeRPG</a>
+        |-- Environment
+        |   |-- PowerStation
         |   |   |-- Ambient
         |   |   |-- Machinery
         |   |   |-- Pipes
-        |   |-- Nature
+        |   |   |-- GeneratedGeometry
+        |   |   |-- BP_MoodLight
+        |   |-- Jungle
         |   |   |-- Ambient
         |   |   |-- Foliage
         |   |   |-- Rocks
-        |   |   |-- Trees
-        |   |-- Office
         |-- Characters
         |   |-- Bob
+        |   |   |-- Character
+        |   |   |-- Animations
+        |   |   |-- Clothing
+        |   |   |-- Accessories
+        |   |-- Bob_v2
         |   |-- Common
         |   |   |-- <a href="#2.7">Animations</a>
         |   |   |-- Audio
@@ -557,13 +551,18 @@ There are multiple ways to lay out the content of a UE5 project. In this style, 
         |   |-- Interactables
         |   |-- Pickups
         |   |-- Weapons
+        |-- Cinematics
+        |   |-- ExportTemplates
+        |   |-- Takes
+        |   |-- Selects
         |-- Effects
-        |   |-- Electrical
+        |   |-- Lightning
         |   |-- Fire
         |   |-- Weather
         |-- <a href="#2.4">Levels</a>
         |   |-- Campaign1
         |   |-- Campaign2
+        |   |-- Test
         |-- <a href="#2.8">MaterialLibrary</a>
         |   |-- Debug
         |   |-- Metal
@@ -572,12 +571,6 @@ There are multiple ways to lay out the content of a UE5 project. In this style, 
         |   |-- Weathering
         |-- Placeables
         |   |-- Pickups
-        |-- Weapons
-            |-- Common
-            |-- Pistols
-            |   |-- DesertEagle
-            |   |-- RocketPistol
-            |-- Rifles
 </pre>
 
 The reasons for this structure are listed in the following sub-sections.
@@ -603,7 +596,7 @@ Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various enginee
 <a name="2.1.3"></a>
 #### 2.1.3 Never Use Unicode Characters And Other Symbols
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE5 don't support Unicode characters in paths either.
+If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tools and some parts of UE5 don't support Unicode characters in paths either.
 
 Related to this, if your project has [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) and your computer's user name has a Unicode character (i.e. your name is `Zoë`), any project located in your `My Documents` folder will suffer from this issue. Often simply moving your project to something like `D:\Project` will fix these mysterious issues.
 
@@ -613,7 +606,7 @@ Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,
 <a name="structure-top-level"><a>
 ### 2.2 Use A Top Level Folder For Project Specific Assets
 
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/GenericShooter`.
+All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Content/00_GenericShooter`.
 
 > The `Developers` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
 
@@ -635,7 +628,7 @@ These dependencies are what can easily get you into trouble. If two project's as
 
 This is also the primary reason why Epic's Marketplace staff enforces the same policy for submitted assets.
 
-After a migration, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
+After a migration, then optionally, safe merging of assets can be done using the 'Replace References' tool in the content browser with the added clarity of assets not belonging to a project's top level folder are clearly pending a merge. Once assets are merged and fully migrated, there shouldn't be another top level folder in your Content tree. This method is _100%_ guaranteed to make any migrations that occur completely safe.
 
 <a name="2.2.2e1"></a>
 ##### 2.2.2e1 Master Material Example
@@ -680,9 +673,9 @@ Once the assets are ready for use, an artist simply has to move the assets into 
 <a name="structure-levels"></a>
 ### 2.4 All Level[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Levels
 
-Level files are incredibly special and it is common for every project to have its own level naming system, especially if they work with sub-levels or streaming levels. No matter what system of level organization is in place for the specific project, all levels should belong in `/Content/Project/Levels`.
+Level files are incredibly special and it is common for every project to have its own level naming system, especially if they work with sub-levels or streaming levels. No matter what system of level organization is in place for the specific project, all levels should belong in `/Content/00_Project/Levels`.
 
-Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Levels`, such as `Levels/Campaign1/` or `Levels/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Levels`.
+Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Levels`, such as `Levels/Campaign1/` or `Levels/Arenas`, but the most important thing here is that they all exist within `/Content/00_Project/Levels`.
 
 This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's levels are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
 
@@ -690,11 +683,11 @@ This also simplifies the job of cooking for engineers. Wrangling levels for a bu
 <a name="structure-core"></a>
 ### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets
 
-Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+Use `/Content/00_Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
 
-This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+This creates a very clear "don't touch these" message for other team members. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
 
-For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/00_Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should be careful touching `Core/Pickups` as they may unintentionally break pickups project-wide.
 
 <a name="2.6"></a>
 <a name="structure-assettypes"></a>
@@ -712,7 +705,7 @@ All asset names are named with their asset type in mind. These folders offer onl
 
 Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> This also extends the full path name of an asset for very little benefit. The `SM_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
 
 Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
 
@@ -732,7 +725,7 @@ For example, animations that are shared across multiple characters should lay in
 <a name="structure-material-library"></a>
 ### 2.8 `MaterialLibrary`
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/OO_Project/MaterialLibrary`.
 
 This way all 'global' materials have a place to live and are easily located.
 
